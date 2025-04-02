@@ -1,6 +1,6 @@
 # Modern Software Engineer Portfolio & Targeted CV Platform
 
-A high-performance, responsive, and bilingual (English / French) Developer Portfolio and Targeted Interactive CV Application built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**. 
+A high-performance, responsive, and bilingual (English / French) Developer Portfolio and Targeted Interactive CV Application built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**.
 
 > ⚡ **Powered by [Stitch](https://stitch.withgoogle.com/) and [Google AI Studio](https://aistudio.google.com/)**
 
@@ -29,6 +29,7 @@ Designed specifically for senior software engineers, technical architects, and c
 ## 🤖 Platform Credits
 
 This application was created and powered using **Stitch** and **Google AI Studio**.
+
 - **Stitch**: Design system and UI component generation.
 - **Google AI Studio**: Full-stack application generation, routing, and developer workflow automation.
 
@@ -53,26 +54,32 @@ Ensure you have **Node.js 18+** and **npm** installed on your system.
 ### Installation
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/your-username/your-portfolio-repo.git
    cd your-portfolio-repo
    ```
 
 2. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Start the development server**:
+
    ```bash
    npm run dev
    ```
+
    Open your browser at `http://localhost:3000` (or `http://localhost:5173`).
 
 4. **Build for production**:
+
    ```bash
    npm run build
    ```
+
    The compiled output will be generated in the `dist/` folder.
 
 5. **Preview the production build**:
@@ -100,6 +107,7 @@ All portfolio content is central in `src/data/portfolioData.json`. Modify the JS
 ### 2. Update Translations (`src/data/translations/en.json` & `fr.json`)
 
 If you want to adjust UI labels, navigation buttons, or headings:
+
 - Edit `src/data/translations/en.json` for English strings.
 - Edit `src/data/translations/fr.json` for French strings.
 
