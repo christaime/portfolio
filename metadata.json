@@ -1,0 +1,6 @@
+{
+  "name": "Portfolio.dev",
+  "description": "Bilingual portfolio web application for a Senior Software Engineer featuring CV, Services, Blog, and interactive Contact form with English and French support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
