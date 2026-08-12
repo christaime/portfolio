@@ -2,9 +2,9 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
-import { LanguageProvider } from '../context/LanguageContext';
-import { EngineerOverviewModal } from './EngineerOverviewModal';
-import { EngineerInfo } from '../types';
+import { LanguageProvider } from '../../src/context/LanguageContext';
+import { EngineerOverviewModal } from '../../src/components/EngineerOverviewModal';
+import { EngineerInfo } from '../../src/types';
 
 const mockEngineer: EngineerInfo = {
   name: 'Christelle Mamekem Ngueguim',

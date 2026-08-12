@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { CVExperienceItem } from './CVExperienceItem';
-import { WorkExperience } from '../../types';
+import { CVExperienceItem } from '../../../src/components/cv/CVExperienceItem';
+import { WorkExperience } from '../../../src/types';
 
 const mockExperience: WorkExperience = {
   id: 'exp-1',

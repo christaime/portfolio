@@ -21,7 +21,7 @@ export function AppContent() {
       <Header onOpenProfileModal={() => setProfileModalOpen(true)} />
 
       {/* Main Content Area */}
-      <main className="flex-grow pt-24 pb-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+      <main className="flex-grow pt-18 pb-10 md:pt-20 md:pb-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
         <Routes>
           <Route path="/" element={<Navigate to="/cv" replace />} />
           <Route path="/cv" element={<CVPage />} />

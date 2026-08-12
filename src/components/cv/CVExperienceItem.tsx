@@ -3,12 +3,13 @@ import { ExternalLink } from 'lucide-react';
 import { WorkExperience } from '../../types';
 
 interface CVExperienceItemProps {
+  key?: React.Key;
   experience: WorkExperience;
 }
 
-export const CVExperienceItem: React.FC<CVExperienceItemProps> = ({ experience }) => {
+export const CVExperienceItem = ({ experience }: CVExperienceItemProps) => {
   return (
-    <div className="bg-surface border border-outline-variant hover:border-outline transition-all rounded-xl p-6 flex flex-col gap-4 shadow-xs">
+    <div className="bg-surface border border-outline-variant hover:border-outline transition-all rounded-xl p-4 md:p-5 flex flex-col gap-3 shadow-xs">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-outline-variant/40 pb-3">
         <div>
           <h3 className="font-headline-sm text-lg text-on-surface font-bold">

@@ -1,0 +1,421 @@
+{
+  "engineer": {
+    "name": "Christelle Mamekem Ngueguim",
+    "title": "Ingénieure Logiciel Senior (.NET C# / Java EE / Angular / DevOps)",
+    "email": "mnchristelle@gmail.com",
+    "phone": "+237 695 282 983",
+    "location": "Bafoussam, Cameroun",
+    "remoteAvailable": true,
+    "avatarUrl": "/assets/my_picture.jpg",
+    "introduction": "Ingénieure Logiciel Senior avec plus de 10 ans d'expertise en ingénierie Backend (.NET Core/C# & Java/Spring Boot), applications Frontend SPAs (Angular & React), assurance qualité/tests automatisés, architecture fullstack et gestion d'infrastructures systèmes. Expérience éprouvée dans la conception de microservices sécurisés avec JWT/Keycloak, l'intégration de middlewares d'entreprise (RabbitMQ, ActiveMQ, OpenKM), l'architecture de normes de facturation électronique PEPPOL (UBL 2.1 & Schematron), et l'orchestration de pipelines DevOps automatisés avec Docker, Ansible, Azure DevOps et GitLab CI.",
+    "github": "https://github.com/christaime",
+    "linkedin": "https://www.linkedin.com/in/christelle-mamekem-ngueguim/",
+    "stackoverflow": "https://stackoverflow.com"
+  },
+  "experiences": [
+    {
+      "id": "exp-baotec-remote",
+      "role": "Développeuse Logiciel Senior",
+      "company": "Groupe Baotec",
+      "companyUrl": "https://www.baotec.com/",
+      "location": "À distance",
+      "period": "06/2025 - 03/2026",
+      "description": "Architecte des intégrations de facturation électronique PEPPOL, développement d'interfaces réactives Angular 18 avec Signals, conception de microservices Java 17 / Spring Boot avec migrations Flyway et création de playbooks Ansible.",
+      "achievements": [
+        "Architecture d'une intégration PEPPOL via l'API Flowin ; conception d'un moteur de cartographie personnalisé XML/UBL 2.1 avec validation Schematron réduisant le taux de rejets.",
+        "Développement de frontends modulaires Angular 18 utilisant Signals pour l'état réactif ; création de microservices Java 17 / Spring Boot robustes pour le déploiement multi-entité.",
+        "Gestion de l'évolution des schémas relationnels avec Flyway pour les migrations SQL automatisées et rédaction de playbooks Ansible pour le renforcement des VPS.",
+        "Mise en place de pipelines de déploiement automatisés avec GitLab CI et SonarQube pour appliquer des normes de qualité et de sécurité strictes."
+      ],
+      "technologies": ["Java 17", "Spring Boot", "Angular 18", "Tailwind", "Git", "PEPPOL", "UBL 2.1", "Flowin API", "Schematron", "Flyway", "Swagger", "Keycloak", "Ansible", "GitLab CI", "Open Project", "SonarQube", "S3 Storage", "Docker", "PostgreSQL"],
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    },
+    {
+      "id": "exp-cephas-remote",
+      "role": "Développeuse Logiciel Senior",
+      "company": "Groupe Cephas",
+      "companyUrl": "",
+      "location": "À distance",
+      "period": "01/2023 - 03/2025",
+      "description": "Encadrement d'une équipe de développement Agile Scrum (2 développeurs), conception d'APIs REST .NET Core/Framework en C#, création de SPAs Angular avec bibliothèques de composants sur mesure et gestion des pipelines Azure DevOps.",
+      "achievements": [
+        "Direction et mentorat d'une équipe Agile Scrum de 2 développeurs ; revues de code (PR), coaching, planification des tâches et documentation technique avec Visio et Swagger.",
+        "Développement d'APIs REST .NET Core & .NET Framework avec C#, AutoMapper, RestSharp, ClosedXML pour la génération automatique de rapports Excel, et documentation OpenAPI Swagger.",
+        "Conception et mise en œuvre d'applications web Angular 14+ modulaires avec Angular Material, Bootstrap, ngx-translate (i18n), RxJS et génération de documents jsPDF côté client.",
+        "Migration majeure de la stack frontend d'Angular 12 vers Angular 14+ sans interruption de service.",
+        "Orchestration de l'automatisation CI/CD et publication de packages via Azure Pipelines, Azure Feed (Nuget privé) et Azure Test Plans pour l'exécution des tests QA, déploiement sur serveurs IIS avec bases SQL Server."
+      ],
+      "technologies": [".NET Core", ".NET Framework", "C#", "Angular 14+", "Angular Material", "RxJS", "ngx-translate", "Git", "ClosedXML", "AutoMapper", "SQL Server", "IIS", "Azure DevOps", "Azure Pipelines", "Azure Test Plans", "Azure Feed", "Swagger"],
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    },
+    {
+      "id": "exp-baotec-kps",
+      "role": "Développeuse Logiciel",
+      "company": "KPS SARL (Groupe Baotec)",
+      "companyUrl": "https://nkap.baotec.com/",
+      "location": "Yaoundé, Cameroun",
+      "period": "08/2014 - 12/2022",
+      "description": "Développement et maintenance de modules ERP cœurs (Écoles, Hôpitaux, Comptabilité) pour la suite logicielle 'Nkap' avec Java Spring et Groovy/Grails.",
+      "achievements": [
+        "Développement et maintenance de plus de 3 modules cœurs (Éducation, Santé, Comptabilité) pour la suite ERP 'Nkap' avec Java Spring et Groovy/Grails.",
+        "Orchestration de l'intégration de middlewares dont OpenKM pour la gestion documentaire, Keycloak pour le SSO/IAM et ActiveMQ pour la messagerie.",
+        "Mise en œuvre d'agrégations de données haute performance avec Pentaho ETL et création de rapports financiers imprimables avec JasperReports.",
+        "Création d'APIs REST avec Spring Data JPA et gestion des migrations de bases de données versionnées avec Flyway et Liquibase.",
+        "Mise en place de tests automatisés (JUnit/Mockito, Jasmine/Protractor) et conteneurisation des applications avec Docker sur serveurs VPS.",
+        "Déploiement du suivi Prometheus et Grafana pour les conteneurs Docker sur environnements VPS, offrant une visibilité en temps réel sur la santé des systèmes."
+      ],
+      "technologies": ["Java 8", "Spring Boot", "Groovy/Grails", "Angular", "Angular Material", "Bootstrap", "Git", "Keycloak", "OpenKM", "PostgreSQL", "Pentaho ETL", "JasperReports", "Docker", "Flyway", "Pentaho", "JasperReport", "Grafana", "Prometheus", "Tomcat", "Ubuntu"],
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    },
+    {
+      "id": "exp-afrik-brain",
+      "role": "Ingénieure Logiciel",
+      "company": "Afrik Brain",
+      "companyUrl": "https://www.linkedin.com/company/afrik-brain/?originalSubdomain=cm",
+      "location": "Yaoundé, Cameroun",
+      "period": "2011 - 2012",
+      "description": "Mise en œuvre d'un module de gestion budgétaire dans un système bancaire cœur avec Java EJB3, Swing et automatisation de cas de test.",
+      "achievements": [
+        "Développement d'un module de gestion budgétaire bancaire avec Java EJB3 et Swing.",
+        "Prise de notes durant les séances de réflexion technique et rédaction des cas de tests d'acceptation.",
+        "Exécution des cycles de tests automatisés et de vérification d'application."
+      ],
+      "technologies": ["Java EJB3", "Swing", "JUnit"],
+      "linkedServices": ["backend-engineer", "qa-testing"]
+    }
+  ],
+  "skillCategories": [
+    {
+      "category": "Ingénierie Backend (.NET & C#)",
+      "linkedServices": ["qa-testing", "backend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": ".NET Core & .NET Framework / C#", "level": "Expert", "years": "2+ ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "APIs REST (Swagger, AutoMapper, RestSharp)", "level": "Expert", "years": "2+ ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Génération de Rapports Excel (ClosedXML)", "level": "Expert", "years": "2 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Authentification JWT & Hébergement IIS", "level": "Expert", "years": "2+ ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Messagerie Événementielle RabbitMQ", "level": "Avancé", "years": "2 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Tests Automatisés & Manuels (xUnit, Swagger, Azure Test Plans)", "level": "Avancé", "years": "2 ans", "linkedServices": ["backend-engineer", "fullstack-engineer", "qa-testing"] }
+      ]
+    },
+    {
+      "category": "Ingénierie Backend (Java & Spring)",
+      "linkedServices": ["qa-testing", "backend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "Java 17+ / Spring Boot & EJB3", "level": "Avancé", "years": "8+ ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Groovy & Framework Grails", "level": "Expert", "years": "4 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Keycloak SSO / IAM & Sécurité", "level": "Expert", "years": "8 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Middlewares d'Entreprise (ActiveMQ, OpenKM)", "level": "Expert", "years": "6 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Facturation PEPPOL UBL 2.1 & Validation Schematron", "level": "Expert", "years": "2 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Tests Automatisés & Manuels (JUnit, Mockito, Selenium, Cucumber, SonarQube, Swagger, Postman)", "level": "Avancé", "years": "5+ ans", "linkedServices": ["backend-engineer", "fullstack-engineer", "qa-testing"] }
+      ]
+    },
+    {
+      "category": "Ingénierie Frontend (Angular)",
+      "linkedServices": ["qa-testing", "frontend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "Angular 14-18 / Signals / RxJS", "level": "Avancé", "years": "6+ ans", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Migration Angular (Angular 12 vers 14+)", "level": "Expert", "years": "3 ans", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Internationalisation (ngx-translate i18n)", "level": "Expert", "years": "5 ans", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Angular Material & Bootstrap UI", "level": "Avancé", "years": "7 ans", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Génération Documentaire Client (jsPDF)", "level": "Expert", "years": "4 ans", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Tests Automatisés & Manuels (JUnit, Mockito, Selenium, Cucumber, SonarQube, Swagger, Postman)", "level": "Avancé", "years": "6+ ans", "linkedServices": ["backend-engineer", "fullstack-engineer", "qa-testing"] }
+      ]
+    },
+    {
+      "category": "Ingénierie Frontend (React & Web Moderne)",
+      "linkedServices": ["frontend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "Composants React & Routage (Auto-formation en cours)", "level": "Intermédiaire", "years": "1 an", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "TypeScript & JavaScript Moderne (ES6+)", "level": "Expert", "years": "8 ans", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Tailwind CSS & Layouts Réactifs", "level": "Intermédiaire", "years": "3 ans", "linkedServices": ["frontend-engineer", "fullstack-engineer"] }
+      ]
+    },
+    {
+      "category": "Bases de données & Persistance",
+      "linkedServices": ["qa-testing", "backend-engineer", "fullstack-engineer", "sys-infra"],
+      "skills": [
+        { "name": "MySQL, PostgreSQL & SQL Server (SQL & DQL/DML)", "level": "Expert", "years": "10 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "SQL Server Management Studio (SSMS)", "level": "Intermédiaire", "years": "2 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Migrations de Schémas Flyway & Liquibase", "level": "Expert", "years": "6 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Spring Data JPA & Entity Framework Core", "level": "Expert", "years": "8 ans", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Requêtes Complexes SQL & Vérification d'Intégrité", "level": "Avancé", "years": "8 ans", "linkedServices": ["qa-testing", "backend-engineer", "fullstack-engineer"] }
+      ]
+    },
+    {
+      "category": "Assurance Qualité & Tests (QA)",
+      "linkedServices": ["qa-testing", "backend-engineer", "frontend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "Azure Test Plans & Audits de Tests Manuels", "level": "Expert", "years": "2 ans", "linkedServices": ["qa-testing"] },
+        { "name": "Revues de Code PR & Coaching Développeurs", "level": "Expert", "years": "5 ans", "linkedServices": ["qa-testing"] },
+        { "name": "Tests Unitaires (JUnit 5, Mockito, MSTest)", "level": "Expert", "years": "8 ans", "linkedServices": ["qa-testing", "backend-engineer"] },
+        { "name": "Tests E2E Frontend (Cypress, Jasmine, Protractor)", "level": "Expert", "years": "6 ans", "linkedServices": ["qa-testing", "frontend-engineer"] },
+        { "name": "Analyse Statique de Code & Métriques SonarQube", "level": "Expert", "years": "5 ans", "linkedServices": ["qa-testing", "sys-infra"] }
+      ]
+    },
+    {
+      "category": "Système, Infrastructure & DevOps",
+      "linkedServices": ["sys-infra", "backend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "Azure DevOps (Pipelines, Azure Feed / Nuget, Git)", "level": "Expert", "years": "2+ ans", "linkedServices": ["sys-infra", "qa-testing"] },
+        { "name": "Conteneurisation Docker & Docker-Compose", "level": "Expert", "years": "6 ans", "linkedServices": ["sys-infra", "backend-engineer"] },
+        { "name": "Playbooks Ansible & Sécurisation VPS", "level": "Avancé", "years": "4 ans", "linkedServices": ["sys-infra"] },
+        { "name": "GitLab CI & Pipelines de Déploiement CI/CD", "level": "Intermédiaire", "years": "1 an", "linkedServices": ["sys-infra"] },
+        { "name": "Serveurs Web (IIS, Apache2, Nginx)", "level": "Expert", "years": "7 ans", "linkedServices": ["sys-infra"] }
+      ]
+    },
+    {
+      "category": "Systèmes d'exploitation, IDEs & Outils de Collaboration",
+      "linkedServices": ["sys-infra", "backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing"],
+      "skills": [
+        { "name": "Systèmes d'exploitation (Windows, Linux / VPS, macOS)", "level": "Avancé", "years": "10 ans", "linkedServices": ["sys-infra"] },
+        { "name": "IDEs de Développement (VS Code, Visual Studio, NetBeans, Eclipse, IntelliJ IDEA, SSMS)", "level": "Expert", "years": "10 ans", "linkedServices": ["backend-engineer", "frontend-engineer"] },
+        { "name": "Gestion de Projet & Collaboration (Azure DevOps, Redmine, Git, Teams, Slack, Outlook)", "level": "Expert", "years": "8 ans", "linkedServices": ["qa-testing", "sys-infra"] },
+        { "name": "Documentation Technique & Schémas (Visio, Swagger OpenAPI)", "level": "Expert", "years": "5 ans", "linkedServices": ["backend-engineer", "sys-infra"] }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Licence en Informatique et Génie Réseau",
+      "institution": "Université des Montagnes (Bangangté, Cameroun)",
+      "year": "2007 - 2010",
+      "details": "Diplôme de licence en informatique et réseaux avec mention.",
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    },
+    {
+      "degree": "Formation Professionnelle CISCO Academy (CCNA)",
+      "institution": "CISCO Academy (Douala, Cameroun)",
+      "year": "2011 - 2012",
+      "details": "Infrastructure réseau, routage, commutation et gestion des protocoles.",
+      "linkedServices": ["sys-infra", "backend-engineer"]
+    },
+    {
+      "degree": "Certificat d'Anglais Professionnel (Niveau Intermédiaire)",
+      "institution": "British Language Center (Yaoundé, Cameroun)",
+      "year": "2011",
+      "details": "Certification de niveau de langue anglaise professionnelle.",
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-cisco-ccna",
+      "name": "CISCO CCNA (Cisco Certified Network Associate)",
+      "issuer": "CISCO Networking Academy",
+      "year": "2012",
+      "credentialId": "CCNA-2012-CM",
+      "credentialUrl": "https://cp.certmetrics.com/cisco/en/public/verify/credential/415832463831BMDL",
+      "category": "professional",
+      "icon": "cloud",
+      "badgeColor": "text-blue-500",
+      "linkedServices": ["sys-infra"]
+    },
+    {
+      "id": "cert-hackerrank-problem-solving",
+      "name": "Certificat HackerRank de Résolution de Problèmes & Génie Logiciel",
+      "issuer": "HackerRank",
+      "year": "2024",
+      "credentialId": "HR-PS-INT",
+      "credentialUrl": "https://www.hackerrank.com/profile/mnchristelle",
+      "category": "online_skill",
+      "icon": "code",
+      "badgeColor": "text-emerald-500",
+      "linkedServices": ["backend-engineer", "fullstack-engineer"]
+    },
+    {
+      "id": "cert-hackerrank-js-angular",
+      "name": "Badge HackerRank Vérifié en JavaScript & Développement Web",
+      "issuer": "HackerRank",
+      "year": "2024",
+      "credentialId": "HR-JS-FE",
+      "credentialUrl": "https://www.hackerrank.com/profile/mnchristelle",
+      "category": "badge",
+      "icon": "verified",
+      "badgeColor": "text-amber-500",
+      "linkedServices": ["frontend-engineer", "fullstack-engineer"]
+    },
+    {
+      "id": "cert-codesignal-gca",
+      "name": "Certification CodeSignal d'Évaluation Générale de Programmation",
+      "issuer": "CodeSignal",
+      "year": "2024",
+      "credentialId": "CS-GCA-VERIFIED",
+      "credentialUrl": "https://codesignal.com/learn/profile/cm9jwu74c001ijx04oz8qk26x",
+      "category": "online_skill",
+      "icon": "award",
+      "badgeColor": "text-indigo-500",
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing"]
+    },
+    {
+      "id": "cert-codesignal-speed-coding",
+      "name": "Badge CodeSignal d'Évaluation Algorithmique & Développeur",
+      "issuer": "CodeSignal",
+      "year": "2024",
+      "credentialId": "CS-ALGO-SPEED",
+      "credentialUrl": "https://codesignal.com/learn/profile/cm9jwu74c001ijx04oz8qk26x",
+      "category": "badge",
+      "icon": "token",
+      "badgeColor": "text-purple-500",
+      "linkedServices": ["fullstack-engineer", "backend-engineer"]
+    }
+  ],
+  "languages": [
+    {
+      "name": "Français",
+      "level": "Langue maternelle",
+      "flag": "FR"
+    },
+    {
+      "name": "Anglais",
+      "level": "B1 (Intermédiaire)",
+      "flag": "GB"
+    }
+  ],
+  "hobbies": [
+    {
+      "name": "Musique",
+      "category": "Intérêts & Culture",
+      "icon": "headset",
+      "description": "Écoute de divers genres musicaux et exploration sonore."
+    },
+    {
+      "name": "Cinéma",
+      "category": "Intérêts & Culture",
+      "icon": "menu_book",
+      "description": "Cinéma, science-fiction et documentaires technologiques."
+    },
+    {
+      "name": "Voyages",
+      "category": "Découverte & Exploration",
+      "icon": "flight_takeoff",
+      "description": "Découverte de nouvelles régions et perspectives culturelles."
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-peppol-einvoicing",
+      "title": "Moteur de Facturation Électronique PEPPOL & Mappeur UBL 2.1",
+      "category": "Facturation Électronique & Normes Documentaires",
+      "description": "Architecture d'une intégration internationale de facturation électronique PEPPOL via l'API Flowin, moteur personnalisé de mappage XML/UBL 2.1 et validation Schematron.",
+      "longDescription": "Conçu pour la conformité de facturation électronique transfrontalière. Convertit les flux de transactions ERP en documents XML UBL 2.1 valides, vérifiant la structure via des règles Schematron avant l'envoi vers l'API Flowin.",
+      "skills": ["Java 17", "Spring Boot", "UBL 2.1", "PEPPOL", "Schematron", "Flowin API", "XML"],
+      "demoUrl": "https://github.com/christaime/peppol-ubl-mapper",
+      "sourceUrl": "https://github.com/christaime/peppol-ubl-mapper",
+      "featured": true,
+      "linkedServices": ["backend-engineer", "fullstack-engineer"]
+    },
+    {
+      "id": "proj-nkap-erp",
+      "title": "Suite ERP d'Entreprise Nkap (Écoles, Hôpitaux & Comptabilité)",
+      "category": "ERP d'Entreprise & Microservices",
+      "description": "Plateforme ERP d'entreprise multi-entité avec modules de comptabilité, de santé et de gestion scolaire pour des clients institutionnels.",
+      "longDescription": "Suite de gestion complète comprenant l'authentification SSO Keycloak, l'indexation documentaire OpenKM, des rapports financiers automatisés JasperReports et le suivi ETL Pentaho.",
+      "skills": ["Java Spring", "Groovy/Grails", "Angular", "Keycloak", "OpenKM", "PostgreSQL", "Docker"],
+      "demoUrl": "https://github.com/christaime/nkap-erp-suite",
+      "sourceUrl": "https://github.com/christaime/nkap-erp-suite",
+      "featured": true,
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "sys-infra"]
+    },
+    {
+      "id": "proj-dotnet-microservices",
+      "title": "Moteur de Microservices .NET Core Sécurisé ERP vers Comptabilité",
+      "category": "Fintech & Architecture .NET",
+      "description": "Microservices REST APIs .NET Core distribués avec authentification JWT, cartographie Entity Framework, déploiement IIS et messagerie RabbitMQ.",
+      "longDescription": "Développé pour la synchronisation haute fiabilité entre ERP et comptabilité. Utilise le broker RabbitMQ pour le traitement d'événements, des packages Nuget privés et ClosedXML pour les rapports Excel.",
+      "skills": [".NET Core", "C#", "RabbitMQ", "Entity Framework", "JWT", "ClosedXML", "AutoMapper", "IIS", "Angular Material"],
+      "demoUrl": "https://github.com/christaime/dotnet-erp-accounting",
+      "sourceUrl": "https://github.com/christaime/dotnet-erp-accounting",
+      "featured": true,
+      "linkedServices": ["backend-engineer", "fullstack-engineer", "sys-infra"]
+    },
+    {
+      "id": "proj-banking-budget",
+      "title": "Système de Gestion Budgétaire Bancaire & Transactions",
+      "category": "Systèmes Bancaires & Financiers",
+      "description": "Module de gestion budgétaire bancaire haute sécurité avec traitement automatique des transactions, journalisation d'audit et interface Java EJB3/Swing.",
+      "longDescription": "Conçu pour le suivi des allocations budgétaires des départements, les flux d'approbation et la mise à jour du grand livre avec une intégrité transactionnelle stricte.",
+      "skills": ["Java EJB3", "Swing", "SQL Server", "JUnit", "Mockito"],
+      "demoUrl": "https://github.com/christaime/banking-budget-manager",
+      "sourceUrl": "https://github.com/christaime/banking-budget-manager",
+      "featured": false,
+      "linkedServices": ["backend-engineer", "qa-testing"]
+    }
+  ],
+  "services": [
+    {
+      "id": "backend-engineer",
+      "title": "Ingénieure Backend (.NET / Java Spring Boot)",
+      "icon": "code",
+      "shortDesc": "Microservices Java Spring Boot & .NET Core/Framework, APIs REST, architecture de bases de données, intégration de middlewares et tests automatisés.",
+      "description": "Conception de microservices backend performants et sécurisés en Java 17+ (Spring Boot) et .NET Core / .NET Framework (C#). Expertise en bases de données relationnelles (PostgreSQL, SQL Server, SSMS, migrations Flyway), middlewares (RabbitMQ, ActiveMQ, Keycloak SSO, OpenKM), bibliothèques REST et tests unitaires/d'intégration (JUnit, Mockito).",
+      "features": [
+        "Microservices APIs REST Java 17+ / Spring Boot & .NET Core / Framework / C#",
+        "Conception de schémas, ORM (JPA, EF Core), SSMS & migrations Flyway/Liquibase",
+        "Middlewares & bibliothèques (RabbitMQ, ActiveMQ, Keycloak SSO, AutoMapper, ClosedXML)",
+        "Tests automatisés unitaires et d'intégration (JUnit 5, Mockito, MSTest, Swagger)"
+      ],
+      "estimatedDuration": "4-12 semaines",
+      "baseRate": "3 000 $ – 10 000 $"
+    },
+    {
+      "id": "frontend-engineer",
+      "title": "Ingénieure Frontend (Angular / React)",
+      "icon": "groups",
+      "shortDesc": "Applications web réactives modernes avec Angular (Signals/RxJS, ngx-translate) et React, stylisées avec Material et Bootstrap.",
+      "description": "Développement d'interfaces utilisateur riches, réactives et accessibles en Angular (14-18 avec Signals, RxJS, ngx-translate i18n, jsPDF) et React avec TypeScript. Création de composants modulaires, conduite de migrations de frameworks et optimisation des performances côté client.",
+      "features": [
+        "Architecture SPA Angular 14-18 & React avec état réactif & i18n (ngx-translate)",
+        "Bibliothèques de composants TypeScript avec Material, Bootstrap & Tailwind",
+        "Exécution de montées de version (ex. migration Angular 12 vers 14+)",
+        "Consommation d'APIs REST asynchrones, Auth Guards & exports PDF (jsPDF)"
+      ],
+      "estimatedDuration": "6-12 semaines",
+      "baseRate": "3 000 $ – 9 000 $"
+    },
+    {
+      "id": "qa-testing",
+      "title": "Assurance Qualité & Tests (QA)",
+      "icon": "verified",
+      "shortDesc": "Pipelines de tests automatisés et manuels, Azure Test Plans, revues de code PR, tests backend JUnit/Mockito, tests E2E Cypress/Jasmine et audits SonarQube.",
+      "description": "Garantie de la fiabilité, de la sécurité et des performances logicielles via des stratégies de test rigoureuses. Rédaction de plans de test dans Azure Test Plans, revues de code PR, automatisation des tests unitaires/d'intégration avec JUnit et Mockito, et configuration des métriques SonarQube.",
+      "features": [
+        "Plans de test Azure Test Plans, revues de code PR & suivi du cycle de vie des bugs",
+        "Tests backend automatisés avec JUnit 5, Mockito & Spring Test",
+        "Automatisation de tests E2E & unitaires frontend avec Cypress, Jasmine & Protractor",
+        "Analyse statique de code, audits de sécurité & exigences de qualité SonarQube"
+      ],
+      "estimatedDuration": "3-8 semaines",
+      "baseRate": "2 000 $ – 6 000 $"
+    },
+    {
+      "id": "fullstack-engineer",
+      "title": "Ingénieure Fullstack (Java / .NET + Angular / React)",
+      "icon": "speed",
+      "shortDesc": "Livraison complète de solutions d'entreprise de bout en bout combinant microservices Java/.NET et frontends Angular/React.",
+      "description": "Livraison de projets logiciels complets reliant des backends Java Spring Boot / .NET Core à des frontends réactifs Angular / React. Expérience avérée dans la création de suites ERP multi-entités, d'outils de facturation PEPPOL et de plateformes fintech.",
+      "features": [
+        "Développement complet du schéma de base de données à l'interface utilisateur réactive",
+        "Intégration multi-plateformes entre microservices Java / .NET et applications SPAs",
+        "Facturation électronique internationale PEPPOL & flux de documents UBL 2.1",
+        "Sécurité de bout en bout (JWT, Keycloak SSO) et tests automatisés"
+      ],
+      "estimatedDuration": "8-12 semaines",
+      "baseRate": "4 000 $ – 12 000 $"
+    },
+    {
+      "id": "sys-infra",
+      "title": "Gestion de Système & Infrastructure",
+      "icon": "cloud",
+      "shortDesc": "Conteneurisation DevOps avec Docker, pipelines Azure DevOps, Azure Feed (Nuget), playbooks Ansible, administration Linux/IIS.",
+      "description": "Gestion des infrastructures système, hébergement cloud/VPS et pipelines de déploiement. Expertise en Azure DevOps (Pipelines, Azure Feed, Git), conteneurisation Docker, automatisation Ansible & renforcement de sécurité, administration de serveurs IIS / Nginx et CI/CD avec GitLab CI.",
+      "features": [
+        "Suite Azure DevOps (Pipelines, packages Nuget Azure Feed, Git)",
+        "Conteneurisation Docker & orchestration docker-compose",
+        "Automatisation Ansible pour le provisionnement VPS, renforcement sécurité & SSH",
+        "Administration de serveurs web (IIS, Nginx) et routage réseau (CCNA)"
+      ],
+      "estimatedDuration": "4-8 semaines",
+      "baseRate": "2 500 $ – 6 500 $"
+    }
+  ]
+}

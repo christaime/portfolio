@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Language } from '../types';
 import enTranslations from '../data/translations/en.json';
 import frTranslations from '../data/translations/fr.json';
+import { portfolioService } from '../services/portfolioService';
+import { blogService } from '../services/blogService';
 
 interface LanguageContextType {
   language: Language;
@@ -42,7 +44,11 @@ export function getDefaultLanguage(): Language {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface LanguageProviderProps {
+  children: React.ReactNode;
+}
+
+export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [language, setLanguageState] = useState<Language>(getDefaultLanguage);
 
   useEffect(() => {
@@ -53,10 +59,18 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }, []);
 
+  useEffect(() => {
+    portfolioService.setLanguage(language);
+    blogService.setLanguage(language);
+  }, [language]);
+
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('portfolio_lang', lang);
+    portfolioService.setLanguage(lang);
+    blogService.setLanguage(lang);
   };
+
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'fr' : 'en');

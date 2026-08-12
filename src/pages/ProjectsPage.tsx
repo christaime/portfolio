@@ -4,15 +4,15 @@ import { portfolioService } from '../services/portfolioService';
 import { Project } from '../types';
 import { Info, Code, ExternalLink, X } from 'lucide-react';
 
-export const ProjectsPage: React.FC = () => {
-  const { t } = useLanguage();
+export const ProjectsPage = () => {
+  const { language, t } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>('All');
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   useEffect(() => {
     portfolioService.getProjects().then(setProjects);
-  }, []);
+  }, [language]);
 
   const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))];
 

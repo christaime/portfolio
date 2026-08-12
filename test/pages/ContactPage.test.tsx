@@ -2,8 +2,18 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
-import { LanguageProvider } from '../context/LanguageContext';
-import { ContactPage } from './ContactPage';
+import { LanguageProvider } from '../../src/context/LanguageContext';
+import { ContactPage } from '../../src/pages/ContactPage';
+import { emailService } from '../../src/services/emailService';
+
+vi.mock('../../src/services/emailService', () => ({
+  emailService: {
+    checkEmailStatus: vi.fn().mockResolvedValue({ success: true, isVerified: false }),
+    sendVerificationCode: vi.fn().mockResolvedValue({ success: true, isVerified: false }),
+    verifyCode: vi.fn().mockResolvedValue({ success: true, isVerified: true }),
+    sendContactEmail: vi.fn().mockResolvedValue({ success: true, isVerifiedCached: true }),
+  },
+}));
 
 describe('ContactPage', () => {
   it('renders contact page form and info', async () => {
@@ -54,7 +64,7 @@ describe('ContactPage', () => {
     const codeInput = screen.getByPlaceholderText(/e.g. 482915/i);
     fireEvent.change(codeInput, { target: { value: '100000' } });
 
-    const verifyBtn = screen.getByRole('button', { name: /Verify & Send/i });
+    const verifyBtn = screen.getByRole('button', { name: /Verify/i });
     fireEvent.click(verifyBtn);
 
     await waitFor(() => {

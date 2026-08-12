@@ -3,12 +3,13 @@ import { Project } from '../../types';
 import { FolderGit2, ExternalLink, Code2 } from 'lucide-react';
 
 interface CVProjectItemProps {
+  key?: React.Key;
   project: Project;
 }
 
-export const CVProjectItem: React.FC<CVProjectItemProps> = ({ project }) => {
+export const CVProjectItem = ({ project }: CVProjectItemProps) => {
   return (
-    <div className="bg-surface border border-outline-variant hover:border-secondary-container transition-all rounded-xl p-5 md:p-6 flex flex-col gap-3.5 shadow-xs">
+    <div className="bg-surface border border-outline-variant hover:border-secondary-container transition-all rounded-xl p-4 md:p-5 flex flex-col gap-3 shadow-xs">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-outline-variant/40 pb-3">
         <div className="flex items-center gap-2.5">
           <div className="p-2 bg-secondary-container/10 text-secondary-container rounded-lg shrink-0">

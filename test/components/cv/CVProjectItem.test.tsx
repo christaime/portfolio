@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { CVProjectItem } from './CVProjectItem';
-import { Project } from '../../types';
+import { CVProjectItem } from '../../../src/components/cv/CVProjectItem';
+import { Project } from '../../../src/types';
 
 const mockProject: Project = {
   id: 'proj-peppol',

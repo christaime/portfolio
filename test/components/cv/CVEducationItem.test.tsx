@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { CVEducationItem } from './CVEducationItem';
-import { EducationItem } from '../../types';
+import { CVEducationItem } from '../../../src/components/cv/CVEducationItem';
+import { EducationItem } from '../../../src/types';
 
 const mockEducation: EducationItem = {
   degree: 'Master of Science in Computer Science',

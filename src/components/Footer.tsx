@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
-export const Footer: React.FC = () => {
+export const Footer = () => {
   const { t } = useLanguage();
 
   return (
@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
         <div className="flex gap-6">
           <a
             className="text-on-surface-variant hover:text-tertiary transition-colors cursor-pointer flex items-center gap-1"
-            href="https://github.com"
+            href="https://github.com/christaime"
             target="_blank"
             rel="noreferrer"
             id="footer-github-link"
@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
           </a>
           <a
             className="text-on-surface-variant hover:text-tertiary transition-colors cursor-pointer flex items-center gap-1"
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/christelle-mamekem-ngueguim/"
             target="_blank"
             rel="noreferrer"
             id="footer-linkedin-link"

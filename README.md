@@ -1,157 +1,259 @@
-# Modern Software Engineer Portfolio & Targeted CV Platform
+# Modern Senior Software Engineer Portfolio & Targeted CV Platform
 
-A high-performance, responsive, and bilingual (English / French) Developer Portfolio and Targeted Interactive CV Application built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**.
+A high-performance, full-stack, and bilingual (**English / French**) Developer Portfolio and Targeted Interactive CV Application built with **React 18**, **TypeScript**, **Express.js**, **Vite**, and **Tailwind CSS**.
 
-> ⚡ **Powered by [Stitch](https://stitch.withgoogle.com/) and [Google AI Studio](https://aistudio.google.com/)**
-
-Designed specifically for senior software engineers, technical architects, and consultants to highlight multi-disciplinary engineering expertise (Backend, Frontend, QA Testing, Fullstack, and Systems/Infrastructure) with dynamic service-based profile filtering, PDF export support, and rich project showcases.
+Designed specifically for senior software engineers, technical architects, and tech consultants to showcase multi-disciplinary engineering expertise (Backend, Frontend, QA Testing, Fullstack, and Systems/Infrastructure) with dynamic service-based profile filtering, verified email contact workflows, PDF export capabilities, technical blog publishing, and extensive unit & integration test coverage.
 
 ---
 
-## 🌟 Key Features
+## 🏛️ System Architecture
 
-- **📄 Default Curriculum Vitae Landing Page**: The default home page (`/`) loads the **Curriculum Vitae** section directly with the navigation label **'Curriculum Vitae'**.
-- **🎯 Interactive Service-Targeted CV Filtering**: Instantly filter work experiences, skills, projects, education, and certifications based on specific client service requirements:
+The application is structured as a single-repository full-stack system combining a client SPA with an Express.js backend API proxy.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            Browser Client (React SPA)                       │
+│  ┌─────────────┐  ┌─────────────┐  ┌───────────────┐  ┌──────────────────┐  │
+│  │   CV Page   │  │  Services   │  │ Projects/Blog │  │   Contact Page   │  │
+│  └──────┬──────┘  └──────┬──────┘  └──────┬────────┘  └────────┬─────────┘  │
+│         │                │                │                    │            │
+│         └────────────────┴───────┬────────┴────────────────────┘            │
+│                                  │                                          │
+│                         ┌────────┴────────┐                                 │
+│                         │ Language Context│ (i18n EN / FR)                  │
+│                         └────────┬────────┘                                 │
+│                                  │                                          │
+│                         ┌────────┴────────┐                                 │
+│                         │ Service Layers  │ (portfolioService / blogService)│
+│                         └────────┬────────┘                                 │
+└──────────────────────────────────┼──────────────────────────────────────────┘
+                                   │ HTTP API Requests
+┌──────────────────────────────────▼──────────────────────────────────────────┐
+│                            Express.js Server (/server.ts)                   │
+│  ┌───────────────────────────┐         ┌─────────────────────────────────┐  │
+│  │  /api/contact/send-otp    │         │  /api/contact/verify-otp        │  │
+│  └─────────────┬─────────────┘         └────────────────┬────────────────┘  │
+│                │                                        │                   │
+│                └───────────────────┬────────────────────┘                   │
+│                                    │                                        │
+│                         ┌──────────▼──────────┐                             │
+│                         │  Resend Email SDK   │ (With Simulated Fallback)   │
+│                         └─────────────────────┘                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 1. Frontend Architecture
+- **Framework & Runtime**: Built with **React 18** and **TypeScript** using modern functional component patterns without legacy `React.FC` type wrappers, enforcing explicit `children` prop interfaces where appropriate.
+- **Client Routing**: Managed by **React Router v6** with SPA fallback handlers (`vercel.json` and Netlify `_redirects`).
+- **Styling & UI Ergonomics**: Styled using **Tailwind CSS** with Material-inspired surfaces, subtle border variants, high-contrast dark/light elements, and mobile-first responsive layouts. Icons are powered by **Lucide React**.
+- **State & i18n**: Global language preference is managed via React Context (`LanguageContext`), auto-detecting browser preferences, saving to `localStorage`, and providing typed translation lookups (`en` & `fr`).
+
+### 2. Backend & API Proxy Architecture
+- **Express Server**: An **Express.js** server (`server.ts`) operating on port `3000`.
+- **Vite Middleware Integration**: In development mode, Vite runs as Express middleware (`createViteServer`), enabling rapid Hot Reloading while allowing full Express API route execution. In production, Express serves compiled static assets from `dist/`.
+- **Transactional Email Engine**: Utilizes the **Resend API** for sending verification OTP codes and forwarding client contact inquiries.
+- **Graceful Fallback Mode**: If `RESEND_API_KEY` is missing or unconfigured, the backend automatically transitions to a simulated fallback mode, returning generated OTP codes directly to the frontend so contact testing can proceed uninterrupted.
+
+### 3. Data Abstraction Layer
+- **Decoupled JSON Repositories**: All profile content, work history, skill taxonomy, projects, and blog posts reside in structured JSON files (`src/data/portfolioData.json`, `src/data/blogPosts.json`, `src/data/servicesData.json`).
+- **Typed Services**: Data access is sanitized and filtered through typed service abstractions (`portfolioService.ts`, `blogService.ts`).
+
+### 4. Quality Assurance & Test Architecture
+- **Test Runner**: Powered by **Vitest** with JSDOM environment and **Testing Library**.
+- **Coverage**: Comprehensive test suite covering component rendering, user interactions, service logic, context providers, and page integration tests.
+
+---
+
+## 🌟 Comprehensive Functional Details
+
+### 1. Interactive Service-Targeted CV Engine (`/`)
+- **Default Landing Experience**: Loads directly onto the targeted Curriculum Vitae view.
+- **Role & Specialty Filtering**: Users can filter the entire CV by target technical domain:
   - Backend Engineering (.NET / Java Spring Boot)
   - Frontend Engineering (Angular / React)
-  - QA Testing & Quality Assurance
+  - QA Testing & Automation
   - Fullstack Engineering
   - System & Infrastructure Management
-- **🌐 Bilingual i18n Support**: Full English (`en`) and French (`fr`) translation toggling across all pages and navigation menus.
-- **📄 Print & PDF Export Optimized**: Professional CSS print stylesheets formatted for direct browser printing or saving as a clean PDF resume.
-- **🛠️ Interactive Tech Stack Grid**: Filterable skills matrix categorized by Backend, Frontend, QA, and Infrastructure, with search and proficiency tags.
-- **🚀 Featured Deliverables & Project Showcase**: Portfolio projects linked to specific services with GitHub repository links and technology badges.
-- **📱 Fully Responsive & Accessible UI**: Desktop-first and mobile-friendly design with clean Material & Tailwind ergonomics.
-- **✉️ Contact & Service Request Form**: Integrated contact form for prospective employers and freelance clients.
+- **Dynamic Content Adaptation**: Automatically updates work experiences, tech stack proficiency chips, linked projects, education, and certifications based on the active service selection.
+- **Interactive Tech Stack Grid**: Filterable skills matrix categorized by Backend, Frontend, QA, and Infrastructure with real-time text search.
+
+### 2. PDF & Print Export Engine
+- **Custom CV Export Modal**: Provides options to customize layout themes before exporting:
+  - **Executive Theme**: Minimalist, high-contrast layout suitable for senior leadership roles.
+  - **Modern Theme**: Styled with modern pill badges and accent borders.
+  - **Classic Theme**: Traditional structured resume layout.
+- **Browser Print Optimization**: Includes dedicated `@media print` CSS rules ensuring high-density, multi-page printable layouts without UI distraction elements.
+
+### 3. Engineer Overview & Quick Modal
+- Accessible via the "Engineer Overview" button in the global navigation header.
+- Displays high-level engineer bio, core tech stack highlights, current timezone status, and direct navigation actions.
+
+### 4. Services & Consulting Offerings (`/services`)
+- Outlines technical services provided by the consultant (Architectural Audits, Fullstack Development, Test Automation Setup, DevOps Pipeline Configuration).
+- Features direct "View Targeted CV" links that navigate straight to the CV page pre-filtered to the relevant service domain.
+
+### 5. Featured Deliverables & Project Showcase (`/projects`)
+- Filterable portfolio gallery showcasing real-world projects, architectural achievements, client impact metrics, tech stack badges, GitHub repository links, and live demo buttons.
+
+### 6. Engineering Blog Engine (`/blog` & `/blog/:slug`)
+- Technical articles and case studies with estimated reading times, publication dates, category tags, and responsive reading layouts.
+
+### 7. Verified Contact & OTP Workflow (`/contact`)
+- **Two-Step Email Verification**: Users request a 6-digit OTP sent to their email address prior to submitting contact inquiries.
+- **Backend Verification**: Validates OTP and processes contact submissions through the Express `/api/contact` endpoints.
+- **Simulated Development Mode**: Displays warning notices and simulated codes when running without production email keys.
 
 ---
 
-## 🤖 Platform Credits
+## 📁 Directory Structure
 
-This application was created and powered using **Stitch** and **Google AI Studio**.
-
-- **Stitch**: Design system and UI component generation.
-- **Google AI Studio**: Full-stack application generation, routing, and developer workflow automation.
+```
+.
+├── server.ts                    # Express.js backend server with Resend & Vite middleware
+├── src/
+│   ├── App.tsx                  # Main React Router setup and layout layout frame
+│   ├── main.tsx                 # Client entry point
+│   ├── types.ts                 # Central TypeScript interfaces & types
+│   ├── components/              # Shared UI components
+│   │   ├── Header.tsx           # Responsive navigation header with i18n & profile modal trigger
+│   │   ├── Footer.tsx           # Page footer with quick links
+│   │   ├── EngineerOverviewModal.tsx # Technical profile overview modal
+│   │   └── cv/                  # CV specific components
+│   │       ├── CVSidebar.tsx    # Left panel with profile info & service selection
+│   │       ├── CVRoleIntroBlock.tsx # Intro summary & active service badge
+│   │       ├── CVTechStackBlock.tsx # Interactive skill matrix & search
+│   │       ├── CVExperienceBlock.tsx # Work experience list with service filtering
+│   │       ├── CVExperienceItem.tsx  # Individual experience card
+│   │       ├── CVProjectsBlock.tsx   # Linked projects section
+│   │       ├── CVProjectItem.tsx    # Project card with tech tags
+│   │       ├── CVTrainingBlock.tsx   # Training & education block
+│   │       ├── CVCertificationsBlock.tsx # Professional certifications list
+│   │       ├── CVLanguagesHobbiesBlock.tsx # Languages & interests
+│   │       └── CVPdfExportModal.tsx # PDF export preview & print modal
+│   ├── context/
+│   │   └── LanguageContext.tsx  # Bilingual i18n context provider (EN/FR)
+│   ├── data/
+│   │   ├── portfolioData.json   # Primary CV & portfolio data store
+│   │   ├── blogPosts.json       # Blog articles data
+│   │   ├── servicesData.json    # Services catalog data
+│   │   └── translations/        # Translation files (en.json, fr.json)
+│   ├── pages/
+│   │   ├── CVPage.tsx           # Primary Curriculum Vitae page
+│   │   ├── ServicesPage.tsx     # Consulting services page
+│   │   ├── ProjectsPage.tsx     # Portfolio deliverables page
+│   │   ├── ContactPage.tsx      # Contact form with OTP verification
+│   │   └── blog/
+│   │       ├── BlogListPage.tsx # Blog articles index
+│   │       └── BlogPostDetailPage.tsx # Article detail view
+│   └── services/
+│       ├── portfolioService.ts  # Service layer for CV & portfolio data
+│       └── blogService.ts       # Service layer for blog articles
+├── test/                        # Vitest test suite
+│   ├── setup.ts                 # Test environment setup
+│   ├── components/              # Component tests
+│   ├── context/                 # LanguageContext tests
+│   ├── pages/                   # Page integration tests
+│   └── services/                # Service unit tests
+└── package.json                 # Project dependencies and scripts
+```
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack Summary
 
-- **Framework**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Routing**: [React Router v6](https://reactrouter.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
+- **Frontend**: [React 18](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [React Router v6](https://reactrouter.com/)
+- **Backend Server**: [Express.js](https://expressjs.com/), [Resend SDK](https://resend.com/)
+- **Build System**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/), [Lucide React Icons](https://lucide.dev/)
+- **Testing**: [Vitest](https://vitest.dev/), [React Testing Library](https://testing-library.com/)
 
 ---
 
-## 🚀 Quick Start & Local Development
+## 🚀 Getting Started & Scripts
 
 ### Prerequisites
-
-Ensure you have **Node.js 18+** and **npm** installed on your system.
+- **Node.js 18+**
+- **npm**
 
 ### Installation
+```bash
+# Clone the repository
+git clone https://github.com/your-username/your-portfolio-repo.git
+cd your-portfolio-repo
 
-1. **Clone the repository**:
+# Install dependencies
+npm install
+```
 
-   ```bash
-   git clone https://github.com/your-username/your-portfolio-repo.git
-   cd your-portfolio-repo
-   ```
+### Development
+```bash
+# Start full-stack development server on port 3000
+npm run dev
+```
 
-2. **Install dependencies**:
+### Verification & Testing
+```bash
+# Run TypeScript linter
+npm run lint
 
-   ```bash
-   npm install
-   ```
+# Run Vitest test suite
+npm run test
+```
 
-3. **Start the development server**:
+### Production Build
+```bash
+# Build client static assets and server bundle
+npm run build
 
-   ```bash
-   npm run dev
-   ```
-
-   Open your browser at `http://localhost:3000` (or `http://localhost:5173`).
-
-4. **Build for production**:
-
-   ```bash
-   npm run build
-   ```
-
-   The compiled output will be generated in the `dist/` folder.
-
-5. **Preview the production build**:
-   ```bash
-   npm run preview
-   ```
+# Start production server
+npm run start
+```
 
 ---
 
-## 🎨 How to Customize for Your Own Portfolio
+## 🎨 Customizing & Adapting This Portfolio for Your Own Profile
 
-This application is completely **data-driven** and decoupled from hardcoded text. You can easily adapt it to render your own personal portfolio and CV in minutes.
+If you want to use or fork this website for your own engineering portfolio, follow this step-by-step customization checklist:
 
-### 1. Update Profile & Career Data (`src/data/portfolioData.json`)
+### 1. Update HTML & Search Engine Metadata (`index.html`)
+Since this is a client-side rendered (SPA) React application, search engines index the initial static metadata in `index.html`. You should customize the following in `index.html`:
+- **Document Title**: Update `<title>` with your name and primary engineering titles.
+- **SEO Title & Description**: Update `<meta name="title">`, `<meta name="description">`, and `<meta name="keywords">` (both generic and localized `lang="en"` / `lang="fr"` tags).
+- **Social Media Cards**: Update Open Graph (`og:title`, `og:description`, `og:image`) and Twitter card (`twitter:title`, `twitter:description`, `twitter:image`) meta tags.
+- **Profile Image Asset**: Replace or place your profile image in `public/assets/` (e.g., `public/assets/my_picture.jpg` or `public/avatar.jpg`).
+- **Schema.org Structured Data**: Update the `<script type="application/ld+json">` block with your `Person` details:
+  - `name`, `givenName`, `familyName`, `alternateName`
+  - `jobTitle`, `description`, `email`, `telephone`, `address`
+  - `sameAs` array (LinkedIn, GitHub, certification verification URLs)
+  - `knowsAbout` array (your core skills and domain expertise)
+  - `hasCredential` array (your verified degrees and certifications)
 
-All portfolio content is central in `src/data/portfolioData.json`. Modify the JSON fields:
+### 2. Update Portfolio & CV Data (`src/data/`)
+All application content is driven by structured JSON files separated by language:
+- **`src/data/portfolioData.json` (English) & `src/data/portfolioData_fr.json` (French)**:
+  - `engineer`: Name, title, email, phone, location, bio introduction, social links, and current status.
+  - `experiences`: Detailed work experience history with service tags (`Backend`, `Frontend`, `QA`, `Fullstack`, `Infrastructure`).
+  - `skillCategories`: Categorized tech stack items, icons, and proficiency levels.
+  - `education` & `certifications`: Degrees, schools, certification names, dates, and verification links.
+  - `services`: Consulting and engineering service offerings with domain mappings.
+  - `languages` & `hobbies`: Spoken languages and personal interests.
+  - `projects`: Portfolio deliverables with descriptions, tech tags, GitHub repository URLs, and live demo links.
+- **`src/data/blogData.json` (English) & `src/data/blogData_fr.json` (French)**:
+  - Technical articles, tutorials, or case studies.
+- **`src/data/translations/en.json` & `src/data/translations/fr.json`**:
+  - Custom UI string phrasing for navigation, buttons, form placeholders, and section headers.
 
-- **`engineer`**: Update your name, title, email, phone, location, avatar URL, bio, and social links (GitHub, LinkedIn, StackOverflow).
-- **`services`**: Define the specific technical roles or freelance services you offer. Each service has an `id` (e.g., `backend-engineer`, `frontend-engineer`).
-- **`experiences`**: List your employment history. Set `linkedServices: ["backend-engineer", ...]` to associate specific roles with service filters.
-- **`skillCategories`**: Define skill groups (Backend, Frontend, QA, DevOps) and link skills to services.
-- **`projects`**: Showcase your key achievements, deliverables, demo links, and source code.
-- **`education` & `certifications`**: Update degrees, certifications, credential IDs, and badge icons.
-
-### 2. Update Translations (`src/data/translations/en.json` & `fr.json`)
-
-If you want to adjust UI labels, navigation buttons, or headings:
-
-- Edit `src/data/translations/en.json` for English strings.
-- Edit `src/data/translations/fr.json` for French strings.
-
-### 3. Replace Profile Avatar & Images
-
-- Update the `avatarUrl` property in `src/data/portfolioData.json` with an absolute URL or local image placed inside the `/public` directory (e.g., `/my-photo.jpg`).
-
----
-
-## 🌐 Deploying to Vercel or Netlify
-
-### Deploying to Vercel
-
-1. **Push your code to GitHub**:
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   git push origin main
+### 3. Configure Environment Variables & Email Integration
+To configure live contact form submissions with two-step OTP email verification:
+1. Create a `.env` file at the root (referencing `.env.example`).
+2. Set your [Resend API](https://resend.com) key:
+   ```env
+   RESEND_API_KEY=re_123456789_your_key_here
    ```
-2. Log in to [Vercel](https://vercel.com/) and click **"New Project"**.
-3. Import your GitHub repository.
-4. **Build Settings** (detected automatically):
-   - **Framework Preset**: Vite
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-5. Click **Deploy**.
-
-> **Note**: A pre-configured `vercel.json` file is included in the project root to handle SPA client routing on page refreshes.
-
----
-
-### Deploying to Netlify
-
-1. Log in to [Netlify](https://www.netlify.com/) and click **"Add new site" > "Import an existing project"**.
-2. Connect your GitHub account and select your portfolio repository.
-3. **Build Settings**:
-   - **Build command**: `npm run build`
-   - **Publish directory**: `dist`
-4. Click **Deploy site**.
-
-> **Note**: A pre-configured `public/_redirects` file (`/* /index.html 200`) is included to prevent 404 errors when navigating directly to routes like `/cv` or `/contact`.
+3. If `RESEND_API_KEY` is not provided, the Express backend automatically runs in simulated dev mode, outputting verification OTP codes directly in the browser console for testing.
 
 ---
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE) — feel free to customize and use it for your own portfolio!
+Licensed under the [MIT License](LICENSE).
