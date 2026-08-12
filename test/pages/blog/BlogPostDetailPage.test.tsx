@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { LanguageProvider } from '../../context/LanguageContext';
-import { BlogPostDetailPage } from './BlogPostDetailPage';
+import { LanguageProvider } from '../../../src/context/LanguageContext';
+import { BlogPostDetailPage } from '../../../src/pages/blog/BlogPostDetailPage';
 
 describe('BlogPostDetailPage', () => {
   it('renders blog post details when slug matches', async () => {

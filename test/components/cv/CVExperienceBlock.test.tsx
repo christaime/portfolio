@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { LanguageProvider } from '../../context/LanguageContext';
-import { CVExperienceBlock } from './CVExperienceBlock';
-import { WorkExperience } from '../../types';
+import { LanguageProvider } from '../../../src/context/LanguageContext';
+import { CVExperienceBlock } from '../../../src/components/cv/CVExperienceBlock';
+import { WorkExperience } from '../../../src/types';
 
 const mockExperiences: WorkExperience[] = [
   {

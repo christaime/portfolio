@@ -12,20 +12,20 @@ interface CVRoleIntroBlockProps {
   filteredCertificationsCount: number;
 }
 
-export const CVRoleIntroBlock: React.FC<CVRoleIntroBlockProps> = ({
+export const CVRoleIntroBlock = ({
   activeService,
   selectedServiceId,
   setSelectedServiceId,
   engineer,
   filteredExperiencesCount,
   filteredCertificationsCount,
-}) => {
+}: CVRoleIntroBlockProps) => {
   const { t } = useLanguage();
 
   return (
     <section
       id="block-role-intro"
-      className="bg-surface-container border border-outline-variant rounded-2xl p-6 md:p-8 flex flex-col gap-4 relative overflow-hidden"
+      className="bg-surface-container border border-outline-variant rounded-2xl p-4 md:p-5 lg:p-6 flex flex-col gap-3.5 relative overflow-hidden"
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-outline-variant/60 pb-3">
         <div className="flex items-center gap-2">

@@ -56,6 +56,8 @@ export interface CertificationItem {
   issuer: string;
   year: string;
   credentialId?: string;
+  credentialUrl?: string;
+  category?: 'professional' | 'online_skill' | 'badge' | string;
   icon?: string;
   badgeColor?: string;
   linkedServices?: string[];

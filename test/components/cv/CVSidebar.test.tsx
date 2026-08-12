@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { LanguageProvider } from '../../context/LanguageContext';
-import { CVSidebar } from './CVSidebar';
-import { EngineerInfo, ServiceItem } from '../../types';
+import { LanguageProvider } from '../../../src/context/LanguageContext';
+import { CVSidebar } from '../../../src/components/cv/CVSidebar';
+import { EngineerInfo, ServiceItem } from '../../../src/types';
 
 const mockEngineer: EngineerInfo = {
   name: 'Christelle Mamekem Ngueguim',

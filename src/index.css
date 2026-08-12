@@ -56,11 +56,11 @@
 
 @layer utilities {
   .max-w-container-max {
-    max-width: 1280px;
+    max-width: 1400px;
   }
   .px-margin-desktop {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
   .px-margin-mobile {
     padding-left: 16px;
@@ -142,5 +142,48 @@
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(123, 208, 255, 0.65);
+}
+
+/* Print Optimization Rules */
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  header,
+  footer,
+  nav,
+  aside,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  .fixed.inset-0 {
+    position: static !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #cv-pdf-template-content {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  #cv-pdf-template-content * {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
 }
 

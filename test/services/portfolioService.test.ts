@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { portfolioService } from './portfolioService';
+import { portfolioService } from '../../src/services/portfolioService';
 
 describe('portfolioService', () => {
   it('should fetch engineer info', async () => {

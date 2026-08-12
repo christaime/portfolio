@@ -8,20 +8,21 @@ import { X, Send } from 'lucide-react';
 interface EngineerOverviewModalProps {
   isOpen: boolean;
   onClose: () => void;
+  engineer?: EngineerInfo | null;
 }
 
-export const EngineerOverviewModal: React.FC<EngineerOverviewModalProps> = ({
+export const EngineerOverviewModal = ({
   isOpen,
   onClose,
-}) => {
-  const { t } = useLanguage();
+}: EngineerOverviewModalProps) => {
+  const { language, t } = useLanguage();
   const navigate = useNavigate();
   const [sfTime, setSfTime] = useState<string>('');
   const [engineer, setEngineer] = useState<EngineerInfo | null>(null);
 
   useEffect(() => {
     portfolioService.getEngineerInfo().then(setEngineer);
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     const updateClock = () => {

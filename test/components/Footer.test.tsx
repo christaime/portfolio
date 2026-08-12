@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
-import { LanguageProvider } from '../context/LanguageContext';
-import { Footer } from './Footer';
+import { LanguageProvider } from '../../src/context/LanguageContext';
+import { Footer } from '../../src/components/Footer';
 
 describe('Footer Component', () => {
   it('renders footer brand logo and external links', () => {

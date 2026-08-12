@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { getDefaultLanguage } from './LanguageContext';
+import { getDefaultLanguage } from '../../src/context/LanguageContext';
 
 describe('LanguageContext getDefaultLanguage', () => {
   beforeEach(() => {

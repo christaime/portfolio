@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
-import { LanguageProvider } from '../context/LanguageContext';
-import { Header } from './Header';
+import { LanguageProvider } from '../../src/context/LanguageContext';
+import { Header } from '../../src/components/Header';
 
 describe('Header Component', () => {
   it('renders brand logo and navigation items', () => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { portfolioService } from '../services/portfolioService';
+import { emailService } from '../services/emailService';
 import { EngineerInfo } from '../types';
 import {
   CheckCircle2,
@@ -21,10 +22,11 @@ import {
   ShieldCheck,
   KeyRound,
   RotateCcw,
+  Zap,
 } from 'lucide-react';
 
-export const ContactPage: React.FC = () => {
-  const { t } = useLanguage();
+export const ContactPage = () => {
+  const { language, t } = useLanguage();
   const [searchParams] = useSearchParams();
 
   const prefilledSubject = searchParams.get('subject') || '';
@@ -40,22 +42,23 @@ export const ContactPage: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [wasCached, setWasCached] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [copyToast, setCopyToast] = useState(false);
   const [showPhoneModal, setShowPhoneModal] = useState(false);
 
   // Email Verification Code Modal State
   const [showVerificationModal, setShowVerificationModal] = useState(false);
-  const [verificationCode, setVerificationCode] = useState('');
   const [enteredCode, setEnteredCode] = useState('');
   const [verificationError, setVerificationError] = useState('');
+  const [fallbackCodeNotice, setFallbackCodeNotice] = useState('');
   const [isVerifying, setIsVerifying] = useState(false);
   const [resendTimer, setResendTimer] = useState(30);
   const [codeSentBanner, setCodeSentBanner] = useState(false);
 
   useEffect(() => {
     portfolioService.getEngineerInfo().then(setEngineer);
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     if (prefilledSubject || prefilledMessage) {
@@ -86,18 +89,34 @@ export const ContactPage: React.FC = () => {
     if (errorMessage) setErrorMessage('');
   };
 
-  const generateAndSendCode = (emailToVerify: string) => {
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
-    setVerificationCode(code);
+  /**
+   * Request sending OTP code via server
+   */
+  const requestVerificationCode = async (emailToVerify: string) => {
     setEnteredCode('');
     setVerificationError('');
+    setFallbackCodeNotice('');
     setResendTimer(30);
     setCodeSentBanner(true);
     setTimeout(() => setCodeSentBanner(false), 4000);
-    return code;
+
+    const res = await emailService.sendVerificationCode({ email: emailToVerify });
+    if (res && res.code) {
+      setEnteredCode(res.code);
+      if (res.warning) {
+        setFallbackCodeNotice(res.warning);
+      }
+    }
+    return res;
   };
 
-  const handleInitiateSend = (e: React.FormEvent) => {
+  /**
+   * Primary Submit Handler:
+   * 1. Checks if email is already verified in Redis cache (24h).
+   * 2. If cached -> sends contact message directly with NO OTP modal!
+   * 3. If not cached -> triggers verification code delivery and opens modal.
+   */
+  const handleInitiateSend = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
@@ -112,37 +131,88 @@ export const ContactPage: React.FC = () => {
 
     setErrorMessage('');
     setIsSubmitting(true);
+    setFallbackCodeNotice('');
 
-    setTimeout(() => {
-      generateAndSendCode(formData.email);
+    try {
+      // 1. Check Redis 24h verification cache first!
+      const statusRes = await emailService.checkEmailStatus(formData.email);
+
+      if (statusRes && statusRes.isVerified) {
+        // Email is ALREADY verified in 24h Redis cache -> Bypass verification email!
+        await emailService.sendContactEmail(formData);
+        setIsSubmitting(false);
+        setWasCached(true);
+        setSubmitted(true);
+        return;
+      }
+
+      // 2. Email is not in 24h cache -> Send verification email
+      const verifyRes = await emailService.sendVerificationCode({ email: formData.email });
+
+      if (verifyRes && verifyRes.isVerified) {
+        // Automatically verified (e.g. simulation mode)
+        await emailService.sendContactEmail(formData);
+        setIsSubmitting(false);
+        setWasCached(true);
+        setSubmitted(true);
+        return;
+      }
+
+      if (verifyRes && verifyRes.code) {
+        setEnteredCode(verifyRes.code);
+        if (verifyRes.warning) {
+          setFallbackCodeNotice(verifyRes.warning);
+        }
+      } else {
+        setEnteredCode('');
+      }
+
       setIsSubmitting(false);
       setShowVerificationModal(true);
-      setEnteredCode('');
-    }, 400);
+    } catch (err: any) {
+      setIsSubmitting(false);
+      setErrorMessage(err.message || 'Failed to initiate submission. Please try again.');
+    }
   };
 
-  const handleConfirmVerification = (e?: React.FormEvent) => {
+  /**
+   * Confirm Verification Code & Send Message
+   */
+  const handleConfirmVerification = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
 
-    if (enteredCode.trim() !== verificationCode) {
-      setVerificationError('Invalid verification code. Please check the code and try again.');
+    if (enteredCode.trim().length < 6) {
+      setVerificationError('Please enter the full 6-digit verification code.');
       return;
     }
 
     setIsVerifying(true);
     setVerificationError('');
 
-    setTimeout(() => {
+    try {
+      // 1. Verify code with backend & store in Redis for 24h
+      await emailService.verifyCode({ email: formData.email, code: enteredCode.trim() });
+
+      // 2. Send contact form message
+      await emailService.sendContactEmail(formData);
+
       setIsVerifying(false);
       setShowVerificationModal(false);
+      setWasCached(false);
       setSubmitted(true);
-    }, 500);
+    } catch (err: any) {
+      setIsVerifying(false);
+      setVerificationError(err.message || 'Invalid or expired verification code. Please try again.');
+    }
   };
 
-  const handleResendCode = () => {
+  const handleResendCode = async () => {
     if (resendTimer > 0) return;
-    const newCode = generateAndSendCode(formData.email);
-    setEnteredCode(newCode);
+    try {
+      await requestVerificationCode(formData.email);
+    } catch (err: any) {
+      setVerificationError('Failed to resend code. Please try again.');
+    }
   };
 
   const handleCopyEmail = (e: React.MouseEvent) => {
@@ -157,6 +227,7 @@ export const ContactPage: React.FC = () => {
   const handleClearForm = () => {
     setFormData({ name: '', email: '', subject: '', message: '' });
     setSubmitted(false);
+    setWasCached(false);
     setShowVerificationModal(false);
   };
 
@@ -187,11 +258,25 @@ export const ContactPage: React.FC = () => {
                 Message Received!
               </h3>
               <p className="font-body-md text-body-md text-on-surface-variant max-w-md leading-relaxed">
-                Thank you, <strong className="text-on-surface">{formData.name}</strong>. Your sender email address (<span className="text-secondary font-mono">{formData.email}</span>) was verified successfully.
+                Thank you, <strong className="text-on-surface">{formData.name}</strong>. Your email (<span className="text-secondary font-mono">{formData.email}</span>) was verified and your message has been forwarded.
               </p>
+
+              {/* Status Badge */}
+              {wasCached ? (
+                <div className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-lg text-xs font-mono flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>24-Hour Redis Cache Active: No re-verification email was required.</span>
+                </div>
+              ) : (
+                <div className="bg-indigo-500/10 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 px-4 py-2 rounded-lg text-xs font-mono flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-indigo-500 shrink-0" />
+                  <span>Email verified & saved to Redis cache for 24 hours.</span>
+                </div>
+              )}
+
               <div className="bg-surface-container-high rounded-lg p-3.5 text-code-md font-code-md text-primary mt-2 border border-outline-variant/60 flex flex-col gap-1 items-center">
                 <span>Reference ID: <strong className="text-secondary font-bold">REQ-{Math.floor(100000 + Math.random() * 900000)}</strong></span>
-                <span className="text-xs text-on-surface-variant/80 font-mono">Status: Verified & Forwarded to Christelle</span>
+                <span className="text-xs text-on-surface-variant/80 font-mono">Status: Delivered to Christelle</span>
               </div>
               <button
                 onClick={handleClearForm}
@@ -238,8 +323,9 @@ export const ContactPage: React.FC = () => {
                     onChange={handleChange}
                     required
                   />
-                  <span className="text-[11px] text-on-surface-variant/70 font-mono">
-                    Must be a valid existing email. Verification code will be sent.
+                  <span className="text-[11px] text-on-surface-variant/70 font-mono flex items-center gap-1">
+                    <ShieldCheck className="w-3 h-3 text-indigo-500" />
+                    <span>Verified emails are cached in Redis for 24 hours.</span>
                   </span>
                 </div>
               </div>
@@ -287,7 +373,7 @@ export const ContactPage: React.FC = () => {
                 >
                   {isSubmitting ? (
                     <>
-                      <span>Sending Code...</span>
+                      <span>Checking Status...</span>
                       <RefreshCw className="w-4 h-4 animate-spin" />
                     </>
                   ) : (
@@ -395,7 +481,7 @@ export const ContactPage: React.FC = () => {
             <div className="flex gap-4">
               <a
                 className="flex-1 flex flex-col items-center justify-center p-4 bg-surface border border-outline-variant rounded-DEFAULT hover:border-secondary-container hover:bg-surface-container-high transition-all group cursor-pointer"
-                href={engineer?.github || 'https://github.com'}
+                href={engineer?.github || 'https://github.com/christaime'}
                 target="_blank"
                 rel="noreferrer"
                 id="profile-card-github"
@@ -408,7 +494,7 @@ export const ContactPage: React.FC = () => {
 
               <a
                 className="flex-1 flex flex-col items-center justify-center p-4 bg-surface border border-outline-variant rounded-DEFAULT hover:border-secondary-container hover:bg-surface-container-high transition-all group cursor-pointer"
-                href={engineer?.linkedin || 'https://linkedin.com'}
+                href={engineer?.linkedin || 'https://www.linkedin.com/in/christelle-mamekem-ngueguim/'}
                 target="_blank"
                 rel="noreferrer"
                 id="profile-card-linkedin"
@@ -466,7 +552,21 @@ export const ContactPage: React.FC = () => {
             {codeSentBanner && (
               <div className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 p-3 rounded-lg text-xs font-mono flex items-center gap-2 animate-fadeIn">
                 <CheckCircle2 className="w-4 h-4 shrink-0" />
-                <span>Verification code sent to {formData.email}!</span>
+                <span>Verification email sent to {formData.email}!</span>
+              </div>
+            )}
+
+            {/* Fallback Code Notice Banner for Resend testing domain limitation */}
+            {fallbackCodeNotice && (
+              <div className="bg-amber-500/10 border border-amber-500/30 text-amber-300 p-3.5 rounded-xl text-xs flex items-start gap-2.5 animate-fadeIn">
+                <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1 text-xs">
+                  <strong className="text-amber-200">Resend Free Domain Notice:</strong>
+                  <span className="leading-relaxed text-amber-300/90">{fallbackCodeNotice}</span>
+                  <span className="text-[11px] text-amber-400 font-mono mt-1">
+                    Auto-filled verification code: <strong className="text-amber-200 underline">{enteredCode}</strong>
+                  </span>
+                </div>
               </div>
             )}
 
@@ -475,14 +575,14 @@ export const ContactPage: React.FC = () => {
               <div className="flex items-center justify-between font-mono text-[11px] text-secondary font-bold">
                 <span className="flex items-center gap-1.5">
                   <KeyRound className="w-4 h-4 text-secondary" />
-                  <span>Verification Code Dispatched</span>
+                  <span>Verification Code Sent</span>
                 </span>
                 <span className="text-on-surface-variant font-normal">
                   To: <strong className="text-on-surface">{formData.email}</strong>
                 </span>
               </div>
               <p className="text-on-surface-variant text-xs leading-relaxed">
-                A 6-digit confirmation code has been sent to your email box (<strong>{formData.email}</strong>). Please check your email inbox, copy the code, and paste it below to verify your email address.
+                A 6-digit confirmation code has been sent to <strong>{formData.email}</strong> using our verification template. Please check your inbox and enter the code below.
               </p>
             </div>
 
@@ -555,7 +655,7 @@ export const ContactPage: React.FC = () => {
                   ) : (
                     <>
                       <ShieldCheck className="w-4 h-4" />
-                      <span>Verify & Send</span>
+                      <span>Verify & Cache (24h)</span>
                     </>
                   )}
                 </button>

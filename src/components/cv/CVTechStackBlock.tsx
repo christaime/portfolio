@@ -11,23 +11,23 @@ interface CVTechStackBlockProps {
   isItemLinkedToService: (linkedServices?: string[]) => boolean;
 }
 
-export const CVTechStackBlock: React.FC<CVTechStackBlockProps> = ({
+export const CVTechStackBlock = ({
   skillCategories,
   skillSearch,
   setSkillSearch,
   selectedServiceId,
   isItemLinkedToService,
-}) => {
+}: CVTechStackBlockProps) => {
   const { t } = useLanguage();
 
   return (
     <section
       id="block-tech-stack"
-      className="bg-surface-container border border-outline-variant rounded-2xl p-6 md:p-8 flex flex-col gap-6"
+      className="bg-surface-container border border-outline-variant rounded-2xl p-4 md:p-5 lg:p-6 flex flex-col gap-4"
     >
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant/60 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-outline-variant/60 pb-3">
         <div className="flex items-center gap-3">
-          <Layers className="w-6 h-6 text-tertiary" />
+          <Layers className="w-5 h-5 md:w-6 md:h-6 text-tertiary" />
           <div>
             <div className="flex items-center gap-2">
               <h2 className="font-headline-md text-xl md:text-2xl text-on-surface">
@@ -58,7 +58,7 @@ export const CVTechStackBlock: React.FC<CVTechStackBlockProps> = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {skillCategories.map((cat, idx) => {
           const matchingSkills = cat.skills.filter((s) => {
             const matchesSearch = s.name

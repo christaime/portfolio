@@ -6,10 +6,10 @@ import { portfolioService } from '../../services/portfolioService';
 import { BlogPost, EngineerInfo } from '../../types';
 import { FileText, ArrowLeft, Calendar, Clock, Share2 } from 'lucide-react';
 
-export const BlogPostDetailPage: React.FC = () => {
+export const BlogPostDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
   const [post, setPost] = useState<BlogPost | null>(null);
   const [engineer, setEngineer] = useState<EngineerInfo | null>(null);
@@ -17,7 +17,7 @@ export const BlogPostDetailPage: React.FC = () => {
 
   useEffect(() => {
     portfolioService.getEngineerInfo().then(setEngineer);
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     if (slug) {
@@ -27,7 +27,7 @@ export const BlogPostDetailPage: React.FC = () => {
         setLoading(false);
       });
     }
-  }, [slug]);
+  }, [slug, language]);
 
   if (loading) {
     return (

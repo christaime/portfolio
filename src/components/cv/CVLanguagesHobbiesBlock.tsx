@@ -16,10 +16,10 @@ interface CVLanguagesHobbiesBlockProps {
   hobbies: Hobby[];
 }
 
-export const CVLanguagesHobbiesBlock: React.FC<CVLanguagesHobbiesBlockProps> = ({
+export const CVLanguagesHobbiesBlock = ({
   languages,
   hobbies,
-}) => {
+}: CVLanguagesHobbiesBlockProps) => {
   const { t } = useLanguage();
 
   const renderHobbyIcon = (iconName?: string) => {
@@ -40,16 +40,16 @@ export const CVLanguagesHobbiesBlock: React.FC<CVLanguagesHobbiesBlockProps> = (
   return (
     <section
       id="block-language-hobbies"
-      className="bg-surface-container border border-outline-variant rounded-2xl p-6 md:p-8 flex flex-col gap-6"
+      className="bg-surface-container border border-outline-variant rounded-2xl p-4 md:p-5 lg:p-6 flex flex-col gap-4"
     >
-      <div className="flex items-center gap-3 border-b border-outline-variant/60 pb-4">
-        <Sparkles className="w-6 h-6 text-secondary-container" />
+      <div className="flex items-center gap-3 border-b border-outline-variant/60 pb-3">
+        <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-secondary-container" />
         <h2 className="font-headline-md text-xl md:text-2xl text-on-surface">
           {t('cv.languagesHobbiesTitle')}
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Spoken Languages Section */}
         <div className="bg-surface border border-outline-variant rounded-xl p-5 flex flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-outline-variant/60 pb-3">

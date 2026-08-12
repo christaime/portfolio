@@ -7,7 +7,7 @@ interface HeaderProps {
   onOpenProfileModal: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenProfileModal }) => {
+export const Header = ({ onOpenProfileModal }: HeaderProps) => {
   const { language, toggleLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

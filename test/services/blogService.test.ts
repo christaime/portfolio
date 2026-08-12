@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { blogService } from './blogService';
+import { blogService } from '../../src/services/blogService';
 
 describe('blogService', () => {
   it('should fetch all blog posts', async () => {

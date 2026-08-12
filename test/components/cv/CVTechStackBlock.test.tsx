@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { LanguageProvider } from '../../context/LanguageContext';
-import { CVTechStackBlock } from './CVTechStackBlock';
-import { SkillCategory } from '../../types';
+import { LanguageProvider } from '../../../src/context/LanguageContext';
+import { CVTechStackBlock } from '../../../src/components/cv/CVTechStackBlock';
+import { SkillCategory } from '../../../src/types';
 
 const mockSkillCategories: SkillCategory[] = [
   {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { LanguageProvider } from '../../context/LanguageContext';
-import { CVLanguagesHobbiesBlock } from './CVLanguagesHobbiesBlock';
-import { SpokenLanguage, Hobby } from '../../types';
+import { LanguageProvider } from '../../../src/context/LanguageContext';
+import { CVLanguagesHobbiesBlock } from '../../../src/components/cv/CVLanguagesHobbiesBlock';
+import { SpokenLanguage, Hobby } from '../../../src/types';
 
 const mockLanguages: SpokenLanguage[] = [
   { name: 'French', level: 'Native / Bilingual', flag: '🇫🇷' },

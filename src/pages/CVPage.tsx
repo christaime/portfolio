@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import { portfolioService } from '../services/portfolioService';
 import {
   EngineerInfo,
@@ -23,7 +24,8 @@ import { CVCertificationsBlock } from '../components/cv/CVCertificationsBlock';
 import { CVLanguagesHobbiesBlock } from '../components/cv/CVLanguagesHobbiesBlock';
 import { CVPdfExportModal } from '../components/cv/CVPdfExportModal';
 
-export const CVPage: React.FC = () => {
+export const CVPage = () => {
+  const { language } = useLanguage();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -71,7 +73,7 @@ export const CVPage: React.FC = () => {
     portfolioService.getLanguages().then(setLanguages);
     portfolioService.getHobbies().then(setHobbies);
     portfolioService.getProjects().then(setProjects);
-  }, []);
+  }, [language]);
 
   const handleExportCV = () => {
     setIsPdfModalOpen(true);
@@ -101,8 +103,24 @@ export const CVPage: React.FC = () => {
     isItemLinkedToService(proj.linkedServices)
   );
 
+  const filteredSkillCategories = skillCategories
+    .map((cat) => {
+      if (
+        cat.linkedServices &&
+        cat.linkedServices.length > 0 &&
+        selectedServiceId !== 'all' &&
+        !cat.linkedServices.includes(selectedServiceId)
+      ) {
+        return null;
+      }
+      const matchingSkills = cat.skills.filter((s) => isItemLinkedToService(s.linkedServices));
+      if (matchingSkills.length === 0) return null;
+      return { ...cat, skills: matchingSkills };
+    })
+    .filter((cat): cat is SkillCategory => cat !== null);
+
   return (
-    <div className="animate-fadeIn flex flex-col lg:flex-row gap-8 items-start">
+    <div className="animate-fadeIn flex flex-col lg:flex-row gap-5 lg:gap-6 items-start">
       {/* Left Sidebar: Profile & Services Options */}
       <CVSidebar
         engineer={engineer}
@@ -115,7 +133,7 @@ export const CVPage: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full flex flex-col gap-10">
+      <main className="flex-1 w-full flex flex-col gap-5 lg:gap-6">
         {/* Block 1: Service / Role & Introduction */}
         <CVRoleIntroBlock
           activeService={activeService}
@@ -172,12 +190,14 @@ export const CVPage: React.FC = () => {
         onClose={() => setIsPdfModalOpen(false)}
         engineer={engineer}
         experiences={filteredExperiences}
-        skillCategories={skillCategories}
+        skillCategories={filteredSkillCategories}
         education={filteredEducation}
         certifications={filteredCertifications}
         languages={languages}
         hobbies={hobbies}
         activeService={activeService}
+        projects={filteredProjects}
+        selectedServiceId={selectedServiceId}
       />
     </div>
   );

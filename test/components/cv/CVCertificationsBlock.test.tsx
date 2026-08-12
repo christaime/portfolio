@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { LanguageProvider } from '../../context/LanguageContext';
-import { CVCertificationsBlock } from './CVCertificationsBlock';
-import { CertificationItem } from '../../types';
+import { LanguageProvider } from '../../../src/context/LanguageContext';
+import { CVCertificationsBlock } from '../../../src/components/cv/CVCertificationsBlock';
+import { CertificationItem } from '../../../src/types';
 
 const mockCertifications: CertificationItem[] = [
   {

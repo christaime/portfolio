@@ -13,6 +13,8 @@ import {
   Cloud,
   Activity,
   User,
+  Linkedin,
+  Github,
 } from 'lucide-react';
 
 interface CVSidebarProps {
@@ -20,12 +22,12 @@ interface CVSidebarProps {
   services: ServiceItem[];
   selectedServiceId: string;
   setSelectedServiceId: (id: string) => void;
-  isExporting: boolean;
-  handleExportCV: () => void;
-  onNavigateContact: () => void;
+  isExporting?: boolean;
+  handleExportCV?: () => void;
+  onNavigateContact?: () => void;
 }
 
-export const CVSidebar: React.FC<CVSidebarProps> = ({
+export const CVSidebar = ({
   engineer,
   services,
   selectedServiceId,
@@ -33,7 +35,7 @@ export const CVSidebar: React.FC<CVSidebarProps> = ({
   isExporting,
   handleExportCV,
   onNavigateContact,
-}) => {
+}: CVSidebarProps) => {
   const { t } = useLanguage();
 
   const renderServiceIcon = (iconName?: string) => {
@@ -52,11 +54,11 @@ export const CVSidebar: React.FC<CVSidebarProps> = ({
   };
 
   return (
-    <aside className="w-full lg:w-80 shrink-0 flex flex-col gap-6 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto custom-scrollbar pr-0.5">
+    <aside className="w-full lg:w-72 xl:w-80 shrink-0 flex flex-col gap-4 lg:gap-5 lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto custom-scrollbar pr-0.5">
       {/* Top Profile & Availability Card */}
-      <div className="bg-surface-container border border-outline-variant rounded-2xl p-6 flex flex-col items-center text-center shadow-sm">
+      <div className="bg-surface-container border border-outline-variant rounded-2xl p-4 md:p-5 flex flex-col items-center text-center shadow-sm">
         {/* Avatar Picture with Availability Pulse Dot */}
-        <div className="relative mb-4">
+        <div className="relative mb-3">
           <img
             src={engineer?.avatarUrl || '/avatar.jpg'}
             alt={engineer?.name || 'Christelle Mamekem Ngueguim'}
@@ -66,63 +68,87 @@ export const CVSidebar: React.FC<CVSidebarProps> = ({
                 target.src = '/avatar.jpg';
               }
             }}
-            className="w-28 h-28 rounded-full object-cover border-2 border-secondary-container shadow-md bg-surface-container-high"
+            className="w-24 h-24 rounded-full object-cover border-2 border-secondary-container shadow-md bg-surface-container-high"
           />
-          <span className="absolute bottom-1 right-1 flex h-4 w-4">
+          <span className="absolute bottom-1 right-1 flex h-3.5 w-3.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-surface"></span>
+            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-surface"></span>
           </span>
         </div>
 
-        <h2 className="font-headline-sm text-xl text-on-surface font-bold">
+        <h2 className="font-headline-sm text-lg text-on-surface font-bold">
           {engineer?.name || 'Christelle Mamekem Ngueguim'}
         </h2>
-        <p className="font-body-md text-sm text-secondary-container font-semibold mt-0.5">
+        <p className="font-body-md text-xs text-secondary-container font-semibold mt-0.5">
           {engineer?.title || 'Senior Software Engineer'}
         </p>
 
         {/* Availability Status Badge */}
-        <div className="mt-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-code-md text-xs px-3 py-1.5 rounded-full flex items-center justify-center gap-1.5 w-full">
+        <div className="mt-2.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-code-md text-xs px-2.5 py-1 rounded-full flex items-center justify-center gap-1.5 w-full">
           <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span>{t('cv.availabilityStatus')}</span>
         </div>
 
-        {/* Location & Email Info */}
-        <div className="flex flex-col gap-2 mt-4 text-xs font-code-md text-on-surface-variant/90 w-full text-left bg-surface/50 p-3 rounded-lg border border-outline-variant/60">
+        {/* Location, Email & Social Info */}
+        <div className="flex flex-col gap-1.5 mt-3 text-xs font-code-md text-on-surface-variant/90 w-full text-left bg-surface/50 p-2.5 rounded-lg border border-outline-variant/60">
           <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-secondary shrink-0" />
+            <MapPin className="w-3.5 h-3.5 text-secondary shrink-0" />
             <span>{engineer?.location || 'Limbé, Cameroon'}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Mail className="w-4 h-4 text-tertiary shrink-0" />
-            <span className="truncate">{engineer?.email || 'mnchristelle@gmail.com'}</span>
+            <Mail className="w-3.5 h-3.5 text-tertiary shrink-0" />
+            <a href={`mailto:${engineer?.email || 'mnchristelle@gmail.com'}`} className="truncate hover:underline">
+              {engineer?.email || 'mnchristelle@gmail.com'}
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <Linkedin className="w-3.5 h-3.5 text-secondary-container shrink-0" />
+            <a
+              href={engineer?.linkedin || 'https://www.linkedin.com/in/christelle-mamekem-ngueguim/'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="truncate text-secondary-container hover:underline font-semibold"
+            >
+              LinkedIn Profile
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <Github className="w-3.5 h-3.5 text-on-surface shrink-0" />
+            <a
+              href={engineer?.github || 'https://github.com/christaime'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="truncate text-on-surface hover:underline font-semibold"
+            >
+              GitHub / christaime
+            </a>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col gap-2.5 mt-5 w-full">
+        <div className="flex flex-col gap-2 mt-4 w-full">
           <button
             onClick={handleExportCV}
             disabled={isExporting}
             id="export-cv-btn"
-            className="w-full bg-surface-container-high border border-outline-variant hover:border-secondary-container text-on-surface hover:text-secondary-container font-label-caps text-xs py-2.5 px-4 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full bg-surface-container-high border border-outline-variant hover:border-secondary-container text-on-surface hover:text-secondary-container font-label-caps text-xs py-2 px-3.5 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3.5 h-3.5" />
             <span>{t('cv.exportBtn')}</span>
           </button>
           <button
             onClick={onNavigateContact}
             id="cv-hire-btn"
-            className="w-full bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container font-label-caps text-xs py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+            className="w-full bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container font-label-caps text-xs py-2 px-3.5 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
           >
-            <Send className="w-4 h-4" />
+            <Send className="w-3.5 h-3.5" />
             <span>{t('cv.hireMeBtn')}</span>
           </button>
         </div>
       </div>
 
       {/* Sidebar Menu: Services Provided Options */}
-      <div className="bg-surface-container border border-outline-variant rounded-2xl p-5 flex flex-col gap-3">
+      <div className="bg-surface-container border border-outline-variant rounded-2xl p-4 md:p-5 flex flex-col gap-2.5">
         <div className="flex items-center justify-between border-b border-outline-variant/60 pb-2.5">
           <div className="flex items-center gap-2">
             <Wrench className="w-5 h-5 text-secondary-container shrink-0" />

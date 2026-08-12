@@ -5,8 +5,8 @@ import { blogService } from '../../services/blogService';
 import { BlogPost } from '../../types';
 import { Search, X, FileText, Clock, ArrowRight } from 'lucide-react';
 
-export const BlogListPage: React.FC = () => {
-  const { t } = useLanguage();
+export const BlogListPage = () => {
+  const { language, t } = useLanguage();
   const navigate = useNavigate();
 
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -17,7 +17,7 @@ export const BlogListPage: React.FC = () => {
 
   useEffect(() => {
     blogService.getCategories().then(setCategories);
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -25,7 +25,7 @@ export const BlogListPage: React.FC = () => {
       setPosts(results);
       setIsLoading(false);
     });
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, language]);
 
   return (
     <div className="animate-fadeIn flex flex-col gap-10">
