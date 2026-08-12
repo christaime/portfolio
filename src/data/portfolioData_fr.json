@@ -6,7 +6,7 @@
     "phone": "+237 695 282 983",
     "location": "Bafoussam, Cameroun",
     "remoteAvailable": true,
-    "avatarUrl": "/assets/my_picture.jpg",
+    "avatarUrl": "./images/my_picture.png",
     "introduction": "Ingénieure Logiciel Senior avec plus de 10 ans d'expertise en ingénierie Backend (.NET Core/C# & Java/Spring Boot), applications Frontend SPAs (Angular & React), assurance qualité/tests automatisés, architecture fullstack et gestion d'infrastructures systèmes. Expérience éprouvée dans la conception de microservices sécurisés avec JWT/Keycloak, l'intégration de middlewares d'entreprise (RabbitMQ, ActiveMQ, OpenKM), l'architecture de normes de facturation électronique PEPPOL (UBL 2.1 & Schematron), et l'orchestration de pipelines DevOps automatisés avec Docker, Ansible, Azure DevOps et GitLab CI.",
     "github": "https://github.com/christaime",
     "linkedin": "https://www.linkedin.com/in/christelle-mamekem-ngueguim/",

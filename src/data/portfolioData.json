@@ -6,7 +6,7 @@
     "phone": "+237 695 282 983",
     "location": "Bafoussam, Cameroon",
     "remoteAvailable": true,
-    "avatarUrl": "/assets/my_picture.jpg",
+    "avatarUrl": "./images/my_picture.png",
     "introduction": "Senior Software Engineer with 10+ years of expertise spanning Backend Engineering (.NET Core/C# & Java/Spring Boot), Frontend SPAs (Angular & React), QA Testing, Fullstack architecture, and System/Infrastructure Management. Proven record engineering secure microservices with JWT/Keycloak, integrating enterprise middleware (RabbitMQ, ActiveMQ, OpenKM), architecting PEPPOL e-invoicing standards (UBL 2.1 & Schematron), and orchestrating automated DevOps pipelines with Docker, Ansible, Azure DevOps, and GitLab CI.",
     "github": "https://github.com/christaime",
     "linkedin": "https://www.linkedin.com/in/christelle-mamekem-ngueguim/",
