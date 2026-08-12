@@ -1,0 +1,125 @@
+{
+  "nav": {
+    "logo": "Portfolio.dev",
+    "cv": "Curriculum Vitae",
+    "services": "Services",
+    "blog": "Blog",
+    "projects": "Projects",
+    "contact": "Contact",
+    "langToggle": "EN/FR",
+    "profile": "Profile"
+  },
+  "contact": {
+    "title": "Let's work together",
+    "subtitle": "Available for freelance opportunities and technical consulting. Drop a message to discuss your next project.",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email",
+      "emailPlaceholder": "john@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Project Inquiry",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Describe your technical needs...",
+      "submitBtn": "Send Message",
+      "sending": "Sending...",
+      "successTitle": "Message Received!",
+      "successMsg": "Thank you for reaching out. I'll review your project details and respond within 24 hours.",
+      "clearBtn": "Send Another Message",
+      "requiredError": "Please fill out all required fields.",
+      "emailError": "Please enter a valid email address."
+    },
+    "directContact": {
+      "title": "Direct Contact",
+      "emailLabel": "Email",
+      "emailVal": "mnchristelle@gmail.com",
+      "phoneLabel": "Phone",
+      "phoneVal": "+237 695 282 983",
+      "locationLabel": "Location",
+      "locationVal": "Limbé, Cameroon",
+      "remoteAvailable": "Remote Available",
+      "copied": "Copied to clipboard!",
+      "copyEmail": "Copy Email"
+    },
+    "profiles": {
+      "title": "Profiles",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "stackoverflow": "Stack Overflow"
+    }
+  },
+  "cv": {
+    "title": "Curriculum Vitae",
+    "subtitle": "10+ years of building high-concurrency cloud systems, responsive web applications, and leading engineering teams.",
+    "downloadPdf": "Download Resume PDF",
+    "printResume": "Print CV",
+    "languagesTitle": "Languages & Spoken Proficiency",
+    "hobbiesTitle": "Hobbies & Personal Interests",
+    "featuredProjects": "Featured Software Projects",
+    "exportBtn": "Export / Print CV",
+    "hireMeBtn": "Contact Me",
+    "roleIntroTitle": "Role & Introduction",
+    "techStackTitle": "Tech Stack Grid",
+    "experienceTitle": "Work Experience",
+    "trainingTitle": "Training & Education",
+    "projectsTitle": "Featured Projects & Deliverables",
+    "certificationsTitle": "Certifications & Badges",
+    "languagesHobbiesTitle": "Languages & Hobbies",
+    "jobRolesMenu": "Services & Solutions Provided",
+    "allRoles": "All Services (Full Profile)",
+    "availabilityStatus": "Available for contract & full-time",
+    "sections": {
+      "experience": "Work Experience",
+      "skills": "Technical Expertise",
+      "education": "Education & Degrees",
+      "certifications": "Certifications & Badges"
+    },
+    "labels": {
+      "present": "Present",
+      "keyAchievements": "Key Achievements & Impact",
+      "technologies": "Technologies & Tools"
+    }
+  },
+  "services": {
+    "title": "Technical Services & Consulting",
+    "subtitle": "Specialized engineering solutions tailored for high-scale web products, cloud architecture, and technical advisory.",
+    "requestService": "Request Service",
+    "deliverables": "Deliverables & Scope",
+    "estDuration": "Estimated Duration",
+    "inquireBtn": "Inquire",
+    "estimatorTitle": "Interactive Project Scope Estimator",
+    "estimatorSubtitle": "Configure your technical requirements to receive a instant ballpark budget and timeline estimate.",
+    "estimator": {
+      "projectType": "Project Focus",
+      "scopeLevel": "Complexity & Scale",
+      "timeline": "Target Timeline",
+      "estimatedCost": "Estimated Budget",
+      "estimatedDuration": "Estimated Duration",
+      "weeks": "weeks",
+      "applyToContact": "Pre-fill Contact Form with Estimate"
+    }
+  },
+  "blog": {
+    "title": "Technical Insights & Articles",
+    "subtitle": "In-depth guides, code walkthroughs, and architectural deep-dives on modern web performance, React, and cloud infrastructure.",
+    "searchPlaceholder": "Search articles, tags, or topics...",
+    "filterAll": "All Articles",
+    "readTime": "min read",
+    "readArticle": "Read Article",
+    "closeArticle": "Close Reader",
+    "copyCode": "Copy Snippet",
+    "copied": "Copied!"
+  },
+  "footer": {
+    "rights": "© 2026 Christelle Mamekem Ngueguim. Powered with Stitch & Google AI Studio.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "accountModal": {
+    "title": "Engineer Overview",
+    "status": "Current Status: Available for Projects & Engineering Roles",
+    "timeZone": "Timezone: WAT (UTC+1)",
+    "localTime": "Local Time",
+    "close": "Close"
+  }
+}

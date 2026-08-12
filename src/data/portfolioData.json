@@ -1,0 +1,421 @@
+{
+  "engineer": {
+    "name": "Christelle Mamekem Ngueguim",
+    "title": "Senior Software Engineer (.NET C# / Java EE / Angular / DevOps)",
+    "email": "mnchristelle@gmail.com",
+    "phone": "+237 695 282 983",
+    "location": "Bafoussam, Cameroon",
+    "remoteAvailable": true,
+    "avatarUrl": "/assets/my_picture.jpg",
+    "introduction": "Senior Software Engineer with 10+ years of expertise spanning Backend Engineering (.NET Core/C# & Java/Spring Boot), Frontend SPAs (Angular & React), QA Testing, Fullstack architecture, and System/Infrastructure Management. Proven record engineering secure microservices with JWT/Keycloak, integrating enterprise middleware (RabbitMQ, ActiveMQ, OpenKM), architecting PEPPOL e-invoicing standards (UBL 2.1 & Schematron), and orchestrating automated DevOps pipelines with Docker, Ansible, Azure DevOps, and GitLab CI.",
+    "github": "https://github.com/christaime",
+    "linkedin": "https://www.linkedin.com/in/christelle-mamekem-ngueguim/",
+    "stackoverflow": "https://stackoverflow.com"
+  },
+  "experiences": [
+    {
+      "id": "exp-baotec-remote",
+      "role": "Senior Software Developer",
+      "company": "Groupe Baotec",
+      "companyUrl": "https://www.baotec.com/",
+      "location": "Remote",
+      "period": "06/2025 - 03/2026",
+      "description": "Architected PEPPOL e-invoicing integrations, engineered Angular 18 reactive frontends with Signals, built Java 17 / Spring Boot microservices with Flyway migrations, and authored Ansible playbooks.",
+      "achievements": [
+        "Architected a PEPPOL integration via Flowin API; engineered a custom XML/UBL 2.1 mapping engine with Schematron validation to slash rejection rates.",
+        "Developed modular Angular 18 frontends utilizing Signals for reactive state; built robust Java 17 / Spring Boot microservices for multi-tenant onboarding.",
+        "Managed relational schema evolution using Flyway for automated SQL migrations and authored Ansible playbooks for VPS hardening.",
+        "Established automated deployment pipelines using GitLab CI and SonarQube to enforce strict quality gates and security standards."
+      ],
+      "technologies": ["Java 17", "Spring Boot", "Angular 18","Tailwind","Git", "PEPPOL", "UBL 2.1", "Flowin API", "Schematron", "Flyway","Swagger", "Keycloak", "Ansible", "GitLab CI","Open Project", "SonarQube","S3 Storage","Docker","PostgreSQL"],
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    },
+    {
+      "id": "exp-cephas-remote",
+      "role": "Senior Software Developer",
+      "company": "Groupe Cephas",
+      "companyUrl": "",
+      "location": "Remote",
+      "period": "01/2023 - 03/2025",
+      "description": "Led Agile Scrum development team (2 developers), engineered .NET Core/Framework REST APIs with C#, built Angular SPAs with custom component libraries, and managed Azure DevOps pipelines.",
+      "achievements": [
+        "Led and mentored an Agile Scrum team of 2 developers; conducted Pull Request (PR) reviews, developer coaching, task scheduling, and technical documentation using Visio & Swagger.",
+        "Engineered .NET Core & .NET Framework REST APIs with C#, AutoMapper, RestSharp, ClosedXML for automated Excel report generation, and Swagger OpenAPI documentation.",
+        "Designed and implemented modular Angular 14+ Single Page Applications (SPAs) with Angular Material, Bootstrap, ngx-translate (i18n), RxJS, and jsPDF client-side document generation.",
+        "Successfully spearheaded major frontend framework migration from Angular 12 to Angular 14+ while maintaining zero downtime.",
+        "Orchestrated CI/CD automation and package publishing via Azure Pipelines, Azure Feed (private Nuget), and Azure Test Plans for QA test case execution, deploying on IIS web servers with SQL Server databases."
+      ],
+      "technologies": [".NET Core", ".NET Framework", "C#", "Angular 14+", "Angular Material", "RxJS", "ngx-translate","Git", "ClosedXML", "AutoMapper", "SQL Server", "IIS", "Azure DevOps", "Azure Pipelines", "Azure Test Plans", "Azure Feed", "Swagger"],
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    },
+    {
+      "id": "exp-baotec-kps",
+      "role": "Software Developer",
+      "company": "KPS SARL (Groupe Baotec)",
+      "companyUrl": "https://nkap.baotec.com/",
+      "location": "Yaoundé, Cameroon",
+      "period": "08/2014 - 12/2022",
+      "description": "Developed and maintained core ERP modules (School, Hospital, Accounting) for the 'Nkap' software suite using Java Spring and Groovy/Grails.",
+      "achievements": [
+        "Developed and maintained 3+ core modules (School, Hospital, Accounting) for the 'Nkap' software suite using Java Spring and Groovy/Grails.",
+        "Orchestrated integration of middleware including OpenKM for document management, Keycloak for SSO/IAM, and ActiveMQ for reliable messaging.",
+        "Implemented high-performance data aggregation using Pentaho ETL and designed professional financial documents via JasperReports.",
+        "Built REST APIs with Spring Data JPA and managed Flyway/Liquibase version-controlled database migrations.",
+        "Established automated testing (JUnit/Mockito, Jasmine/Protractor) and containerized applications with Docker on VPS.",
+       "Deployed Prometheus and Grafana monitoring for Docker containers across VPS environments, enabling real-time visibility into system health and proactive capacity management."
+      ],
+      "technologies": ["Java 8","Spring Boot", "Groovy/Grails", "Angular","Angular Material", "Bootstrap","Git", "Keycloak", "OpenKM", "PostgreSQL", "Pentaho ETL", "JasperReports", "Docker", "Flyway","Pentaho","JasperReport", "Grafana","Prometheus","Tomcat","Ubuntu"],
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    },
+    {
+      "id": "exp-afrik-brain",
+      "role": "Software Engineer",
+      "company": "Afrik Brain",
+      "companyUrl": "https://www.linkedin.com/company/afrik-brain/?originalSubdomain=cm",
+      "location": "Yaoundé, Cameroon",
+      "period": "2011 - 2012",
+      "description": "Implemented budget management module in a core banking system using Java EJB3 and Swing with test case automation.",
+      "achievements": [
+        "Implemented a budget management module in a banking system with Java EJB3 and Swing.",
+        "Responsible for taking notes during brainstorming meetings and writing test cases.",
+        "Executed test automation and application verification cycles."
+      ],
+      "technologies": ["Java EJB3", "Swing", "JUnit"],
+      "linkedServices": ["backend-engineer", "qa-testing"]
+    }
+  ],
+  "skillCategories": [
+    {
+      "category": "Backend Engineering (.NET & C#)",
+      "linkedServices": ["qa-testing", "backend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": ".NET Core & .NET Framework / C#", "level": "Expert", "years": "2+ yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "REST APIs (Swagger, AutoMapper, RestSharp)", "level": "Expert", "years": "2+ yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Excel Report Generation (ClosedXML)", "level": "Expert", "years": "2 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "JWT Authentication & IIS Hosting", "level": "Expert", "years": "2+ yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "RabbitMQ Event Messaging", "level": "Advanced", "years": "2 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Automated & Manual Testing (xUnit, Swagger, Azure Test Plans)", "level": "Advanced", "years": "2 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer", "qa-testing"] }
+      ]
+    },
+    {
+      "category": "Backend Engineering (Java & Spring)",
+      "linkedServices": ["qa-testing", "backend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "Java 17+ / Spring Boot & EJB3", "level": "Advanced", "years": "8+ yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Groovy & Grails Framework", "level": "Expert", "years": "4 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Keycloak SSO / IAM & Security", "level": "Expert", "years": "8 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Enterprise Middleware (ActiveMQ, OpenKM)", "level": "Expert", "years": "6 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "PEPPOL UBL 2.1 & Schematron Validation", "level": "Expert", "years": "2 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Automated & Manual Testing (JUnit, Mockito, Selenium, Cucumber, SonarQube, Swagger, Postman)", "level": "Advanced", "years": "5+ yrs", "linkedServices": ["backend-engineer", "fullstack-engineer", "qa-testing"] }
+      ]
+    },
+    {
+      "category": "Frontend Engineering (Angular)",
+      "linkedServices": ["qa-testing", "frontend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "Angular 14-18 / Signals / RxJS", "level": "Advanced", "years": "6+ yrs", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Angular Migration (Angular 12 to 14+)", "level": "Expert", "years": "3 yrs", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Internationalization (ngx-translate i18n)", "level": "Expert", "years": "5 yrs", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Angular Material & Bootstrap UI", "level": "Advanced", "years": "7 yrs", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Client Document Generation (jsPDF)", "level": "Expert", "years": "4 yrs", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Automated & Manual Testing (JUnit, Mockito, Selenium, Cucumber, SonarQube, Swagger, Postman)", "level": "Advanced", "years": "6+ yrs", "linkedServices": ["backend-engineer", "fullstack-engineer", "qa-testing"] }
+      ]
+    },
+    {
+      "category": "Frontend Engineering (React & Modern Web)",
+      "linkedServices": ["frontend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "React Components & Routing (Self-training in progress)", "level": "Intermediate", "years": "1 yr", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "TypeScript & Modern JavaScript (ES6+)", "level": "Expert", "years": "8 yrs", "linkedServices": ["frontend-engineer", "fullstack-engineer"] },
+        { "name": "Tailwind CSS & Responsive Layouts", "level": "Intermediate", "years": "3 yrs", "linkedServices": ["frontend-engineer", "fullstack-engineer"] }
+      ]
+    },
+    {
+      "category": "Databases & Persistence",
+      "linkedServices": ["qa-testing", "backend-engineer", "fullstack-engineer", "sys-infra"],
+      "skills": [
+        { "name": "MySQL & PostgreSQL & SQL Server (SQL & DQL/DML)", "level": "Expert", "years": "10 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "SQL Server Management Studio (SSMS)", "level": "Intermediate", "years": "2 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Flyway & Liquibase Schema Migrations", "level": "Expert", "years": "6 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "Spring Data JPA & Entity Framework Core", "level": "Expert", "years": "8 yrs", "linkedServices": ["backend-engineer", "fullstack-engineer"] },
+        { "name": "SQL Complex Queries & Data Integrity Verification", "level": "Advanced", "years": "8 yrs", "linkedServices": ["qa-testing", "backend-engineer", "fullstack-engineer"] }
+      ]
+    },
+    {
+      "category": "QA & Quality Assurance Testing",
+      "linkedServices": ["qa-testing", "backend-engineer", "frontend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "Azure Test Plans & Manual Test Audits", "level": "Expert", "years": "2 yrs", "linkedServices": ["qa-testing"] },
+        { "name": "Pull Request (PR) Reviews & Dev Coaching", "level": "Expert", "years": "5 yrs", "linkedServices": ["qa-testing"] },
+        { "name": "Unit Testing (JUnit 5, Mockito, MSTest)", "level": "Expert", "years": "8 yrs", "linkedServices": ["qa-testing", "backend-engineer"] },
+        { "name": "Frontend E2E Testing (Cypress, Jasmine, Protractor)", "level": "Expert", "years": "6 yrs", "linkedServices": ["qa-testing", "frontend-engineer"] },
+        { "name": "Static Code Analysis & SonarQube Quality Gates", "level": "Expert", "years": "5 yrs", "linkedServices": ["qa-testing", "sys-infra"] }
+      ]
+    },
+    {
+      "category": "System, Infrastructure & DevOps",
+      "linkedServices": ["sys-infra", "backend-engineer", "fullstack-engineer"],
+      "skills": [
+        { "name": "Azure DevOps (Pipelines, Azure Feed / Nuget, Git)", "level": "Expert", "years": "2+ yrs", "linkedServices": ["sys-infra", "qa-testing"] },
+        { "name": "Docker & Docker-Compose Containerization", "level": "Expert", "years": "6 yrs", "linkedServices": ["sys-infra", "backend-engineer"] },
+        { "name": "Ansible Playbooks & VPS Security Hardening", "level": "Advanced", "years": "4 yrs", "linkedServices": ["sys-infra"] },
+        { "name": "GitLab CI & CI/CD Deployment Pipelines", "level": "Intermediate", "years": "1 yrs", "linkedServices": ["sys-infra"] },
+        { "name": "Web Servers (IIS,Apache2, Nginx)", "level": "Expert", "years": "7 yrs", "linkedServices": ["sys-infra"] }
+      ]
+    },
+    {
+      "category": "Operating Systems, IDEs & Collaboration Tools",
+      "linkedServices": ["sys-infra", "backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing"],
+      "skills": [
+        { "name": "Operating Systems (Windows, Linux / VPS, macOS)", "level": "Advanced", "years": "10 yrs", "linkedServices": ["sys-infra"] },
+        { "name": "Development IDEs (VS Code, Visual Studio,Netbeans, Eclipse, IntelliJ IDEA, SSMS)", "level": "Expert", "years": "10 yrs", "linkedServices": ["backend-engineer", "frontend-engineer"] },
+        { "name": "Project Management & Collaboration (Azure DevOps, Redmine, Git, Teams, Slack, Outlook)", "level": "Expert", "years": "8 yrs", "linkedServices": ["qa-testing", "sys-infra"] },
+        { "name": "Technical Documentation & Diagrams (Visio, Swagger OpenAPI)", "level": "Expert", "years": "5 yrs", "linkedServices": ["backend-engineer", "sys-infra"] }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor's Degree in Computer Science and Network Engineering",
+      "institution": "Université des Montagnes (Bangangté, Cameroon)",
+      "year": "2007 - 2010",
+      "details": "Bachelor degree in computer sciences and networks with honors.",
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    },
+    {
+      "degree": "CISCO Professional for Development Academy (CCNA)",
+      "institution": "CISCO Academy (Douala, Cameroon)",
+      "year": "2011 - 2012",
+      "details": "Network infrastructure, routing, switching, and protocol management.",
+      "linkedServices": ["sys-infra", "backend-engineer"]
+    },
+    {
+      "degree": "Intermediate English Proficiency",
+      "institution": "British Language Center (Yaoundé, Cameroon)",
+      "year": "2011",
+      "details": "Professional working English language proficiency certification.",
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing", "sys-infra"]
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-cisco-ccna",
+      "name": "CISCO CCNA (Cisco Certified Network Associate)",
+      "issuer": "CISCO Networking Academy",
+      "year": "2012",
+      "credentialId": "CCNA-2012-CM",
+      "credentialUrl": "https://cp.certmetrics.com/cisco/en/public/verify/credential/415832463831BMDL",
+      "category": "professional",
+      "icon": "cloud",
+      "badgeColor": "text-blue-500",
+      "linkedServices": ["sys-infra"]
+    },
+    {
+      "id": "cert-hackerrank-problem-solving",
+      "name": "HackerRank Problem Solving & Software Engineering Certificate",
+      "issuer": "HackerRank",
+      "year": "2024",
+      "credentialId": "HR-PS-INT",
+      "credentialUrl": "https://www.hackerrank.com/profile/mnchristelle",
+      "category": "online_skill",
+      "icon": "code",
+      "badgeColor": "text-emerald-500",
+      "linkedServices": ["backend-engineer", "fullstack-engineer"]
+    },
+    {
+      "id": "cert-hackerrank-js-angular",
+      "name": "HackerRank JavaScript & Web Development Verified Skill Badge",
+      "issuer": "HackerRank",
+      "year": "2024",
+      "credentialId": "HR-JS-FE",
+      "credentialUrl": "https://www.hackerrank.com/profile/mnchristelle",
+      "category": "badge",
+      "icon": "verified",
+      "badgeColor": "text-amber-500",
+      "linkedServices": ["frontend-engineer", "fullstack-engineer"]
+    },
+    {
+      "id": "cert-codesignal-gca",
+      "name": "CodeSignal General Coding Assessment & Skill Certification",
+      "issuer": "CodeSignal",
+      "year": "2024",
+      "credentialId": "CS-GCA-VERIFIED",
+      "credentialUrl": "https://codesignal.com/learn/profile/cm9jwu74c001ijx04oz8qk26x",
+      "category": "online_skill",
+      "icon": "award",
+      "badgeColor": "text-indigo-500",
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "qa-testing"]
+    },
+    {
+      "id": "cert-codesignal-speed-coding",
+      "name": "CodeSignal Algorithmic Evaluation & Developer Badge",
+      "issuer": "CodeSignal",
+      "year": "2024",
+      "credentialId": "CS-ALGO-SPEED",
+      "credentialUrl": "https://codesignal.com/learn/profile/cm9jwu74c001ijx04oz8qk26x",
+      "category": "badge",
+      "icon": "token",
+      "badgeColor": "text-purple-500",
+      "linkedServices": ["fullstack-engineer", "backend-engineer"]
+    }
+  ],
+  "languages": [
+    {
+      "name": "French",
+      "level": "Native",
+      "flag": "FR"
+    },
+    {
+      "name": "English",
+      "level": "B1 (Intermediate)",
+      "flag": "GB"
+    }
+  ],
+  "hobbies": [
+    {
+      "name": "Music",
+      "category": "Interests & Culture",
+      "icon": "headset",
+      "description": "Listening to diverse musical genres and sound exploration."
+    },
+    {
+      "name": "Movies",
+      "category": "Interests & Culture",
+      "icon": "menu_book",
+      "description": "Cinema, science fiction, and tech documentaries."
+    },
+    {
+      "name": "Travel",
+      "category": "Personal & Exploration",
+      "icon": "flight_takeoff",
+      "description": "Discovering new regions and cultural perspectives."
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-peppol-einvoicing",
+      "title": "PEPPOL International E-Invoicing Engine & UBL 2.1 Mapper",
+      "category": "E-Invoicing & Document Standards",
+      "description": "Architected a PEPPOL international e-invoicing integration using Flowin API, custom XML/UBL 2.1 mapping engine, and Schematron validation, slashing document rejection rates.",
+      "longDescription": "Designed for cross-border electronic invoicing compliance. Maps internal ERP transaction payloads into validated UBL 2.1 XML documents, verifying structural rules via Schematron schemas before sending through Flowin API gateways.",
+      "skills": ["Java 17", "Spring Boot", "UBL 2.1", "PEPPOL", "Schematron", "Flowin API", "XML"],
+      "demoUrl": "https://github.com/christaime/peppol-ubl-mapper",
+      "sourceUrl": "https://github.com/christaime/peppol-ubl-mapper",
+      "featured": true,
+      "linkedServices": ["backend-engineer", "fullstack-engineer"]
+    },
+    {
+      "id": "proj-nkap-erp",
+      "title": "Nkap Enterprise ERP Suite (School, Hospital & Accounting)",
+      "category": "Enterprise ERP & Microservices",
+      "description": "Multi-tenant enterprise ERP platform with modular accounting, healthcare, and school management systems serving institutional clients.",
+      "longDescription": "Complete enterprise management suite featuring SSO with Keycloak, document indexing via OpenKM, automated financial reports via JasperReports, and ETL reporting via Pentaho.",
+      "skills": ["Java Spring", "Groovy/Grails", "Angular", "Keycloak", "OpenKM", "PostgreSQL", "Docker"],
+      "demoUrl": "https://github.com/christaime/nkap-erp-suite",
+      "sourceUrl": "https://github.com/christaime/nkap-erp-suite",
+      "featured": true,
+      "linkedServices": ["backend-engineer", "frontend-engineer", "fullstack-engineer", "sys-infra"]
+    },
+    {
+      "id": "proj-dotnet-microservices",
+      "title": "Secure ERP-to-Accounting .NET Core Microservices Engine",
+      "category": "Fintech & .NET Architecture",
+      "description": "Distributed .NET Core REST API microservices with JWT authentication, Entity Framework mapping, IIS deployment, and RabbitMQ messaging.",
+      "longDescription": "Engineered for high-reliability ERP to accounting synchronization. Utilizes RabbitMQ message broker for decoupled event handling, custom Nuget packages for shared contracts, ClosedXML for Excel reports, and IIS hosting.",
+      "skills": [".NET Core", "C#", "RabbitMQ", "Entity Framework", "JWT", "ClosedXML", "AutoMapper", "IIS", "Angular Material"],
+      "demoUrl": "https://github.com/christaime/dotnet-erp-accounting",
+      "sourceUrl": "https://github.com/christaime/dotnet-erp-accounting",
+      "featured": true,
+      "linkedServices": ["backend-engineer", "fullstack-engineer", "sys-infra"]
+    },
+    {
+      "id": "proj-banking-budget",
+      "title": "Core Banking Budget Management & Transaction System",
+      "category": "Banking & Financial Systems",
+      "description": "High-security banking budget management module with automated transaction processing, audit logging, and Java EJB3/Swing interface.",
+      "longDescription": "Built for financial institutions to track departmental budget allocations, approval workflows, and ledger updates with strict transactional integrity.",
+      "skills": ["Java EJB3", "Swing", "SQL Server", "JUnit", "Mockito"],
+      "demoUrl": "https://github.com/christaime/banking-budget-manager",
+      "sourceUrl": "https://github.com/christaime/banking-budget-manager",
+      "featured": false,
+      "linkedServices": ["backend-engineer", "qa-testing"]
+    }
+  ],
+  "services": [
+    {
+      "id": "backend-engineer",
+      "title": "Backend Engineer (.NET / Java Spring Boot)",
+      "icon": "code",
+      "shortDesc": "Java Spring Boot & .NET Core/Framework microservices, REST APIs, database architecture, middleware integration, and automated testing.",
+      "description": "Architecting high-performance, secure backend microservices using Java 17+ (Spring Boot) and .NET Core / .NET Framework (C#). Expert in relational databases (PostgreSQL, SQL Server, SSMS, Flyway migrations), middleware integration (RabbitMQ, ActiveMQ, Keycloak SSO, OpenKM), REST libraries (AutoMapper, RestSharp, ClosedXML, Swagger), and comprehensive unit/integration testing (JUnit, Mockito).",
+      "features": [
+        "Java 17+ / Spring Boot & .NET Core / Framework / C# REST API microservices",
+        "Database schema design, ORM (JPA, EF Core), SSMS & Flyway/Liquibase migrations",
+        "Middleware & Libraries (RabbitMQ, ActiveMQ, Keycloak SSO, AutoMapper, ClosedXML)",
+        "Automated unit & integration testing (JUnit 5, Mockito, MSTest, Swagger API docs)"
+      ],
+      "estimatedDuration": "4-12 weeks",
+      "baseRate": "$3,000 – $10,000"
+    },
+    {
+      "id": "frontend-engineer",
+      "title": "Frontend Engineer (Angular / React)",
+      "icon": "groups",
+      "shortDesc": "Modern reactive single-page applications with Angular (Signals/RxJS, ngx-translate) and React, styled with Material and Bootstrap.",
+      "description": "Engineering rich, responsive, and accessible user interfaces using Angular (14-18 with Signals, RxJS, ngx-translate i18n, jsPDF) and React with TypeScript. Building modular UI component libraries, leading framework migrations (e.g. Angular 12 to 14+), optimizing client-side performance, and integrating RESTful APIs seamlessly.",
+      "features": [
+        "Angular 14-18 & React SPA architecture with reactive state & i18n (ngx-translate)",
+        "TypeScript-first component libraries with Material, Bootstrap & Tailwind",
+        "Framework upgrade execution (e.g. Angular 12 to 14+ migration)",
+        "Asynchronous REST API consumption, Auth Guards & client document exports (jsPDF)"
+      ],
+      "estimatedDuration": "6-12 weeks",
+      "baseRate": "$3,000 – $9,000"
+    },
+    {
+      "id": "qa-testing",
+      "title": "QA Testing & Quality Assurance",
+      "icon": "verified",
+      "shortDesc": "Automated & manual testing pipelines, Azure Test Plans, PR code reviews, JUnit/Mockito backend tests, Cypress/Jasmine E2E UI tests, and SonarQube audits.",
+      "description": "Ensuring software reliability, security, and performance through rigorous automated and manual QA strategies. Writing thorough test plans in Azure Test Plans, conducting PR code reviews & developer coaching, automating unit/integration tests with JUnit and Mockito, crafting Cypress and Jasmine UI tests, and establishing SonarQube quality gates.",
+      "features": [
+        "Azure Test Plans design, PR code reviews, coaching & bug lifecycle tracking",
+        "Backend automated testing with JUnit 5, Mockito & Spring Test",
+        "Frontend E2E & unit test automation with Cypress, Jasmine & Protractor",
+        "Static code analysis, security auditing & SonarQube quality gates"
+      ],
+      "estimatedDuration": "3-8 weeks",
+      "baseRate": "$2,000 – $6,000"
+    },
+    {
+      "id": "fullstack-engineer",
+      "title": "Fullstack Engineer (Java / .NET + Angular / React)",
+      "icon": "speed",
+      "shortDesc": "Complete end-to-end enterprise solution delivery combining Java/.NET microservices with Angular/React frontends.",
+      "description": "Delivering complete end-to-end software applications by bridging Java Spring Boot / .NET Core backends with Angular / React reactive frontends. Experienced in building multi-tenant ERP suites, PEPPOL e-invoicing compliance tools, and secure fintech platforms.",
+      "features": [
+        "Full lifecycle application development from DB schema to reactive UI",
+        "Cross-platform integration between Java / .NET microservices and SPAs",
+        "PEPPOL international e-invoicing & UBL 2.1 document workflows",
+        "End-to-end security (JWT, Keycloak SSO) and automated testing"
+      ],
+      "estimatedDuration": "8-12 weeks",
+      "baseRate": "$4,000 – $12,000"
+    },
+    {
+      "id": "sys-infra",
+      "title": "System & Infrastructure Management",
+      "icon": "cloud",
+      "shortDesc": "DevOps containerization with Docker, Azure DevOps pipelines, Azure Feed (Nuget), Ansible playbooks, Linux/IIS administration.",
+      "description": "Managing system infrastructure, cloud/VPS hosting environments, and deployment pipelines. Expert in Azure DevOps (Pipelines, Azure Feed, Git), Docker containerization, Ansible server provisioning & security hardening, IIS / Nginx web server administration, and automated CI/CD with GitLab CI.",
+      "features": [
+        "Azure DevOps suite (Pipelines, Azure Feed Nuget packages, Git)",
+        "Docker containerization & docker-compose orchestration",
+        "Ansible automation for VPS provisioning, security hardening & SSH setup",
+        "Web server administration (IIS, Nginx) and network routing (CCNA)"
+      ],
+      "estimatedDuration": "4-8 weeks",
+      "baseRate": "$2,500 – $6,500 "
+    }
+  ]
+}

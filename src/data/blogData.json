@@ -1,0 +1,35 @@
+[
+  {
+    "id": "post-1",
+    "title": "Architecting Zero-Flicker SPAs in 2026: Modern Hydration Patterns",
+    "slug": "zero-flicker-spas-hydration",
+    "date": "Aug 02, 2026",
+    "readTime": "6",
+    "category": "React & Performance",
+    "summary": "How to achieve instant layout stability and zero layout shift (CLS: 0.0) using optimized client hydration and scoped design tokens.",
+    "content": "Building single-page applications that render instantaneously without layout shifts requires careful synchronization between critical CSS tokens and client-side component mounts.\n\n### The Challenge with Client Hydration\nWhen a single page app initializes, layout jumps often happen if dynamic styles or fonts load asynchronously after the initial HTML shell. By embedding critical CSS variables directly into the document root and deferring heavy layout calculations to frame-bound observers, we can guarantee zero cumulative layout shifts (CLS).\n\n```typescript\n// Example: ResizeObserver Hook for Fluid Stage Dimensions\nexport function useStageDimensions(containerRef: React.RefObject<HTMLDivElement>) {\n  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });\n  \n  useEffect(() => {\n    if (!containerRef.current) return;\n    const observer = new ResizeObserver(([entry]) => {\n      const { width, height } = entry.contentRect;\n      setDimensions({ width, height });\n    });\n    observer.observe(containerRef.current);\n    return () => observer.disconnect();\n  }, [containerRef]);\n  \n  return dimensions;\n}\n```\n\n### Core Key Takeaways\n1. Define CSS variables at the HTML level to avoid runtime style computation delays.\n2. Avoid hardcoded `window.innerWidth` calculations in canvas and stage components.\n3. Leverage `ResizeObserver` for resilient component-scoped bounds.",
+    "tags": ["React", "TypeScript", "Web Performance", "Tailwind CSS"]
+  },
+  {
+    "id": "post-2",
+    "title": "High-Throughput Node.js Microservices: Lessons from 15M Daily Requests",
+    "slug": "high-throughput-nodejs-microservices",
+    "date": "Jul 18, 2026",
+    "readTime": "8",
+    "category": "Backend & Cloud",
+    "summary": "Practical engineering strategies for event loop tuning, connection pooling in Express, and Redis pub/sub scaling under load.",
+    "content": "Scaling Express and Node.js backend services beyond 10,000 concurrent connections demands strict discipline around event-loop blocking and connection reuse.\n\n### Connection Pooling & Async Isolation\nOne of the most common bottlenecks in Node.js backend API servers is unbounded connection allocation to relational databases. Using scoped connection pools with explicit checkout timeouts prevents cascading service timeouts.\n\n```typescript\n// Connection Pool Guard Example\nimport { Pool } from 'pg';\n\nexport const dbPool = new Pool({\n  max: 20,\n  idleTimeoutMillis: 30000,\n  connectionTimeoutMillis: 2000,\n});\n\nexport async function queryWithGuard(text: string, params?: any[]) {\n  const start = Date.now();\n  const client = await dbPool.connect();\n  try {\n    return await client.query(text, params);\n  } finally {\n    client.release();\n    const duration = Date.now() - start;\n    if (duration > 100) {\n      console.warn(`Slow query detected: ${duration}ms - ${text}`);\n    }\n  }\n}\n```\n\n### Optimization Metrics\n- Reduced CPU utilization by 42% on peak traffic spikes.\n- Maintained sub-15ms p99 response times for read-heavy endpoints.",
+    "tags": ["Node.js", "Express", "PostgreSQL", "System Architecture"]
+  },
+  {
+    "id": "post-3",
+    "title": "Designing Intuitive Bilingual Interfaces: Internationalization Best Practices",
+    "slug": "bilingual-interfaces-i18n-best-practices",
+    "date": "Jun 24, 2026",
+    "readTime": "5",
+    "category": "UX & i18n",
+    "summary": "Why text expansion in French and German breaks rigid button layouts and how to build adaptive Flexbox containers.",
+    "content": "When designing interfaces that seamlessly toggle between English and French (EN/FR), layout overflow is the number one defect. French translations typically expand string length by 20% to 30% compared to English equivalents.\n\n### Designing for Text Expansion\nAvoid hardcoded width classes on buttons, cards, or pills (`w-32`). Instead, use `white-space: nowrap`, `padding`, and flexible inline containers that scale with content gracefully.\n\n```html\n<!-- Bad: Fixed width button causes text overflow in French -->\n<button class=\"w-24 text-sm truncate\">Send Message</button>\n\n<!-- Good: Flexible padding and whitespace isolation -->\n<button class=\"px-6 py-3 whitespace-nowrap text-sm font-semibold hover:bg-opacity-90\">\n  Envoyer le message\n</button>\n```\n\n### Key Principles\n1. Store all user-facing strings in lightweight, structured JSON files.\n2. Maintain consistent key names across language files to prevent fallback glitches.\n3. Test diacritic characters and uppercase typography (`font-label-caps`) in all screen sizes.",
+    "tags": ["UI/UX", "i18n", "Tailwind CSS", "React"]
+  }
+]

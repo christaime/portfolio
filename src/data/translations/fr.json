@@ -1,0 +1,125 @@
+{
+  "nav": {
+    "logo": "Portfolio.dev",
+    "cv": "Curriculum Vitae",
+    "services": "Services",
+    "blog": "Blog",
+    "projects": "Projets",
+    "contact": "Contact",
+    "langToggle": "EN/FR",
+    "profile": "Profil"
+  },
+  "contact": {
+    "title": "Travaillons ensemble",
+    "subtitle": "Disponible pour des opportunités en freelance et du conseil technique. Envoyez un message pour discuter de votre prochain projet.",
+    "form": {
+      "nameLabel": "Nom",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "john@exemple.com",
+      "subjectLabel": "Sujet",
+      "subjectPlaceholder": "Demande de projet",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Décrivez vos besoins techniques...",
+      "submitBtn": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "successTitle": "Message bien reçu !",
+      "successMsg": "Merci pour votre message. Je consulterai les détails de votre projet et vous répondrai sous 24 heures.",
+      "clearBtn": "Envoyer un autre message",
+      "requiredError": "Veuillez remplir tous les champs obligatoires.",
+      "emailError": "Veuillez saisir une adresse e-mail valide."
+    },
+    "directContact": {
+      "title": "Contact direct",
+      "emailLabel": "E-mail",
+      "emailVal": "mnchristelle@gmail.com",
+      "phoneLabel": "Téléphone",
+      "phoneVal": "+237 695 282 983",
+      "locationLabel": "Lieu",
+      "locationVal": "Limbé, Cameroun",
+      "remoteAvailable": "Disponible à distance",
+      "copied": "Copié dans le presse-papiers !",
+      "copyEmail": "Copier l'e-mail"
+    },
+    "profiles": {
+      "title": "Profils",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "stackoverflow": "Stack Overflow"
+    }
+  },
+  "cv": {
+    "title": "Curriculum Vitae",
+    "subtitle": "Plus de 10 ans d'expérience dans la conception de systèmes cloud résilients, d'applications web hautement performantes et le leadership d'équipes d'ingénierie.",
+    "downloadPdf": "Télécharger le CV PDF",
+    "printResume": "Imprimer le CV",
+    "languagesTitle": "Langues & Compétences linguistiques",
+    "hobbiesTitle": "Loisirs & Intérêts personnels",
+    "featuredProjects": "Projets logiciels mis en avant",
+    "exportBtn": "Exporter / Imprimer le CV",
+    "hireMeBtn": "Me contacter",
+    "roleIntroTitle": "Rôle & Présentation",
+    "techStackTitle": "Grille de Stack Technique",
+    "experienceTitle": "Expériences",
+    "trainingTitle": "Formation",
+    "projectsTitle": "Projets Associés & Réalisations",
+    "certificationsTitle": "Certifications & Badges de compétences",
+    "languagesHobbiesTitle": "Langues & Loisirs",
+    "jobRolesMenu": "Services & Solutions Proposés",
+    "allRoles": "Tous les services (Profil complet)",
+    "availabilityStatus": "Disponible en contrat & temps plein",
+    "sections": {
+      "experience": "Expérience professionnelle",
+      "skills": "Expertise technique",
+      "education": "Éducation et diplômes",
+      "certifications": "Certifications et badges"
+    },
+    "labels": {
+      "present": "Présent",
+      "keyAchievements": "Réalisations clés & Impact",
+      "technologies": "Technologies & Outils"
+    }
+  },
+  "services": {
+    "title": "Services techniques et conseil",
+    "subtitle": "Solutions d'ingénierie spécialisées adaptées aux produits web à forte échelle, à l'architecture cloud et au conseil technique.",
+    "requestService": "Demander ce service",
+    "deliverables": "Livrables et périmètre",
+    "estDuration": "Durée estimée",
+    "inquireBtn": "Se renseigner",
+    "estimatorTitle": "Estimateur de projet interactif",
+    "estimatorSubtitle": "Configurez vos besoins techniques pour obtenir une estimation instantanée de votre budget et de votre calendrier.",
+    "estimator": {
+      "projectType": "Type de projet",
+      "scopeLevel": "Complexité & Échelle",
+      "timeline": "Délai visé",
+      "estimatedCost": "Budget estimé",
+      "estimatedDuration": "Durée estimée",
+      "weeks": "semaines",
+      "applyToContact": "Pré-remplir le formulaire avec l'estimation"
+    }
+  },
+  "blog": {
+    "title": "Analyses techniques et articles",
+    "subtitle": "Guides approfondis, tutoriels de code et analyses d'architecture sur la performance web moderne, React et l'infrastructure cloud.",
+    "searchPlaceholder": "Rechercher des articles, des tags ou des thèmes...",
+    "filterAll": "Tous les articles",
+    "readTime": "min de lecture",
+    "readArticle": "Lire l'article",
+    "closeArticle": "Fermer l'article",
+    "copyCode": "Copier l'extrait",
+    "copied": "Copié !"
+  },
+  "footer": {
+    "rights": "© 2026 Christelle Mamekem Ngueguim. Propulsé avec Stitch & Google AI Studio.",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation"
+  },
+  "accountModal": {
+    "title": "Présentation de l'ingénieur",
+    "status": "Statut actuel : Disponible pour projets & rôles d'ingénierie",
+    "timeZone": "Fuseau horaire : WAT (UTC+1)",
+    "localTime": "Heure locale",
+    "close": "Fermer"
+  }
+}
