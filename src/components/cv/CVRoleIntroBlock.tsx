@@ -31,7 +31,7 @@ export const CVRoleIntroBlock = ({
         <div className="flex items-center gap-2">
           <User className="w-5 h-5 text-secondary-container" />
           <h2 className="font-headline-md text-xl md:text-2xl text-on-surface">
-            {activeService ? `Targeted Offer: ${activeService.title}` : t('cv.roleIntroTitle')}
+            {activeService ? `${t('cv.roleIntroTargeted')}: ${activeService.title}` : t('cv.roleIntroTitle')}
           </h2>
         </div>
         {selectedServiceId !== 'all' && (
@@ -39,7 +39,7 @@ export const CVRoleIntroBlock = ({
             onClick={() => setSelectedServiceId('all')}
             className="text-xs font-code-md text-secondary-container hover:underline flex items-center gap-1.5 cursor-pointer bg-secondary-container/10 px-3 py-1 rounded-full border border-secondary-container/20 transition-all hover:bg-secondary-container/20"
           >
-            <span>Reset View</span>
+            <span>{t('cv.resetView')}</span>
             <X className="w-3.5 h-3.5" />
           </button>
         )}
@@ -52,7 +52,7 @@ export const CVRoleIntroBlock = ({
           </h1>
           {activeService && (
             <span className="bg-tertiary-container/30 text-tertiary font-code-md text-xs px-2.5 py-0.5 rounded-full border border-tertiary/30">
-              Targeted Service Profile
+              {t('cv.targetedServiceProfile')}
             </span>
           )}
         </div>
@@ -85,34 +85,34 @@ export const CVRoleIntroBlock = ({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-outline-variant/40">
           <div className="bg-surface/60 p-3 rounded-lg border border-outline-variant/60 flex flex-col">
             <span className="font-code-md text-[10px] uppercase tracking-wider text-on-surface-variant">
-              Overall Experience
+              {t('cv.overallExpLabel')}
             </span>
             <span className="font-headline-sm text-base font-bold text-secondary-container">
-              10+ Years
+              {t('cv.tenPlusYears')}
             </span>
           </div>
           <div className="bg-surface/60 p-3 rounded-lg border border-outline-variant/60 flex flex-col">
             <span className="font-code-md text-[10px] uppercase tracking-wider text-on-surface-variant">
-              Relevant Roles
+              {t('cv.relevantRolesLabel')}
             </span>
             <span className="font-headline-sm text-base font-bold text-primary">
-              {filteredExperiencesCount} {filteredExperiencesCount === 1 ? 'Role' : 'Roles'}
+              {filteredExperiencesCount} {filteredExperiencesCount === 1 ? t('cv.roleSingle') : t('cv.rolePlural')}
             </span>
           </div>
           <div className="bg-surface/60 p-3 rounded-lg border border-outline-variant/60 flex flex-col">
             <span className="font-code-md text-[10px] uppercase tracking-wider text-on-surface-variant">
-              Linked Certs
+              {t('cv.linkedCertsLabel')}
             </span>
             <span className="font-headline-sm text-base font-bold text-tertiary">
-              {filteredCertificationsCount} {filteredCertificationsCount === 1 ? 'Badge' : 'Badges'}
+              {filteredCertificationsCount} {filteredCertificationsCount === 1 ? t('cv.badgeSingle') : t('cv.badgePlural')}
             </span>
           </div>
           <div className="bg-surface/60 p-3 rounded-lg border border-outline-variant/60 flex flex-col">
             <span className="font-code-md text-[10px] uppercase tracking-wider text-on-surface-variant">
-              Availability
+              {t('cv.availabilityLabel')}
             </span>
             <span className="font-headline-sm text-base font-bold text-on-surface">
-              Contract / Full-Time
+              {t('cv.availabilityValue')}
             </span>
           </div>
         </div>

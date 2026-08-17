@@ -11,7 +11,7 @@ export const ProjectsPage = () => {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   useEffect(() => {
-    portfolioService.getProjects().then(setProjects);
+    portfolioService.getProjects().then(setProjects).catch(() => {});
   }, [language]);
 
   const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))];
@@ -25,10 +25,10 @@ export const ProjectsPage = () => {
       {/* Title & Description */}
       <div>
         <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3">
-          Projects & Codebases
+          {t('projects.title')}
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-          A collection of production applications, healthcare EHR platforms, open-source repositories, and high-performance microservices.
+          {t('projects.subtitle')}
         </p>
       </div>
 
@@ -44,7 +44,7 @@ export const ProjectsPage = () => {
                 : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant border border-outline-variant/60'
             }`}
           >
-            {cat}
+            {cat === 'All' ? t('projects.categoryAll') : cat}
           </button>
         ))}
       </div>
@@ -63,7 +63,7 @@ export const ProjectsPage = () => {
                 </span>
                 {project.featured && (
                   <span className="bg-tertiary-container/30 border border-tertiary/40 text-tertiary px-2.5 py-0.5 rounded font-code-md text-[10px] font-semibold">
-                    Featured
+                    {t('projects.featured')}
                   </span>
                 )}
               </div>
@@ -95,7 +95,7 @@ export const ProjectsPage = () => {
                   className="font-label-caps text-xs text-on-surface-variant hover:text-primary cursor-pointer flex items-center gap-1"
                 >
                   <Info className="w-4 h-4" />
-                  <span>Overview</span>
+                  <span>{t('projects.overviewBtn')}</span>
                 </button>
 
                 <div className="flex items-center gap-3">
@@ -107,7 +107,7 @@ export const ProjectsPage = () => {
                       className="font-label-caps text-xs text-on-surface-variant hover:text-secondary-container flex items-center gap-1"
                     >
                       <Code className="w-4 h-4" />
-                      <span>Source</span>
+                      <span>{t('projects.sourceBtn')}</span>
                     </a>
                   )}
                   {project.demoUrl && (
@@ -118,7 +118,7 @@ export const ProjectsPage = () => {
                       className="bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed px-3 py-1.5 rounded font-label-caps text-xs flex items-center gap-1"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
-                      <span>Demo</span>
+                      <span>{t('projects.demoBtn')}</span>
                     </a>
                   )}
                 </div>
@@ -155,7 +155,7 @@ export const ProjectsPage = () => {
 
             <div className="bg-surface-container-high p-4 rounded border border-outline-variant">
               <h4 className="font-label-caps text-label-caps text-on-surface-variant mb-2">
-                Technologies & Stack
+                {t('projects.techStackTitle')}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {activeProject.skills.map((skill, idx) => (
@@ -174,7 +174,7 @@ export const ProjectsPage = () => {
                 onClick={() => setActiveProject(null)}
                 className="px-5 py-2.5 rounded border border-outline-variant text-on-surface font-label-caps text-xs cursor-pointer"
               >
-                Close
+                {t('projects.closeBtn')}
               </button>
               {activeProject.demoUrl && (
                 <a
@@ -183,7 +183,7 @@ export const ProjectsPage = () => {
                   rel="noreferrer"
                   className="bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed px-6 py-2.5 rounded font-label-caps text-xs flex items-center gap-2 cursor-pointer"
                 >
-                  <span>Launch Live Demo</span>
+                  <span>{t('projects.launchDemoBtn')}</span>
                   <ExternalLink className="w-4 h-4" />
                 </a>
               )}

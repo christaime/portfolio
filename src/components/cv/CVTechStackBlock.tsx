@@ -35,12 +35,12 @@ export const CVTechStackBlock = ({
               </h2>
               {selectedServiceId !== 'all' && (
                 <span className="font-code-md text-[11px] bg-secondary-container/20 text-secondary-container px-2.5 py-0.5 rounded-full border border-secondary-container/30">
-                  Service Filtered
+                  {t('cv.serviceFiltered')}
                 </span>
               )}
             </div>
             <p className="font-body-md text-xs text-on-surface-variant mt-0.5">
-              Core technologies, frameworks, and proficiency metrics
+              {t('cv.techStackSubtitle')}
             </p>
           </div>
         </div>
@@ -50,7 +50,7 @@ export const CVTechStackBlock = ({
           <Search className="w-4 h-4 absolute left-2.5 top-2.5 text-on-surface-variant" />
           <input
             type="text"
-            placeholder="Search tech stack..."
+            placeholder={t('cv.searchTechPlaceholder')}
             value={skillSearch}
             onChange={(e) => setSkillSearch(e.target.value)}
             className="w-full bg-surface border border-outline-variant rounded-lg pl-8 pr-3 py-1.5 text-xs font-code-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-secondary-container"
@@ -78,7 +78,7 @@ export const CVTechStackBlock = ({
               <h3 className="font-headline-sm text-sm text-on-surface font-semibold border-b border-outline-variant/60 pb-2 flex items-center justify-between">
                 <span>{cat.category}</span>
                 <span className="font-code-md text-[10px] text-secondary bg-surface-container-high px-2 py-0.5 rounded">
-                  {matchingSkills.length} skills
+                  {matchingSkills.length} {t('cv.skillsCount')}
                 </span>
               </h3>
 
@@ -97,7 +97,7 @@ export const CVTechStackBlock = ({
                       </span>
                     </div>
                     <div className="flex justify-between items-center text-[11px] font-code-md text-on-surface-variant/80">
-                      <span>Experience</span>
+                      <span>{t('cv.experienceLabel')}</span>
                       <span>{skill.years}</span>
                     </div>
                     {/* Visual Skill Level Bar */}

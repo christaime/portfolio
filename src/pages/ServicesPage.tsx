@@ -31,8 +31,8 @@ export const ServicesPage = () => {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
 
   useEffect(() => {
-    portfolioService.getServices().then(setServices);
-    portfolioService.getCertifications().then(setCertifications);
+    portfolioService.getServices().then(setServices).catch(() => {});
+    portfolioService.getCertifications().then(setCertifications).catch(() => {});
   }, [language]);
 
   const handleBookService = (service: ServiceItem) => {
@@ -85,27 +85,27 @@ export const ServicesPage = () => {
         return (
           <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded border border-indigo-500/20">
             <ShieldCheck className="w-3 h-3 shrink-0" />
-            Pro Cert
+            {t('services.proCertBadge')}
           </span>
         );
       case 'online_skill':
         return (
           <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20">
             <CheckCircle2 className="w-3 h-3 shrink-0" />
-            Skill Cert
+            {t('services.skillCertBadge')}
           </span>
         );
       case 'badge':
         return (
           <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20">
             <Sparkles className="w-3 h-3 shrink-0" />
-            Badge
+            {t('services.badgeCertBadge')}
           </span>
         );
       default:
         return (
           <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded border border-outline-variant/60">
-            Credential
+            {t('services.credentialBadge')}
           </span>
         );
     }
@@ -173,7 +173,7 @@ export const ServicesPage = () => {
                   <div className="mb-6 pt-4 border-t border-outline-variant/60">
                     <h4 className="font-label-caps text-label-caps text-on-surface-variant mb-2.5 flex items-center gap-1.5">
                       <BadgeCheck className="w-4 h-4 text-tertiary" />
-                      <span>Verified Certifications & Badges ({serviceCerts.length})</span>
+                      <span>{t('services.verifiedCerts').replace('{count}', serviceCerts.length.toString())}</span>
                     </h4>
                     <div className="flex flex-col gap-2">
                       {serviceCerts.map((cert) => (
@@ -203,9 +203,9 @@ export const ServicesPage = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="p-1 text-tertiary hover:text-primary hover:bg-surface rounded transition-colors inline-flex items-center gap-0.5 font-code-md text-[10px]"
-                                title="Verify Credential"
+                                title={t('services.verifyLink')}
                               >
-                                <span>Verify</span>
+                                <span>{t('services.verifyLink')}</span>
                                 <ExternalLink className="w-3 h-3" />
                               </a>
                             )}
@@ -231,16 +231,16 @@ export const ServicesPage = () => {
                   <button
                     onClick={() => handleViewInCV(service.id)}
                     className="bg-surface-container-high hover:bg-surface border border-outline-variant text-on-surface text-xs font-label-caps px-3 py-2.5 rounded transition-colors flex items-center gap-1.5 cursor-pointer"
-                    title="Filter CV view by this service"
+                    title={t('services.cvFilterBtn')}
                   >
                     <FileText className="w-3.5 h-3.5 text-secondary" />
-                    <span>CV Filter</span>
+                    <span>{t('services.cvFilterBtn')}</span>
                   </button>
                   <button
                     onClick={() => setSelectedService(service)}
                     className="bg-surface-container-high hover:bg-surface border border-outline-variant text-on-surface text-xs font-label-caps px-3.5 py-2.5 rounded transition-colors cursor-pointer"
                   >
-                    Details
+                    {t('services.detailsBtn')}
                   </button>
                   <button
                     onClick={() => handleBookService(service)}
@@ -289,7 +289,7 @@ export const ServicesPage = () => {
 
             <div className="bg-surface-container-high p-4 rounded border border-outline-variant">
               <h4 className="font-label-caps text-label-caps text-on-surface-variant mb-2">
-                What is Included
+                {t('services.whatIsIncluded')}
               </h4>
               <ul className="flex flex-col gap-2">
                 {selectedService.features.map((feat, fIdx) => (
@@ -306,7 +306,7 @@ export const ServicesPage = () => {
               <div className="bg-surface-container-high p-4 rounded border border-outline-variant">
                 <h4 className="font-label-caps text-label-caps text-on-surface-variant mb-3 flex items-center gap-1.5">
                   <BadgeCheck className="w-4 h-4 text-tertiary" />
-                  <span>Associated Certifications & Badges</span>
+                  <span>{t('services.associatedCerts')}</span>
                 </h4>
                 <div className="flex flex-col gap-2">
                   {getServiceCertifications(selectedService.id).map((cert) => (
@@ -337,7 +337,7 @@ export const ServicesPage = () => {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1 text-tertiary hover:underline font-code-md text-xs font-semibold px-2 py-1 bg-tertiary/10 rounded"
                           >
-                            <span>Verify</span>
+                            <span>{t('services.verifyLink')}</span>
                             <ExternalLink className="w-3 h-3" />
                           </a>
                         )}
@@ -353,7 +353,7 @@ export const ServicesPage = () => {
                 onClick={() => setSelectedService(null)}
                 className="px-5 py-2.5 rounded border border-outline-variant text-on-surface font-label-caps text-xs cursor-pointer"
               >
-                Close
+                {t('services.closeModal')}
               </button>
               <button
                 onClick={() => {
@@ -363,7 +363,7 @@ export const ServicesPage = () => {
                 }}
                 className="bg-secondary-container text-on-secondary-container px-6 py-2.5 rounded font-label-caps text-xs flex items-center gap-2 cursor-pointer hover:bg-secondary-fixed"
               >
-                <span>Request Consultation</span>
+                <span>{t('services.requestConsultation')}</span>
                 <Send className="w-4 h-4" />
               </button>
             </div>

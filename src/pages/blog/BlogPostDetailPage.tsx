@@ -16,23 +16,28 @@ export const BlogPostDetailPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    portfolioService.getEngineerInfo().then(setEngineer);
+    portfolioService.getEngineerInfo().then(setEngineer).catch(() => {});
   }, [language]);
 
   useEffect(() => {
     if (slug) {
       setLoading(true);
-      blogService.getBlogPostBySlug(slug).then((res) => {
-        setPost(res || null);
-        setLoading(false);
-      });
+      blogService
+        .getBlogPostBySlug(slug)
+        .then((res) => {
+          setPost(res || null);
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+        });
     }
   }, [slug, language]);
 
   if (loading) {
     return (
       <div className="py-20 text-center font-code-md text-on-surface-variant animate-pulse">
-        Loading article context...
+        {t('blog.loadingArticle')}
       </div>
     );
   }
@@ -41,15 +46,15 @@ export const BlogPostDetailPage = () => {
     return (
       <div className="py-16 text-center flex flex-col items-center gap-4">
         <FileText className="w-12 h-12 text-error" />
-        <h2 className="font-headline-md text-headline-md text-on-surface">Article Not Found</h2>
+        <h2 className="font-headline-md text-headline-md text-on-surface">{t('blog.articleNotFound')}</h2>
         <p className="font-body-md text-on-surface-variant max-w-md">
-          The request article slug "{slug}" does not exist or has been relocated.
+          {t('blog.articleNotFoundSub').replace('{slug}', slug || '')}
         </p>
         <button
           onClick={() => navigate('/blog')}
           className="bg-secondary-container text-on-secondary-container font-label-caps text-xs px-6 py-3 rounded cursor-pointer"
         >
-          Return to Articles
+          {t('blog.returnToArticles')}
         </button>
       </div>
     );
@@ -64,7 +69,7 @@ export const BlogPostDetailPage = () => {
         id="back-to-blog-btn"
       >
         <ArrowLeft className="w-4 h-4" />
-        <span>Back to Articles</span>
+        <span>{t('blog.backToArticles')}</span>
       </button>
 
       {/* Article Header */}
@@ -79,7 +84,7 @@ export const BlogPostDetailPage = () => {
           </span>
           <span className="font-code-md text-xs text-on-surface-variant/80 flex items-center gap-1">
             <Clock className="w-3.5 h-3.5" />
-            <span>{post.readTime} min read</span>
+            <span>{post.readTime} {t('blog.readTime')}</span>
           </span>
         </div>
 
@@ -148,7 +153,7 @@ export const BlogPostDetailPage = () => {
             className="w-10 h-10 rounded-full object-cover border border-secondary-container shrink-0 bg-surface-container-high"
           />
           <div className="flex flex-col">
-            <span className="font-headline-sm text-sm text-on-surface">Written by {engineer?.name || 'Christelle Mamekem Ngueguim'}</span>
+            <span className="font-headline-sm text-sm text-on-surface">{t('blog.writtenBy')} {engineer?.name || 'Christelle Mamekem Ngueguim'}</span>
             <span className="font-code-md text-xs text-on-surface-variant">{engineer?.title || 'Senior Software Engineer'}</span>
           </div>
         </div>
@@ -156,16 +161,17 @@ export const BlogPostDetailPage = () => {
         <button
           onClick={() => {
             if (navigator.share) {
-              navigator.share({ title: post.title, url: window.location.href });
-            } else {
-              navigator.clipboard.writeText(window.location.href);
-              alert('Article link copied to clipboard!');
+              navigator.share({ title: post.title, url: window.location.href }).catch(() => {});
+            } else if (navigator.clipboard) {
+              navigator.clipboard.writeText(window.location.href).then(() => {
+                alert(t('blog.linkCopied'));
+              }).catch(() => {});
             }
           }}
           className="bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface text-xs font-label-caps px-4 py-2 rounded flex items-center gap-1.5 cursor-pointer"
         >
           <Share2 className="w-4 h-4" />
-          <span>Share</span>
+          <span>{t('blog.share')}</span>
         </button>
       </footer>
     </div>

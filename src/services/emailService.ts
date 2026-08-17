@@ -4,10 +4,12 @@ export interface SendEmailPayload {
   subject?: string;
   message: string;
   code?: string;
+  recaptchaToken?: string;
 }
 
 export interface SendVerificationCodePayload {
   email: string;
+  recaptchaToken?: string;
 }
 
 export interface VerifyCodePayload {

@@ -29,7 +29,7 @@ export const CVTrainingBlock = ({
         </div>
         {selectedServiceId !== 'all' && (
           <span className="font-code-md text-xs bg-secondary/20 text-secondary px-3 py-1 rounded-full border border-secondary/30">
-            Service Filtered ({filteredEducation.length})
+            {t('cv.serviceFiltered')} ({filteredEducation.length})
           </span>
         )}
       </div>
@@ -42,7 +42,7 @@ export const CVTrainingBlock = ({
         ) : (
           <div className="bg-surface p-8 rounded-xl text-center border border-outline-variant">
             <p className="text-on-surface-variant text-sm font-body-md">
-              No training/education entries linked to this specific service.
+              {t('cv.noTraining')}
             </p>
           </div>
         )}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 import { WorkExperience } from '../../types';
 
 interface CVExperienceItemProps {
@@ -8,6 +9,8 @@ interface CVExperienceItemProps {
 }
 
 export const CVExperienceItem = ({ experience }: CVExperienceItemProps) => {
+  const { t } = useLanguage();
+
   return (
     <div className="bg-surface border border-outline-variant hover:border-outline transition-all rounded-xl p-4 md:p-5 flex flex-col gap-3 shadow-xs">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-outline-variant/40 pb-3">
@@ -44,7 +47,7 @@ export const CVExperienceItem = ({ experience }: CVExperienceItemProps) => {
 
       <div>
         <h4 className="font-label-caps text-xs text-on-surface-variant mb-2">
-          Key Achievements & Impact
+          {t('cv.keyAchievements')}
         </h4>
         <ul className="list-disc list-inside flex flex-col gap-1.5 font-body-md text-xs text-on-surface-variant/90">
           {experience.achievements.map((ach, aIdx) => (

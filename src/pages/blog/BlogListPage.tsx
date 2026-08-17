@@ -16,15 +16,20 @@ export const BlogListPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    blogService.getCategories().then(setCategories);
+    blogService.getCategories().then(setCategories).catch(() => {});
   }, [language]);
 
   useEffect(() => {
     setIsLoading(true);
-    blogService.searchPosts(searchQuery, selectedCategory).then((results) => {
-      setPosts(results);
-      setIsLoading(false);
-    });
+    blogService
+      .searchPosts(searchQuery, selectedCategory)
+      .then((results) => {
+        setPosts(results);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
   }, [searchQuery, selectedCategory, language]);
 
   return (
@@ -83,16 +88,16 @@ export const BlogListPage = () => {
       {/* Blog Posts Grid */}
       {isLoading ? (
         <div className="py-16 text-center text-on-surface-variant animate-pulse font-code-md">
-          Fetching technical articles...
+          {t('blog.fetching')}
         </div>
       ) : posts.length === 0 ? (
         <div className="bg-surface-container rounded-xl p-12 text-center border border-outline-variant flex flex-col items-center gap-3">
           <FileText className="w-10 h-10 text-on-surface-variant" />
           <h3 className="font-headline-sm text-headline-sm text-on-surface">
-            No Articles Found
+            {t('blog.noArticlesFound')}
           </h3>
           <p className="font-body-md text-sm text-on-surface-variant max-w-md">
-            Try adjusting your search query or switching to another category filter.
+            {t('blog.noArticlesSub')}
           </p>
           <button
             onClick={() => {
@@ -101,7 +106,7 @@ export const BlogListPage = () => {
             }}
             className="mt-2 text-secondary-container font-label-caps text-xs underline cursor-pointer"
           >
-            Reset Filters
+            {t('blog.resetFilters')}
           </button>
         </div>
       ) : (
@@ -147,7 +152,7 @@ export const BlogListPage = () => {
                 <div className="pt-4 border-t border-outline-variant/60 flex items-center justify-between">
                   <span className="font-code-md text-xs text-on-surface-variant/80 flex items-center gap-1">
                     <Clock className="w-3.5 h-3.5" />
-                    <span>{post.readTime} min read</span>
+                    <span>{post.readTime} {t('blog.readTime')}</span>
                   </span>
 
                   <span className="font-label-caps text-xs text-secondary-container group-hover:underline flex items-center gap-1 font-semibold">
