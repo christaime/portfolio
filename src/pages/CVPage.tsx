@@ -64,15 +64,15 @@ export const CVPage = () => {
   };
 
   useEffect(() => {
-    portfolioService.getEngineerInfo().then(setEngineer);
-    portfolioService.getExperiences().then(setExperiences);
-    portfolioService.getSkillCategories().then(setSkillCategories);
-    portfolioService.getEducation().then(setEducation);
-    portfolioService.getCertifications().then(setCertifications);
-    portfolioService.getServices().then(setServices);
-    portfolioService.getLanguages().then(setLanguages);
-    portfolioService.getHobbies().then(setHobbies);
-    portfolioService.getProjects().then(setProjects);
+    portfolioService.getEngineerInfo().then(setEngineer).catch(() => {});
+    portfolioService.getExperiences().then(setExperiences).catch(() => {});
+    portfolioService.getSkillCategories().then(setSkillCategories).catch(() => {});
+    portfolioService.getEducation().then(setEducation).catch(() => {});
+    portfolioService.getCertifications().then(setCertifications).catch(() => {});
+    portfolioService.getServices().then(setServices).catch(() => {});
+    portfolioService.getLanguages().then(setLanguages).catch(() => {});
+    portfolioService.getHobbies().then(setHobbies).catch(() => {});
+    portfolioService.getProjects().then(setProjects).catch(() => {});
   }, [language]);
 
   const handleExportCV = () => {

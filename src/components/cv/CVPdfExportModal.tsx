@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import { useLanguage } from '../../context/LanguageContext';
 import {
   EngineerInfo,
   WorkExperience,
@@ -52,6 +53,7 @@ export const CVPdfExportModal: React.FC<CVPdfExportModalProps> = ({
   projects = [],
   selectedServiceId = 'all',
 }) => {
+  const { t } = useLanguage();
   const [templateTheme, setTemplateTheme] = useState<'executive' | 'modern' | 'classic'>('executive');
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -136,13 +138,13 @@ export const CVPdfExportModal: React.FC<CVPdfExportModalProps> = ({
             </div>
             <div>
               <h2 className="text-lg sm:text-xl font-bold text-slate-100 flex items-center gap-2">
-                PDF CV Document Generator
+                {t('cv.pdfExport.modalTitle')}
                 <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  Ready
+                  {t('cv.pdfExport.ready')}
                 </span>
               </h2>
               <p className="text-xs text-slate-400">
-                Tailored for {selectedServiceId === 'all' ? 'Full Profile' : activeService?.title || 'Selected Service'}
+                {t('cv.pdfExport.tailoredFor')} {selectedServiceId === 'all' ? t('cv.pdfExport.fullProfile') : activeService?.title || t('cv.pdfExport.selectedService')}
               </p>
             </div>
           </div>
@@ -160,7 +162,7 @@ export const CVPdfExportModal: React.FC<CVPdfExportModalProps> = ({
         <div className="p-4 border-b border-slate-800 bg-slate-900/50 flex flex-wrap items-center justify-between gap-3 text-xs">
           {/* Template Theme Selector */}
           <div className="flex items-center gap-2">
-            <span className="text-slate-400 font-medium">Style Theme:</span>
+            <span className="text-slate-400 font-medium">{t('cv.pdfExport.styleTheme')}</span>
             <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800">
               <button
                 onClick={() => setTemplateTheme('executive')}
@@ -170,7 +172,7 @@ export const CVPdfExportModal: React.FC<CVPdfExportModalProps> = ({
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                Executive
+                {t('cv.pdfExport.themeExecutive')}
               </button>
               <button
                 onClick={() => setTemplateTheme('modern')}
@@ -180,7 +182,7 @@ export const CVPdfExportModal: React.FC<CVPdfExportModalProps> = ({
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                Modern Clean
+                {t('cv.pdfExport.themeModern')}
               </button>
               <button
                 onClick={() => setTemplateTheme('classic')}
@@ -190,7 +192,7 @@ export const CVPdfExportModal: React.FC<CVPdfExportModalProps> = ({
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                Classic Serif
+                {t('cv.pdfExport.themeClassic')}
               </button>
             </div>
           </div>
@@ -200,28 +202,28 @@ export const CVPdfExportModal: React.FC<CVPdfExportModalProps> = ({
             <button
               onClick={handleDownloadPDF}
               disabled={isGenerating}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-indigo-800 text-white font-bold rounded-xl shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-indigo-800 text-white font-bold rounded-xl shadow-lg transition-all cursor-pointer"
             >
               <Download className="w-4 h-4" />
-              <span>{isGenerating ? 'Building PDF...' : 'Download Vector PDF'}</span>
+              <span>{isGenerating ? t('cv.pdfExport.generating') : t('cv.pdfExport.downloadPdf')}</span>
             </button>
 
             <button
               onClick={handleImageCaptureExport}
               disabled={isGenerating}
-              className="inline-flex items-center gap-2 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 transition-all"
+              className="inline-flex items-center gap-2 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 transition-all cursor-pointer"
               title="Alternative export via visual rendering"
             >
               <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Visual Capture</span>
+              <span>{t('cv.pdfExport.imageCapture')}</span>
             </button>
 
             <button
               onClick={handleBrowserPrint}
-              className="inline-flex items-center gap-2 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 transition-all"
+              className="inline-flex items-center gap-2 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 transition-all cursor-pointer"
             >
               <Printer className="w-4 h-4" />
-              <span>Print / Save</span>
+              <span>{t('cv.pdfExport.printDoc')}</span>
             </button>
           </div>
         </div>
@@ -251,9 +253,9 @@ export const CVPdfExportModal: React.FC<CVPdfExportModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 text-slate-300 hover:bg-slate-800 rounded-lg transition-colors font-medium"
+            className="px-4 py-1.5 text-slate-300 hover:bg-slate-800 rounded-lg transition-colors font-medium cursor-pointer"
           >
-            Close
+            {t('services.closeModal')}
           </button>
         </div>
       </div>

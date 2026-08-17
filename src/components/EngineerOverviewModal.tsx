@@ -99,15 +99,15 @@ export const EngineerOverviewModal = ({
         <div className="grid grid-cols-3 gap-3 text-center">
           <div className="bg-surface p-3 rounded border border-outline-variant">
             <div className="font-headline-sm text-headline-sm text-secondary font-bold">10+</div>
-            <div className="font-label-caps text-[10px] text-on-surface-variant mt-1">Years Exp</div>
+            <div className="font-label-caps text-[10px] text-on-surface-variant mt-1">{t('accountModal.yearsExp')}</div>
           </div>
           <div className="bg-surface p-3 rounded border border-outline-variant">
             <div className="font-headline-sm text-headline-sm text-tertiary font-bold">15M+</div>
-            <div className="font-label-caps text-[10px] text-on-surface-variant mt-1">Daily Requests</div>
+            <div className="font-label-caps text-[10px] text-on-surface-variant mt-1">{t('accountModal.dailyRequests')}</div>
           </div>
           <div className="bg-surface p-3 rounded border border-outline-variant">
             <div className="font-headline-sm text-headline-sm text-primary font-bold">98/100</div>
-            <div className="font-label-caps text-[10px] text-on-surface-variant mt-1">Web Vitals</div>
+            <div className="font-label-caps text-[10px] text-on-surface-variant mt-1">{t('accountModal.webVitals')}</div>
           </div>
         </div>
 

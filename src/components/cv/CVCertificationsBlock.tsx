@@ -49,27 +49,27 @@ export const CVCertificationsBlock = ({
         return (
           <span className="inline-flex items-center gap-1 font-code-md text-[10px] font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded-md border border-indigo-500/20">
             <ShieldCheck className="w-3 h-3 shrink-0" />
-            Professional Cert
+            {t('cv.certifications.proCert')}
           </span>
         );
       case 'online_skill':
         return (
           <span className="inline-flex items-center gap-1 font-code-md text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-md border border-emerald-500/20">
             <CheckCircle2 className="w-3 h-3 shrink-0" />
-            Skill Assessment
+            {t('cv.certifications.skillAssessment')}
           </span>
         );
       case 'badge':
         return (
           <span className="inline-flex items-center gap-1 font-code-md text-[10px] font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 px-2 py-0.5 rounded-md border border-amber-500/20">
             <Sparkles className="w-3 h-3 shrink-0" />
-            Verified Badge
+            {t('cv.certifications.verifiedBadge')}
           </span>
         );
       default:
         return (
           <span className="inline-flex items-center gap-1 font-code-md text-[10px] font-semibold bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-md border border-outline-variant/60">
-            Credential
+            {t('cv.certifications.credential')}
           </span>
         );
     }
@@ -109,7 +109,7 @@ export const CVCertificationsBlock = ({
                 : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            All ({filteredCertifications.length})
+            {t('cv.certifications.filterAll').replace('{count}', filteredCertifications.length.toString())}
           </button>
           <button
             onClick={() => setActiveCategory('professional')}
@@ -119,7 +119,7 @@ export const CVCertificationsBlock = ({
                 : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            Professional ({professionalCount})
+            {t('cv.certifications.filterPro').replace('{count}', professionalCount.toString())}
           </button>
           <button
             onClick={() => setActiveCategory('online_skill')}
@@ -129,7 +129,7 @@ export const CVCertificationsBlock = ({
                 : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            Skill Badges & Platform Certs ({onlineSkillCount})
+            {t('cv.certifications.filterSkill').replace('{count}', onlineSkillCount.toString())}
           </button>
         </div>
       </div>
@@ -149,7 +149,7 @@ export const CVCertificationsBlock = ({
                   <div className="flex items-center justify-between gap-2 flex-wrap">
                     {getCategoryBadge(cert.category)}
                     <span className="font-code-md text-[11px] text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded border border-outline-variant/60">
-                      Year: {cert.year}
+                      {t('cv.certifications.year')}: {cert.year}
                     </span>
                   </div>
                   <h3 className="font-headline-sm text-xs md:text-sm text-on-surface font-bold leading-snug mt-1">
@@ -164,7 +164,7 @@ export const CVCertificationsBlock = ({
               {/* Footer row with ID & Verification Link */}
               <div className="pt-2 border-t border-outline-variant/40 flex items-center justify-between gap-2 text-[11px] font-code-md">
                 <span className="text-on-surface-variant truncate max-w-[160px]">
-                  {cert.credentialId ? `ID: ${cert.credentialId}` : `Verified Credentials`}
+                  {cert.credentialId ? `${t('cv.certifications.idPrefix')} ${cert.credentialId}` : t('cv.certifications.verifiedCredentials')}
                 </span>
                 
                 {cert.credentialUrl && (
@@ -174,7 +174,7 @@ export const CVCertificationsBlock = ({
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-tertiary hover:underline font-semibold bg-tertiary/10 hover:bg-tertiary/20 px-2.5 py-1 rounded-md transition-colors"
                   >
-                    <span>Verify Link</span>
+                    <span>{t('cv.certifications.verifyLink')}</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 )}
@@ -184,7 +184,7 @@ export const CVCertificationsBlock = ({
         ) : (
           <div className="col-span-full bg-surface p-8 rounded-xl text-center border border-outline-variant">
             <p className="text-on-surface-variant text-sm font-body-md">
-              No certifications linked to this specific service.
+              {t('cv.certifications.emptyState')}
             </p>
           </div>
         )}
