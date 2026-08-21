@@ -1,0 +1,50 @@
+[
+  {
+    "id": "post-zero-flicker-spas",
+    "slug": "zero-flicker-spas-hydration",
+    "title": "Architecting Zero-Flicker SPAs in 2026: Modern Hydration Patterns",
+    "date": "2024-04-02",
+    "readTime": "7 min de lecture",
+    "category": "Architecture Frontend",
+    "excerpt": "Techniques pour éliminer les décalages de mise en page, réconciliation optimiste et rendu client sans scintillement.",
+    "content": "### L'anatomie du scintillement dans les applications modernes\n\nHow to achieve instant layout stability et performance perçue dans les applications web. Lorsque les applications hydratent l'état de manière asynchrone, les décalages visuels dégradent l'expérience utilisateur.",
+    "tags": ["React", "TypeScript", "Performance", "Frontend"],
+    "author": {
+      "name": "Christelle Mamekem Ngueguim",
+      "role": "Lead Architecte Systèmes Distribués",
+      "avatar": "/avatar.jpg"
+    }
+  },
+  {
+    "id": "post-peppol-bis-3-architecture",
+    "slug": "architecting-peppol-bis-3-compliance-engine",
+    "title": "Architecture d'un Moteur de Conformité PEPPOL BIS 3.0 Haute Performance en Node.js",
+    "date": "2024-03-15",
+    "readTime": "8 min de lecture",
+    "category": "Systèmes Distribués",
+    "excerpt": "Analyse approfondie de la validation, du traitement et de l'acheminement de millions de factures électroniques avec UBL 2.1, messagerie AS4 et cache Redis.",
+    "content": "### Introduction à la réforme de la facturation électronique\n\nAvec l'arrivée de l'obligation de facturation électronique B2B en Europe, les architectures logicielles d'entreprise doivent dépasser le simple fichier PDF.",
+    "tags": ["PEPPOL", "Systèmes Distribués", "Node.js", "Redis", "Fintech"],
+    "author": {
+      "name": "Christelle Mamekem Ngueguim",
+      "role": "Lead Architecte Systèmes Distribués",
+      "avatar": "/avatar.jpg"
+    }
+  },
+  {
+    "id": "post-redis-zero-downtime-caching",
+    "slug": "resilient-redis-caching-patterns",
+    "title": "Architecture de Cache Résilient 24 Heures pour APIs à Fort Trafic",
+    "date": "2024-01-20",
+    "readTime": "6 min de lecture",
+    "category": "Ingénierie Backend",
+    "excerpt": "Conception d'un mécanisme de double cache mémoire et Redis cloud pour la vérification anti-abus sans friction.",
+    "content": "### Le défi de la vérification d'identité éphémère\n\nPour protéger les formulaires contre les robots tout en garantissant une expérience fluide, valider l'email une fois et mettre en cache le résultat 24h dans Redis est le compromis idéal.",
+    "tags": ["Redis", "Sécurité", "Backend", "Architecture"],
+    "author": {
+      "name": "Christelle Mamekem Ngueguim",
+      "role": "Lead Architecte Systèmes Distribués",
+      "avatar": "/avatar.jpg"
+    }
+  }
+]

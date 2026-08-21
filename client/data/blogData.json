@@ -1,0 +1,50 @@
+[
+  {
+    "id": "post-zero-flicker-spas",
+    "slug": "zero-flicker-spas-hydration",
+    "title": "Architecting Zero-Flicker SPAs in 2026: Modern Hydration Patterns",
+    "date": "2024-04-02",
+    "readTime": "7 min read",
+    "category": "Frontend Architecture",
+    "excerpt": "Techniques for eliminating visual layout shifts, optimistic UI reconciliation, and zero-flicker client-side rendering.",
+    "content": "### The Anatomy of Visual Jitter in Modern Single Page Applications\n\nHow to achieve instant layout stability and zero perceived latency in contemporary web applications. When applications hydrate state asynchronously across micro-frontends, layout shifts can degrade perceived performance. This guide covers deterministic state pre-loading, CSS content-visibility primitives, and instant hydration caching.",
+    "tags": ["React", "TypeScript", "Performance", "Frontend"],
+    "author": {
+      "name": "Christelle Mamekem Ngueguim",
+      "role": "Lead Distributed Systems Architect",
+      "avatar": "/avatar.jpg"
+    }
+  },
+  {
+    "id": "post-peppol-bis-3-architecture",
+    "slug": "architecting-peppol-bis-3-compliance-engine",
+    "title": "Architecting a High-Throughput PEPPOL BIS 3.0 Compliance Engine in Node.js",
+    "date": "2024-03-15",
+    "readTime": "8 min read",
+    "category": "Distributed Systems",
+    "excerpt": "A deep architectural dive into parsing, validating, and routing millions of electronic invoices using UBL 2.1, AS4 messaging, and Redis caching.",
+    "content": "### Introduction to European E-Invoicing Mandates\n\nWith mandatory B2B electronic invoicing rapidly approaching across European jurisdictions, enterprise software architectures must evolve beyond simple PDF attachments to strict, machine-readable structured documents.",
+    "tags": ["PEPPOL", "Distributed Systems", "Node.js", "Redis", "Fintech"],
+    "author": {
+      "name": "Christelle Mamekem Ngueguim",
+      "role": "Lead Distributed Systems Architect",
+      "avatar": "/avatar.jpg"
+    }
+  },
+  {
+    "id": "post-redis-zero-downtime-caching",
+    "slug": "resilient-redis-caching-patterns",
+    "title": "Resilient 24-Hour Caching & Verification Architecture in High-Traffic APIs",
+    "date": "2024-01-20",
+    "readTime": "6 min read",
+    "category": "Backend Engineering",
+    "excerpt": "How to design dual-layer in-memory and cloud-backed Redis cache fallback mechanisms for anti-abuse and verified identity caching.",
+    "content": "### The Challenge of Ephemeral Identity Verification\n\nWhen securing public endpoints against bot abuse without hurting user experience, verifying email ownership once and caching that verification token in a fast store like Redis for a 24-hour window strikes the optimal balance.",
+    "tags": ["Redis", "Security", "Backend", "Architecture"],
+    "author": {
+      "name": "Christelle Mamekem Ngueguim",
+      "role": "Lead Distributed Systems Architect",
+      "avatar": "/avatar.jpg"
+    }
+  }
+]

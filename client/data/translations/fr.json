@@ -1,0 +1,212 @@
+{
+  "header": {
+    "navCv": "CV & Expérience",
+    "navServices": "Services & Conseils",
+    "navProjects": "Projets",
+    "navBlog": "Articles",
+    "navContact": "Contact",
+    "pdfCvBtn": "Exporter CV PDF",
+    "requestCallBtn": "Planifier un appel",
+    "engineerOverview": "Présentation de l'ingénieure",
+    "switchLanguage": "Changer la langue en",
+    "menuToggle": "Basculer le menu de navigation",
+    "menuOpen": "Ouvrir le menu de navigation",
+    "menuClose": "Fermer le menu de navigation"
+  },
+  "cv": {
+    "sidebar": {
+      "certifiedSpecialist": "Ingénieure Logicielle Senior Certifiée",
+      "downloadPdfCv": "Télécharger le CV PDF",
+      "downloadTargetedPdfCv": "Exporter le CV PDF Ciblé",
+      "scheduleAdvisory": "Planifier une Session de Conseil",
+      "experienceBadge": "10+ Ans d'Expérience",
+      "statusAvailable": "Disponible pour Missions",
+      "locationLabel": "Localisation",
+      "filterByService": "Filtrer le Profil par Service",
+      "allServices": "Profil Complet & Polyvalent",
+      "quickContact": "Canaux de Contact Direct",
+      "emailCopied": "Adresse email copiée dans le presse-papier !",
+      "phoneCopied": "Numéro de téléphone copié dans le presse-papier !",
+      "skillsMatrix": "Matrice des Compétences"
+    },
+    "summary": {
+      "title": "Résumé Exécutif",
+      "targetedOffer": "Offre Ciblée",
+      "specializedProfile": "Profil Technique Spécialisé",
+      "resetView": "Réinitialiser",
+      "roles": "Rôles",
+      "badges": "Badges"
+    },
+    "experience": {
+      "title": "Expérience Professionnelle",
+      "subtitle": "Parcours dans l'architecture de backends distribués évolutifs, de pipelines de conformité et de SPAs réactives.",
+      "keyAchievements": "Contributions Techniques Clés",
+      "coreTechnologies": "Technologies Clés",
+      "allExperiences": "Toutes les expériences",
+      "contract": "Contrat",
+      "remote": "Télétravail"
+    },
+    "projects": {
+      "title": "Projets Techniques Phares",
+      "subtitle": "Livrables logiciels majeurs, contributions open source et implémentations d'architectures.",
+      "liveDemo": "Système en ligne",
+      "sourceCode": "Code source",
+      "featuredBadge": "Livrable en vedette",
+      "technologiesUsed": "Technologies",
+      "deliverables": "Livrables"
+    },
+    "techStack": {
+      "title": "Compétences Techniques & Écosystème",
+      "subtitle": "Maîtrise approfondie des technologies logicielles modernes, des protocoles de conformité et des plateformes cloud.",
+      "searchPlaceholder": "Rechercher une compétence (ex: Java, .NET, Angular, Docker)...",
+      "allSkills": "Toutes les compétences",
+      "filteredResults": "compétences filtrées"
+    },
+    "certifications": {
+      "title": "Certifications & Accréditations",
+      "subtitle": "Accréditations industrielles formelles, évaluations de code vérifiées et formation continue.",
+      "verifyCredential": "Vérifier le diplôme",
+      "credentialId": "Identifiant",
+      "issued": "Délivré en"
+    },
+    "education": {
+      "title": "Formation & Diplômes Spécialisés",
+      "subtitle": "Cursus académique en génie informatique, réseaux et formations professionnelles spécialisées.",
+      "academicTitle": "Diplômes Universitaires",
+      "trainingTitle": "Formation Continue & Ateliers Professionnels",
+      "honors": "Diplômée avec mention"
+    },
+    "languagesHobbies": {
+      "languagesTitle": "Langues Pratiquées",
+      "hobbiesTitle": "Centres d'Intérêt & Veille Technologique",
+      "fluent": "Langue maternelle / Bilingue",
+      "professional": "Compétence professionnelle",
+      "intermediate": "Compétence intermédiaire"
+    }
+  },
+  "services": {
+    "badge": "Ingénierie Spécialisée & Conseil",
+    "title": "Solutions Techniques & Prestations de Conseil",
+    "subtitle": "Ingénierie à fort impact, intégration de conformité et architectures cloud-native livrées avec rigueur et conformité aux SLAs d'entreprise.",
+    "keyDeliverables": "Livrables Clés",
+    "linkedCertifications": "Certifications & Compétences Vérifiées",
+    "engageBtn": "Engager pour",
+    "featured": "En vedette",
+    "loading": "Chargement des Services...",
+    "estimatedDuration": "Durée Estimée",
+    "baseRate": "Tarif de Base"
+  },
+  "projects": {
+    "badge": "Portfolio d'Ingénierie",
+    "title": "Projets Phares & Réalisations d'Architecture",
+    "subtitle": "Systèmes en production, flux de conformité PEPPOL, registres financiers et chaînes télémétriques conçus pour une fiabilité critique.",
+    "allCategories": "Tous",
+    "loading": "Chargement des Projets...",
+    "viewDemo": "Voir la démo",
+    "viewCode": "Voir le code"
+  },
+  "blog": {
+    "badge": "Publications & Analyses Techniques",
+    "title": "Architecture, Normes & Réflexions d'Ingénierie",
+    "subtitle": "Explorations approfondies de la conformité PEPPOL, de la cohérence transactionnelle distribuée et des architectures d'entreprise Angular/Java.",
+    "readTime": "min de lecture",
+    "readArticle": "Lire l'article",
+    "backToList": "Retour aux articles",
+    "loading": "Chargement des articles...",
+    "publishedOn": "Publié le",
+    "by": "par"
+  },
+  "contact": {
+    "badge": "Connexion & Collaboration",
+    "title": "Travaillons ensemble",
+    "subtitle": "Disponible pour missions indépendantes et conseil technique. Laissez un message pour discuter de votre prochain projet.",
+    "serviceSelectLabel": "Prestation & Domaine de Conseil Ciblé",
+    "generalInquiry": "Consultation générale / Autre besoin technique",
+    "servicePrefilledNotice": "Demande pré-remplie pour",
+    "clearService": "Effacer la sélection",
+    "nameLabel": "Nom",
+    "namePlaceholder": "ex: Alice Dupont",
+    "emailLabel": "Email de l'expéditeur",
+    "emailPlaceholder": "votre.nom@domaine.com",
+    "subjectLabel": "Objet",
+    "subjectPlaceholder": "ex: Demande de conseil en architecture logicielle",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Décrivez les exigences de votre projet, le périmètre de conformité ou vos défis techniques...",
+    "sendBtn": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "requiredFields": "Veuillez remplir tous les champs obligatoires.",
+    "failedToSend": "Échec de l'envoi du message.",
+    "unexpectedError": "Une erreur réseau inattendue s'est produite.",
+    "successTitle": "Message envoyé avec succès !",
+    "successSubtitle": "Votre transmission a été vérifiée et transmise directement à la boîte de réception principale de Christelle.",
+    "sendAnother": "Envoyer un autre message",
+    "directChannels": "Canaux Directs & Conseil",
+    "immediateAvailability": "Disponibilité Immédiate",
+    "immediateAvailabilityDesc": "Ouverte aux revues d'architecture technique, au conseil en conformité PEPPOL / Factur-X et aux missions d'ingénierie lead.",
+    "directEmail": "Email Direct",
+    "phoneWhatsapp": "Téléphone / WhatsApp",
+    "primaryLocation": "Localisation Principale",
+    "antiAbuseTitle": "Protection Anti-Abus & Limitation de Débit",
+    "antiAbuseDesc": "Les expéditeurs vérifiés sont mis en cache dans Redis pendant 24h. Les messages sont filtrés contre le spam et remis en direct.",
+    "captchaTitle": "Vérification de Sécurité",
+    "captchaVerified": "Vérification validée",
+    "captchaClick": "Cliquez ici pour vérifier que vous êtes humain",
+    "captchaChecking": "Vérification..."
+  },
+  "verification": {
+    "title": "Vérifiez votre adresse email",
+    "subtitle": "Nous avons envoyé un code à 6 chiffres à",
+    "enterCode": "Entrez le code à 6 chiffres",
+    "confirm": "Confirmer et envoyer le message",
+    "verifying": "Vérification en cours...",
+    "resend": "Renvoyer le code",
+    "cancel": "Annuler",
+    "invalidCode": "Code invalide ou expiré."
+  },
+  "callModal": {
+    "title": "Planifier un Appel de Conseil Technique",
+    "subtitle": "Réservez une consultation technique de 30 minutes, une revue d'architecture ou une session de cadrage.",
+    "nameLabel": "Votre Nom",
+    "namePlaceholder": "Alice Dupont",
+    "emailLabel": "Email Professionnel",
+    "emailPlaceholder": "alice@entreprise.com",
+    "dateLabel": "Date Souhaitée",
+    "timeLabel": "Heure Souhaitée",
+    "topicLabel": "Sujet du Conseil",
+    "topicPlaceholder": "ex: Revue de pipeline de conformité PEPPOL",
+    "notesLabel": "Détails / Périmètre",
+    "notesPlaceholder": "Décrivez votre stack technique actuelle, vos délais de conformité ou vos questions spécifiques...",
+    "scheduleBtn": "Confirmer la Session",
+    "scheduling": "Planification...",
+    "successTitle": "Appel de Conseil Demandé !",
+    "successDesc": "Votre demande a été enregistrée. Une invitation calendrier vous sera envoyée sous peu à",
+    "close": "Fermer la fenêtre"
+  },
+  "pdfModal": {
+    "title": "Aperçu & Exportation du Curriculum Vitae",
+    "subtitle": "Format imprimable haute fidélité adapté aux évaluations techniques d'entreprise.",
+    "generating": "Génération du Document PDF...",
+    "downloadBtn": "Télécharger le PDF",
+    "printBtn": "Imprimer / Enregistrer en PDF",
+    "close": "Fermer l'aperçu",
+    "themeLabel": "Thème du CV",
+    "themeModern": "Moderne Tech",
+    "themeExecutive": "Exécutif Marine",
+    "themeClassic": "Classique Sérif",
+    "themeNordic": "Nordique Épuré",
+    "pageNotice": "Format Standard A4 • Rendu Vectoriel"
+  },
+  "footer": {
+    "tagline": "Ingénieure Logicielle Senior • Spécialiste PEPPOL BIS 3.0 & Systèmes Distribués",
+    "rightsReserved": "Tous Droits Réservés"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "viewAll": "Voir tout",
+    "back": "Retour",
+    "close": "Fermer",
+    "all": "Tous",
+    "selectLanguage": "Sélectionner la langue"
+  }
+}
