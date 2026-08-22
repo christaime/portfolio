@@ -114,7 +114,10 @@
     "backToList": "Retour aux articles",
     "loading": "Chargement des articles...",
     "publishedOn": "Publié le",
-    "by": "par"
+    "by": "par",
+    "ctaTitle": "Besoin d'un Conseil d'Expert en Architecture ?",
+    "ctaDescription": "Échangez directement sur l'intégration de systèmes, les pipelines de conformité PEPPOL ou l'évolutivité des microservices.",
+    "ctaButton": "Contacter l'Architecte"
   },
   "contact": {
     "badge": "Connexion & Collaboration",
@@ -200,7 +203,7 @@
     "pageNotice": "Format Standard A4 • Rendu Vectoriel"
   },
   "footer": {
-    "tagline": "Ingénieure Logicielle Senior • Spécialiste PEPPOL BIS 3.0 & Systèmes Distribués",
+    "tagline": "Ingénieure Logicielle Senior",
     "rightsReserved": "Tous Droits Réservés"
   },
   "common": {

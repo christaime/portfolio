@@ -205,9 +205,22 @@ npm run test
 # Build client static assets and server bundle
 npm run build
 
-# Start production server
+# Start production server (Node / Cloud Run)
 npm run start
 ```
+
+### ☁️ Vercel Deployment
+
+This project is pre-configured for **instant, zero-config Vercel deployment**:
+
+1. **Push your repository to GitHub / GitLab / Bitbucket**.
+2. **Import the repository in [Vercel](https://vercel.com/)**.
+3. **Vercel Settings**:
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+4. **Environment Variables**: Add your environment variables in the Vercel Dashboard (e.g. `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_OTP_TEMPLATE_ID`, `EMAILJS_PUBLIC_KEY`, `EMAILJS_PRIVATE_KEY`, `RECIPIENT_EMAIL`, `VITE_RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`).
+5. **Serverless API Execution**: Vercel automatically deploys `/api/index.ts` as a serverless function handler, proxying all `/api/*` contact verification and transactional email requests seamlessly.
 
 ---
 

@@ -17,6 +17,7 @@ describe('Footer Component', () => {
 
     expect(screen.getByText('Portfolio.dev')).toBeInTheDocument();
     expect(screen.getByText('v2.4')).toBeInTheDocument();
+    expect(screen.getByText('Senior Software Engineer')).toBeInTheDocument();
     expect(screen.getByText('GitHub')).toBeInTheDocument();
     expect(screen.getByText('LinkedIn')).toBeInTheDocument();
     expect(screen.getByText('Stack Overflow')).toBeInTheDocument();

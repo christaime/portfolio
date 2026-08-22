@@ -1,6 +1,6 @@
-import React from "react";
-import Markdown, { type Components } from "react-markdown";
-import { CodeBlockRenderer } from "./CodeBlockRenderer";
+import React from 'react';
+import Markdown, { type Components } from 'react-markdown';
+import { CodeBlockRenderer } from './CodeBlockRenderer';
 
 export const markdownComponents: Components = {
   h1: ({ children }) => (
@@ -31,7 +31,9 @@ export const markdownComponents: Components = {
   strong: ({ children }) => (
     <strong className="font-bold text-[#ffffff]">{children}</strong>
   ),
-  em: ({ children }) => <em className="italic text-[#9cb2cd]">{children}</em>,
+  em: ({ children }) => (
+    <em className="italic text-[#9cb2cd]">{children}</em>
+  ),
   ul: ({ children }) => (
     <ul className="my-4 space-y-2 pl-5 list-disc text-sm text-[#d4e4fa]/90 marker:text-[#00a6e0]">
       {children}
@@ -43,7 +45,9 @@ export const markdownComponents: Components = {
     </ol>
   ),
   li: ({ children }) => (
-    <li className="leading-relaxed pl-1 text-[#d4e4fa]/90">{children}</li>
+    <li className="leading-relaxed pl-1 text-[#d4e4fa]/90">
+      {children}
+    </li>
   ),
   blockquote: ({ children }) => (
     <blockquote className="my-6 pl-4 py-2 border-l-2 border-[#00a6e0] bg-[#0a1f33]/60 rounded-r-lg text-sm text-[#9cb2cd] italic">
@@ -51,8 +55,8 @@ export const markdownComponents: Components = {
     </blockquote>
   ),
   code: ({ className, children, ...props }) => {
-    const match = /language-(\w+)/.exec(className || "");
-    const isMultiline = String(children).includes("\n") || Boolean(match);
+    const match = /language-(\w+)/.exec(className || '');
+    const isMultiline = String(children).includes('\n') || Boolean(match);
 
     if (!isMultiline) {
       return (
@@ -77,12 +81,12 @@ export interface BlogMarkdownRendererProps {
   content: string;
 }
 
-export const BlogMarkdownRenderer: React.FC<BlogMarkdownRendererProps> = ({
-  content,
-}) => {
+export const BlogMarkdownRenderer: React.FC<BlogMarkdownRendererProps> = ({ content }) => {
   return (
     <div className="markdown-body space-y-5 text-sm md:text-[15px] leading-relaxed">
-      <Markdown components={markdownComponents}>{content}</Markdown>
+      <Markdown components={markdownComponents}>
+        {content}
+      </Markdown>
     </div>
   );
 };

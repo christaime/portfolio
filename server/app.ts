@@ -1,19 +1,15 @@
 import express, { Express } from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
-import rootRouter from './routes';
+import { createApiApp } from './apiApp';
+
+export { createApiApp };
 
 /**
- * Creates and configures the Express application
+ * Creates and configures the full Express application with Vite dev middleware or production static asset hosting
  */
 export async function createApp(): Promise<Express> {
-  const app = express();
-
-  // Parse JSON payloads
-  app.use(express.json());
-
-  // Mount API routes
-  app.use(rootRouter);
+  const app = createApiApp();
 
   // Development: Vite middleware
   // Production: Static assets from dist/

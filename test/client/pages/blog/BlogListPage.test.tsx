@@ -16,7 +16,9 @@ describe('BlogListPage', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('Architecting Zero-Flicker SPAs in 2026: Modern Hydration Patterns')).toBeInTheDocument();
+      expect(
+        screen.getByText('Angular Signals: A New Era of Reactivity, But RxJS Still Reigns for APIs')
+      ).toBeInTheDocument();
     });
   });
 });
