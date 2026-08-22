@@ -14,12 +14,25 @@ vi.mock('@/client/services/emailService', () => ({
   },
 }));
 
+let mockCaptchaCallback: ((token: string) => void) | null = null;
+
 vi.mock('@/client/components/contact/ContactCaptcha', () => ({
-  ContactCaptcha: ({ onVerify }: any) => {
-    React.useEffect(() => {
-      onVerify('test_recaptcha_token');
-    }, [onVerify]);
-    return <div data-testid="mock-captcha">Captcha</div>;
+  ContactCaptcha: ({ onVerify, isVerified, required }: any) => {
+    mockCaptchaCallback = onVerify;
+    return (
+      <div data-testid="mock-captcha">
+        <label>
+          <input
+            type="checkbox"
+            data-testid="mock-captcha-checkbox"
+            required={required}
+            checked={Boolean(isVerified)}
+            onChange={(e) => onVerify(e.target.checked ? 'mock_recaptcha_token' : '')}
+          />
+          reCAPTCHA
+        </label>
+      </div>
+    );
   },
 }));
 
@@ -40,6 +53,53 @@ describe('ContactPage', () => {
     expect(screen.getByText('+237 695 282 983')).toBeInTheDocument();
   });
 
+  it('keeps submit button disabled until all required fields and reCAPTCHA are filled', async () => {
+    render(
+      <LanguageProvider>
+        <MemoryRouter>
+          <ContactPage />
+        </MemoryRouter>
+      </LanguageProvider>
+    );
+
+    const nameInput = screen.getByRole('textbox', { name: /Name/i });
+    const emailInput = screen.getByRole('textbox', { name: /Sender Email|Email/i });
+    const messageInput = screen.getByRole('textbox', { name: /Message/i });
+    const captchaCheckbox = screen.getByTestId('mock-captcha-checkbox');
+    const submitBtn = screen.getByRole('button', { name: /Send Message|Envoyer/i });
+
+    // Initially disabled
+    expect(submitBtn).toBeDisabled();
+
+    // Fill name only -> still disabled
+    fireEvent.change(nameInput, { target: { value: 'Alice Smith' } });
+    expect(submitBtn).toBeDisabled();
+
+    // Fill invalid email -> still disabled
+    fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
+    expect(submitBtn).toBeDisabled();
+
+    // Fill valid email -> still disabled (message and captcha missing)
+    fireEvent.change(emailInput, { target: { value: 'alice@example.com' } });
+    expect(submitBtn).toBeDisabled();
+
+    // Fill message -> still disabled (captcha missing)
+    fireEvent.change(messageInput, { target: { value: 'Hello Christelle, let us work together.' } });
+    expect(submitBtn).toBeDisabled();
+
+    // Check captcha -> now enabled!
+    fireEvent.click(captchaCheckbox);
+    expect(submitBtn).toBeEnabled();
+
+    // Uncheck captcha -> becomes disabled again
+    fireEvent.click(captchaCheckbox);
+    expect(submitBtn).toBeDisabled();
+
+    // Re-check captcha -> becomes enabled again
+    fireEvent.click(captchaCheckbox);
+    expect(submitBtn).toBeEnabled();
+  });
+
   it('allows filling and submitting the contact form', async () => {
     render(
       <LanguageProvider>
@@ -53,13 +113,16 @@ describe('ContactPage', () => {
     const emailInput = screen.getByRole('textbox', { name: /Sender Email|Email/i });
     const subjectInput = screen.getByRole('textbox', { name: /Subject/i });
     const messageInput = screen.getByRole('textbox', { name: /Message/i });
+    const captchaCheckbox = screen.getByTestId('mock-captcha-checkbox');
 
     fireEvent.change(nameInput, { target: { value: 'Alice Smith' } });
     fireEvent.change(emailInput, { target: { value: 'alice@example.com' } });
     fireEvent.change(subjectInput, { target: { value: 'Project Consultation' } });
     fireEvent.change(messageInput, { target: { value: 'Hi Christelle, let us discuss a software engineering contract.' } });
+    fireEvent.click(captchaCheckbox);
 
     const submitBtn = screen.getByRole('button', { name: /Send Message|Envoyer/i });
+    expect(submitBtn).toBeEnabled();
     fireEvent.click(submitBtn);
 
     // Wait for Verification modal to appear

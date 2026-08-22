@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
@@ -10,16 +10,11 @@ import { ProjectsPage } from './pages/ProjectsPage';
 import { ContactPage } from './pages/ContactPage';
 import { BlogListPage } from './pages/blog/BlogListPage';
 import { BlogPostDetailPage } from './pages/blog/BlogPostDetailPage';
-import { RequestCallModal } from './components/contact/RequestCallModal';
 
 const MainLayout: React.FC = () => {
-  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
-
   return (
     <div className="min-h-screen flex flex-col bg-[#051424] text-[#d4e4fa]">
-      <Header
-        onOpenCallModal={() => setIsCallModalOpen(true)}
-      />
+      <Header />
 
       <main className="flex-1">
         <Routes>
@@ -34,12 +29,6 @@ const MainLayout: React.FC = () => {
       </main>
 
       <Footer />
-
-      {/* Global Advisory Call Modal */}
-      <RequestCallModal
-        isOpen={isCallModalOpen}
-        onClose={() => setIsCallModalOpen(false)}
-      />
     </div>
   );
 };

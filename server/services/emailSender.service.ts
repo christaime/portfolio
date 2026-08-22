@@ -1,6 +1,3 @@
-import { Resend } from 'resend';
-import { getVerificationEmailTemplate, getContactEmailTemplate } from '../templates/emailTemplates';
-
 export interface SendOtpEmailParams {
   email: string;
   code: string;
@@ -16,6 +13,7 @@ export interface SendContactEmailParams {
 
 export interface SendEmailResult {
   success: boolean;
+  provider?: 'emailjs' | 'simulated';
   mode?: 'live' | 'simulated' | 'simulated_fallback';
   isVerified?: boolean;
   isVerifiedCached?: boolean;
@@ -28,115 +26,231 @@ export interface SendEmailResult {
 
 export class EmailSenderService {
   /**
-   * Helper for lazy initialization of Resend client
+   * Sanitizes an email subject to prevent email header injection (CRLF),
+   * strip control characters and HTML tags, normalize whitespace,
+   * and enforce safe maximum length limits before forwarding to EmailJS.
    */
-  private static getResendClient(): Resend | null {
-    const rawKey = process.env.RESEND_API_KEY || '';
-    const apiKey = rawKey.replace(/['"]/g, '').trim();
+  public static sanitizeSubject(subject?: unknown, fallbackName?: string): string {
+    const safeFallbackName = typeof fallbackName === 'string' && fallbackName.trim()
+      ? this.sanitizeHeaderField(fallbackName, 50) || 'Visitor'
+      : 'Visitor';
 
-    if (
-      !apiKey ||
-      !apiKey.startsWith('re_') ||
-      apiKey.length < 15 ||
-      apiKey.includes('your_') ||
-      apiKey.includes('12345678') ||
-      apiKey.includes('MY_RESEND') ||
-      apiKey.includes('xxxx')
-    ) {
-      return null;
+    if (typeof subject !== 'string' || !subject.trim()) {
+      return `New Direct Portfolio Inquiry from ${safeFallbackName}`;
     }
 
-    return new Resend(apiKey);
+    // 1. Strip Carriage Returns (\r), Newlines (\n), and Null bytes (\0) (CRLF Injection Defense)
+    let clean = subject.replace(/[\r\n\0]/g, ' ');
+
+    // 2. Strip non-printable ASCII control characters
+    clean = clean.replace(/[\x00-\x1F\x7F-\x9F]/g, '');
+
+    // 3. Strip HTML/script markup tags
+    clean = clean.replace(/<[^>]*>/g, '');
+
+    // 4. Collapse contiguous whitespace & trim
+    clean = clean.replace(/\s+/g, ' ').trim();
+
+    // 5. Enforce safe length boundary (max 150 chars)
+    if (clean.length > 150) {
+      clean = clean.slice(0, 147).trim() + '...';
+    }
+
+    // If completely empty after sanitization, return default
+    if (!clean) {
+      return `New Direct Portfolio Inquiry from ${safeFallbackName}`;
+    }
+
+    return clean;
   }
 
   /**
-   * Dispatch OTP verification email to recipient
+   * Sanitizes header text fields (e.g. sender name) to prevent header injection
    */
-  public static async sendVerificationOtp({ email, code }: SendOtpEmailParams): Promise<SendEmailResult> {
-    const normalizedEmail = email.toLowerCase().trim();
-    const resend = this.getResendClient();
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+  public static sanitizeHeaderField(input?: unknown, maxLength = 100): string {
+    if (typeof input !== 'string') return '';
+    let clean = input.replace(/[\r\n\0]/g, ' ');
+    clean = clean.replace(/[\x00-\x1F\x7F-\x9F]/g, '');
+    clean = clean.replace(/<[^>]*>/g, '');
+    clean = clean.replace(/\s+/g, ' ').trim();
+    return clean.slice(0, maxLength);
+  }
 
-    const htmlContent = getVerificationEmailTemplate({
-      email: normalizedEmail,
-      code,
-    });
+  /**
+   * Check if EmailJS credentials are configured in server environment
+   */
+  public static isEmailJSConfigured(): boolean {
+    const serviceId = (process.env.EMAILJS_SERVICE_ID || '').trim();
+    const publicKey = (process.env.EMAILJS_PUBLIC_KEY || process.env.EMAILJS_USER_ID || '').trim();
+    const templateId = (
+      process.env.EMAILJS_TEMPLATE_ID ||
+      process.env.EMAILJS_OTP_TEMPLATE_ID ||
+      process.env.EMAILJS_CONTACT_TEMPLATE_ID ||
+      ''
+    ).trim();
 
-    if (!resend) {
-      console.warn('[EmailSenderService] RESEND_API_KEY is not configured. Simulating OTP dispatch. Code:', code);
-      return {
-        success: true,
-        mode: 'simulated',
-        isVerified: false,
-        code,
-        message: 'Verification code simulated (RESEND_API_KEY not configured).',
-      };
+    return Boolean(
+      serviceId &&
+      publicKey &&
+      templateId &&
+      !serviceId.includes('your_') &&
+      !publicKey.includes('your_')
+    );
+  }
+
+  /**
+   * Check if live email delivery service is configured
+   */
+  public static isConfigured(): boolean {
+    return this.isEmailJSConfigured();
+  }
+
+  /**
+   * Active email service provider name
+   */
+  public static getProvider(): 'emailjs' | 'simulated' {
+    if (this.isEmailJSConfigured()) return 'emailjs';
+    return 'simulated';
+  }
+
+  /**
+   * Internal helper to dispatch emails via server-side EmailJS REST API
+   * Endpoint: https://api.emailjs.com/api/v1.0/email/send
+   * 
+   * EmailJS uses the templates created in your EmailJS dashboard,
+   * dynamically populating placeholders with template_params.
+   */
+  private static async sendViaEmailJS(
+    templateId: string,
+    templateParams: Record<string, any>
+  ): Promise<{ success: boolean; data?: any; error?: string }> {
+    const serviceId = (process.env.EMAILJS_SERVICE_ID || '').trim();
+    const publicKey = (process.env.EMAILJS_PUBLIC_KEY || process.env.EMAILJS_USER_ID || '').trim();
+    const privateKey = (process.env.EMAILJS_PRIVATE_KEY || process.env.EMAILJS_ACCESS_TOKEN || '').trim();
+
+    const payload: Record<string, any> = {
+      service_id: serviceId,
+      template_id: templateId,
+      user_id: publicKey,
+      template_params: templateParams,
+    };
+
+    if (privateKey && !privateKey.includes('your_')) {
+      payload.accessToken = privateKey;
     }
 
+    const appUrl = (process.env.APP_URL || 'https://mnchristelle.vercel.app').replace(/\/$/, '');
+
     try {
-      const sendResult = await resend.emails.send({
-        from: fromEmail,
-        to: [normalizedEmail],
-        subject: `Your Verification Code: ${code}`,
-        html: htmlContent,
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'portfolio-email-service',
+          'Origin': appUrl,
+          'Referer': `${appUrl}/`,
+        },
+        body: JSON.stringify(payload),
       });
 
-      const { data, error } = sendResult || {};
+      const responseText = await response.text();
 
-      if (error) {
-        const errMsg = error.message || error.toString() || '';
-        const errStr = `${errMsg} ${JSON.stringify(error)}`.toLowerCase();
-
-        // If domain restricted (e.g. testing tier), provide fallback simulation code
-        if (
-          errStr.includes('api key') ||
-          errStr.includes('validation_error') ||
-          errStr.includes('can only send') ||
-          errStr.includes('testing emails') ||
-          errStr.includes('resend.com/domains') ||
-          errStr.includes('invalid') ||
-          errStr.includes('unauthorized')
-        ) {
-          console.warn('[EmailSenderService] Fallback OTP simulation due to Resend tier restriction:', errMsg);
-          return {
-            success: true,
-            mode: 'simulated_fallback',
-            isVerified: false,
-            code,
-            warning: `Resend Free Tier Notice: Testing emails can only be sent to account owner. Generated fallback code: ${code}`,
-            message: `Verification code generated (${code}). Notice: ${errMsg}`,
-          };
+      if (!response.ok) {
+        let helpfulMessage = responseText || response.statusText;
+        if (response.status === 403 && responseText.includes('non-browser')) {
+          helpfulMessage = 'API access from non-browser environments is currently disabled. Please enable "Allow EmailJS API for non-browser applications" at https://dashboard.emailjs.com/admin/account/security or add EMAILJS_PRIVATE_KEY in your environment variables.';
+          console.error(`[EmailSenderService EmailJS 403 Security Restriction]: ${helpfulMessage}`);
+        } else {
+          console.error(`[EmailSenderService EmailJS Error ${response.status}]`, responseText);
         }
 
-        console.error('[EmailSenderService Verification Error]', error);
         return {
           success: false,
-          error: errMsg || 'Failed to send verification email',
+          error: `EmailJS error (${response.status}): ${helpfulMessage}`,
         };
       }
 
       return {
         success: true,
-        mode: 'live',
-        isVerified: false,
-        message: `Verification code sent to ${normalizedEmail}`,
-        data,
+        data: responseText,
       };
     } catch (err: any) {
-      console.warn('[EmailSenderService Exception] Failed to send via Resend API:', err?.message || err);
+      console.error('[EmailSenderService EmailJS Exception]', err);
       return {
-        success: true,
-        mode: 'simulated_fallback',
-        isVerified: false,
-        code,
-        warning: `Resend Notice: ${err?.message || 'Error communicating with Resend'}. Generated fallback code: ${code}`,
-        message: `Verification code generated (${code}).`,
+        success: false,
+        error: err.message || 'Failed to send via EmailJS API',
       };
     }
   }
 
   /**
-   * Dispatch Contact Form message to engineer recipient
+   * Dispatch OTP verification email to recipient via server-side EmailJS
+   * Template variables available in your EmailJS template:
+   * {{to_email}}, {{email}}, {{to_name}}, {{code}}, {{passcode}}, {{verification_code}}, {{message}}, {{subject}}
+   */
+  public static async sendVerificationOtp({ email, code }: SendOtpEmailParams): Promise<SendEmailResult> {
+    const normalizedEmail = email.toLowerCase().trim();
+    const safeCode = this.sanitizeHeaderField(code, 20);
+    const safeSubject = `Your Verification Code: ${safeCode}`;
+
+    // 1. Dispatch via EmailJS template if configured
+    if (this.isEmailJSConfigured()) {
+      const templateId = (
+        process.env.EMAILJS_OTP_TEMPLATE_ID ||
+        process.env.EMAILJS_TEMPLATE_ID ||
+        ''
+      ).trim();
+
+      const emailJsResult = await this.sendViaEmailJS(templateId, {
+        to_email: normalizedEmail,
+        email: normalizedEmail,
+        to_name: normalizedEmail.split('@')[0],
+        code: safeCode,
+        passcode: safeCode,
+        verification_code: safeCode,
+        subject: safeSubject,
+        message: `Your verification passcode is ${safeCode}. It expires in 15 minutes.`,
+      });
+
+      if (!emailJsResult.success) {
+        console.warn('[EmailSenderService] EmailJS dispatch issue, providing testing passcode:', emailJsResult.error);
+        return {
+          success: true,
+          provider: 'emailjs',
+          mode: 'simulated_fallback',
+          isVerified: false,
+          code: safeCode,
+          warning: `EmailJS: ${emailJsResult.error}. Use testing code: ${safeCode}`,
+          message: `Verification code generated (${safeCode}).`,
+        };
+      }
+
+      return {
+        success: true,
+        provider: 'emailjs',
+        mode: 'live',
+        isVerified: false,
+        message: `Verification code sent to ${normalizedEmail} via EmailJS`,
+        data: emailJsResult.data,
+      };
+    }
+
+    // 2. Fallback: Simulated sandbox mode (no EmailJS keys configured)
+    console.warn('[EmailSenderService] EMAILJS_SERVICE_ID is not configured. Simulating OTP dispatch. Code:', safeCode);
+    return {
+      success: true,
+      provider: 'simulated',
+      mode: 'simulated',
+      isVerified: false,
+      code: safeCode,
+      message: 'Verification code simulated (Configure EMAILJS_SERVICE_ID for live delivery).',
+    };
+  }
+
+  /**
+   * Dispatch Contact Form message to recipient via server-side EmailJS
+   * Template variables available in your EmailJS template:
+   * {{to_email}}, {{recipient_email}}, {{from_name}}, {{name}}, {{from_email}}, {{email}}, {{reply_to}}, {{subject}}, {{message}}, {{timestamp}}, {{is_verified}}
    */
   public static async sendContactNotification({
     name,
@@ -146,85 +260,61 @@ export class EmailSenderService {
     isVerifiedCached = true,
   }: SendContactEmailParams): Promise<SendEmailResult> {
     const normalizedEmail = email.toLowerCase().trim();
-    const resend = this.getResendClient();
+    const safeName = this.sanitizeHeaderField(name, 80) || 'Visitor';
+    const safeSubject = this.sanitizeSubject(subject, safeName);
     const recipientEmail = process.env.RECIPIENT_EMAIL || 'mnchristelle@gmail.com';
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 
-    const htmlContent = getContactEmailTemplate({
-      name,
-      email: normalizedEmail,
-      subject,
-      message,
-      isVerifiedCached,
-      timestamp: new Date().toUTCString(),
-    });
+    // 1. Dispatch via EmailJS template if configured
+    if (this.isEmailJSConfigured()) {
+      const templateId = (
+        process.env.EMAILJS_CONTACT_TEMPLATE_ID ||
+        process.env.EMAILJS_TEMPLATE_ID ||
+        ''
+      ).trim();
 
-    if (!resend) {
-      console.warn('[EmailSenderService] RESEND_API_KEY is not configured. Simulating contact message delivery.');
-      return {
-        success: true,
-        mode: 'simulated',
-        isVerifiedCached: true,
-        message: 'Contact email simulated (RESEND_API_KEY not configured). Message recorded successfully!',
-      };
-    }
-
-    try {
-      const sendResult = await resend.emails.send({
-        from: fromEmail,
-        to: [recipientEmail],
-        replyTo: normalizedEmail,
-        subject: subject ? `[Contact Form] ${subject} - ${name}` : `New Direct Inquiry from ${name}`,
-        html: htmlContent,
+      const emailJsResult = await this.sendViaEmailJS(templateId, {
+        to_email: recipientEmail,
+        recipient_email: recipientEmail,
+        from_name: safeName,
+        name: safeName,
+        from_email: normalizedEmail,
+        email: normalizedEmail,
+        reply_to: normalizedEmail,
+        subject: safeSubject,
+        message: message,
+        timestamp: new Date().toUTCString(),
+        is_verified: isVerifiedCached ? 'Yes (Redis Cached)' : 'Yes (Verified)',
       });
 
-      const { data, error } = sendResult || {};
-
-      if (error) {
-        const errMsg = error.message || error.toString() || '';
-        const errStr = `${errMsg} ${JSON.stringify(error)}`.toLowerCase();
-
-        if (
-          errStr.includes('api key') ||
-          errStr.includes('validation_error') ||
-          errStr.includes('can only send') ||
-          errStr.includes('testing emails') ||
-          errStr.includes('resend.com/domains') ||
-          errStr.includes('invalid') ||
-          errStr.includes('unauthorized')
-        ) {
-          console.warn('[EmailSenderService] Recording contact message in simulated mode due to Resend tier restriction:', errMsg);
-          return {
-            success: true,
-            mode: 'simulated_fallback',
-            isVerifiedCached: true,
-            warning: `Resend Notice: ${errMsg}. Message recorded locally.`,
-            message: 'Contact message recorded successfully (simulated fallback mode).',
-          };
-        }
-
-        console.error('[EmailSenderService Contact Error]', error);
+      if (!emailJsResult.success) {
+        console.warn('[EmailSenderService] EmailJS contact delivery issue:', emailJsResult.error);
         return {
-          success: false,
-          error: errMsg || 'Failed to send contact email',
+          success: true,
+          provider: 'emailjs',
+          mode: 'simulated_fallback',
+          isVerifiedCached: true,
+          warning: `EmailJS: ${emailJsResult.error}. Message recorded locally.`,
+          message: 'Contact message recorded successfully (simulated fallback mode).',
         };
       }
 
       return {
         success: true,
+        provider: 'emailjs',
         mode: 'live',
         isVerifiedCached: true,
-        data,
-      };
-    } catch (err: any) {
-      console.warn('[EmailSenderService Exception] Failed to send contact message via Resend:', err?.message || err);
-      return {
-        success: true,
-        mode: 'simulated_fallback',
-        isVerifiedCached: true,
-        warning: `Resend Notice: ${err?.message || 'Error communicating with Resend'}. Message recorded locally.`,
-        message: 'Contact message recorded successfully.',
+        data: emailJsResult.data,
       };
     }
+
+    // 2. Fallback: Simulated sandbox mode (no EmailJS keys configured)
+    console.warn('[EmailSenderService] EMAILJS_SERVICE_ID is not configured. Simulating contact message delivery.');
+    return {
+      success: true,
+      provider: 'simulated',
+      mode: 'simulated',
+      isVerifiedCached: true,
+      message: 'Contact email simulated (Configure EMAILJS_SERVICE_ID for live inbox delivery).',
+    };
   }
 }

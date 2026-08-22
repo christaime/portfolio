@@ -37,7 +37,7 @@ The application is structured as a single-repository full-stack system combining
 │                └───────────────────┬────────────────────┘                   │
 │                                    │                                        │
 │                         ┌──────────▼──────────┐                             │
-│                         │  Resend Email SDK   │ (With Simulated Fallback)   │
+│                         │ Server-Side EmailJS │ (With Simulated Fallback)   │
 │                         └─────────────────────┘                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -51,8 +51,8 @@ The application is structured as a single-repository full-stack system combining
 ### 2. Backend & API Proxy Architecture
 - **Express Server**: An **Express.js** server (`server.ts`) operating on port `3000`.
 - **Vite Middleware Integration**: In development mode, Vite runs as Express middleware (`createViteServer`), enabling rapid Hot Reloading while allowing full Express API route execution. In production, Express serves compiled static assets from `dist/`.
-- **Transactional Email Engine**: Utilizes the **Resend API** for sending verification OTP codes and forwarding client contact inquiries.
-- **Graceful Fallback Mode**: If `RESEND_API_KEY` is missing or unconfigured, the backend automatically transitions to a simulated fallback mode, returning generated OTP codes directly to the frontend so contact testing can proceed uninterrupted.
+- **Transactional Email Engine**: Utilizes the **EmailJS REST API** server-side for sending verification OTP codes and forwarding client contact inquiries securely without exposing keys to the client browser.
+- **Graceful Fallback Mode**: If `EMAILJS_SERVICE_ID` is missing or unconfigured, the backend automatically transitions to a simulated fallback mode, returning generated OTP codes directly to the frontend so contact testing can proceed uninterrupted.
 
 ### 3. Data Abstraction Layer
 - **Decoupled JSON Repositories**: All profile content, work history, skill taxonomy, projects, and blog posts reside in structured JSON files (`src/data/portfolioData.json`, `src/data/blogPosts.json`, `src/data/servicesData.json`).
@@ -109,7 +109,7 @@ The application is structured as a single-repository full-stack system combining
 
 ```
 .
-├── server.ts                    # Express.js backend server with Resend & Vite middleware
+├── server.ts                    # Express.js backend server with Server-Side EmailJS & Vite middleware
 ├── src/
 │   ├── App.tsx                  # Main React Router setup and layout layout frame
 │   ├── main.tsx                 # Client entry point
@@ -162,7 +162,7 @@ The application is structured as a single-repository full-stack system combining
 ## 🛠️ Tech Stack Summary
 
 - **Frontend**: [React 18](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [React Router v6](https://reactrouter.com/)
-- **Backend Server**: [Express.js](https://expressjs.com/), [Resend SDK](https://resend.com/)
+- **Backend Server**: [Express.js](https://expressjs.com/), [EmailJS REST API](https://www.emailjs.com/)
 - **Build System**: [Vite](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/), [Lucide React Icons](https://lucide.dev/)
 - **Testing**: [Vitest](https://vitest.dev/), [React Testing Library](https://testing-library.com/)
@@ -243,14 +243,20 @@ All application content is driven by structured JSON files separated by language
 - **`src/data/translations/en.json` & `src/data/translations/fr.json`**:
   - Custom UI string phrasing for navigation, buttons, form placeholders, and section headers.
 
-### 3. Configure Environment Variables & Email Integration
-To configure live contact form submissions with two-step OTP email verification:
-1. Create a `.env` file at the root (referencing `.env.example`).
-2. Set your [Resend API](https://resend.com) key:
+### 3. Configure Environment Variables & Email Integration (EmailJS)
+To configure live contact form submissions with two-step OTP email verification without requiring a paid custom domain:
+1. Create a free account at [EmailJS](https://www.emailjs.com/).
+2. Connect your personal email (e.g. Gmail, Outlook) as an **Email Service** (e.g. `service_xxxxxxx`).
+3. Create your email templates and copy your keys to `.env` (referencing `.env.example`):
    ```env
-   RESEND_API_KEY=re_123456789_your_key_here
+   EMAILJS_SERVICE_ID=service_your_id
+   EMAILJS_TEMPLATE_ID=template_your_contact_template
+   EMAILJS_OTP_TEMPLATE_ID=template_your_otp_template
+   EMAILJS_PUBLIC_KEY=your_public_key
+   EMAILJS_PRIVATE_KEY=your_private_key_optional
+   RECIPIENT_EMAIL=mnchristelle@gmail.com
    ```
-3. If `RESEND_API_KEY` is not provided, the Express backend automatically runs in simulated dev mode, outputting verification OTP codes directly in the browser console for testing.
+4. If no email keys are configured, the Express backend automatically runs in simulated sandbox mode, providing interactive OTP autofill codes directly in the verification dialog for seamless testing.
 
 ---
 

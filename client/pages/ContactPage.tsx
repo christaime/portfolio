@@ -227,6 +227,7 @@ export const ContactPage: React.FC = () => {
     setEmail('');
     setSubject('');
     setMessage('');
+    setRecaptchaToken('');
     setSelectedServiceId('');
     userEditedSubjectRef.current = false;
     userEditedMessageRef.current = false;
@@ -234,6 +235,13 @@ export const ContactPage: React.FC = () => {
     setIsSuccess(false);
     setFormError(null);
   };
+
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const isFormValid =
+    name.trim().length > 0 &&
+    isEmailValid &&
+    message.trim().length > 0 &&
+    recaptchaToken.trim().length > 0;
 
   const activeMatchedService = services.find((s) => s.id === selectedServiceId);
 
@@ -389,8 +397,12 @@ export const ContactPage: React.FC = () => {
                   />
                 </div>
 
-                {/* Captcha */}
-                <ContactCaptcha onVerify={setRecaptchaToken} />
+                {/* Captcha - Required */}
+                <ContactCaptcha
+                  onVerify={setRecaptchaToken}
+                  isVerified={Boolean(recaptchaToken)}
+                  required={true}
+                />
 
                 {/* Error Banner */}
                 {formError && (
@@ -401,23 +413,37 @@ export const ContactPage: React.FC = () => {
                 )}
 
                 {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3 bg-[#00a6e0] hover:bg-[#38bdf8] text-[#00374d] text-xs font-bold rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-50"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>{t('contact.sending', 'Sending...')}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      <span>{t('contact.sendBtn', 'Send Message')}</span>
-                    </>
+                <div className="space-y-2 pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !isFormValid}
+                    className="w-full py-3 bg-[#00a6e0] hover:bg-[#38bdf8] text-[#00374d] text-xs font-bold rounded-none transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#00a6e0] cursor-pointer"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>{t('contact.sending', 'Sending...')}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>{t('contact.sendBtn', 'Send Message')}</span>
+                      </>
+                    )}
+                  </button>
+
+                  {!isFormValid && (
+                    <p className="text-[11px] text-center text-[#9cb2cd]/80 font-mono">
+                      {!name.trim() || !email.trim() || !message.trim()
+                        ? t('contact.requiredFieldsHint', '* Name, sender email, and message are required')
+                        : !isEmailValid
+                        ? t('contact.invalidEmailHint', '* Please enter a valid email address (e.g. name@domain.com)')
+                        : !recaptchaToken.trim()
+                        ? t('contact.captchaRequiredHint', '* Please complete the security verification (reCAPTCHA) to enable submission')
+                        : ''}
+                    </p>
                   )}
-                </button>
+                </div>
               </form>
             </div>
           )}

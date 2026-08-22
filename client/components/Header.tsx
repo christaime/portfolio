@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage, available_languages } from '../context/LanguageContext';
-import { Terminal, Globe, Menu, X, Calendar } from 'lucide-react';
+import { Terminal, Globe, Menu, X } from 'lucide-react';
 
 interface HeaderProps {
   onOpenProfileModal?: () => void;
-  onOpenCallModal?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  onOpenCallModal,
-}) => {
+export const Header: React.FC<HeaderProps> = () => {
   const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -77,18 +74,6 @@ export const Header: React.FC<HeaderProps> = ({
               </select>
             </div>
           </div>
-
-          {/* Schedule Call Trigger */}
-          {onOpenCallModal && (
-            <button
-              onClick={onOpenCallModal}
-              title={t('nav.requestCall', 'Schedule Advisory')}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#00374d] bg-[#00a6e0] hover:bg-[#38bdf8] rounded-md font-semibold transition-colors shadow-sm"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>{t('header.advisory', 'Advisory')}</span>
-            </button>
-          )}
 
           {/* Mobile Menu Toggle */}
           <button

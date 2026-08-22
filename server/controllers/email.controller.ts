@@ -139,9 +139,9 @@ export class EmailController {
       // 3. Verify sender verification status in Redis cache
       let isVerified = await EmailVerificationService.isEmailVerified(normalizedEmail);
 
-      // Auto-verify in simulation / development mode if Resend API key is unconfigured
-      const isResendConfigured = Boolean(process.env.RESEND_API_KEY && process.env.RESEND_API_KEY.startsWith('re_'));
-      if (!isVerified && !isResendConfigured) {
+      // Auto-verify in simulation / development mode if live email dispatch is unconfigured
+      const isLiveEmailConfigured = EmailSenderService.isConfigured();
+      if (!isVerified && !isLiveEmailConfigured) {
         await EmailVerificationService.markEmailVerified(normalizedEmail);
         isVerified = true;
       }

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { EmailSenderService } from '../services/emailSender.service';
 
 export class HealthController {
   /**
@@ -6,11 +7,8 @@ export class HealthController {
    * GET /api/health
    */
   public static async getHealth(_req: Request, res: Response): Promise<Response> {
-    const resendConfigured = Boolean(
-      process.env.RESEND_API_KEY &&
-      process.env.RESEND_API_KEY.startsWith('re_') &&
-      !process.env.RESEND_API_KEY.includes('your_')
-    );
+    const emailjsConfigured = EmailSenderService.isEmailJSConfigured();
+    const emailProvider = EmailSenderService.getProvider();
 
     const upstashConfigured = Boolean(
       process.env.UPSTASH_REDIS_REST_URL &&
@@ -25,7 +23,9 @@ export class HealthController {
 
     return res.status(200).json({
       status: 'ok',
-      resendConfigured,
+      emailProvider,
+      emailjsConfigured,
+      emailConfigured: emailjsConfigured,
       upstashConfigured,
       recaptchaConfigured,
       timestamp: new Date().toISOString(),

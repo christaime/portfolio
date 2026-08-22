@@ -15,7 +15,9 @@ describe('HealthController', () => {
     expect(jsonMock).toHaveBeenCalledWith(
       expect.objectContaining({
         status: 'ok',
-        resendConfigured: expect.any(Boolean),
+        emailProvider: expect.any(String),
+        emailjsConfigured: expect.any(Boolean),
+        emailConfigured: expect.any(Boolean),
         upstashConfigured: expect.any(Boolean),
         recaptchaConfigured: expect.any(Boolean),
         timestamp: expect.any(String),
