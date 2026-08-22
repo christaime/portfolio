@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
               <span className="text-xs text-[#9cb2cd]">• Christelle Mamekem Ngueguim</span>
             </div>
             <p className="text-xs text-[#9cb2cd]/80 mt-0.5">
-              {t('footer.tagline', 'Senior Software Engineer • PEPPOL BIS 3.0 & Distributed Systems Specialist')}
+              {t('footer.tagline', 'Senior Software Engineer')}
             </p>
           </div>
         </div>

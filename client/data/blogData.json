@@ -46,7 +46,8 @@
       "role": "Senior Full-Stack Software Engineer",
       "avatar": "/images/my_picture.png"
     }
-  },{
+  },
+  {
     "id": "post-cephas-multitenant",
     "slug": "building-a-multitenant-saas-erp-architecture",
     "title": "Architecting a Multi-Tenant SaaS ERP: The Choices, The Trade-Offs, The Lessons",

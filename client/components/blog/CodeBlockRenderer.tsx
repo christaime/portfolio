@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Check, Copy } from "lucide-react";
+import React, { useState } from 'react';
+import { Check, Copy } from 'lucide-react';
 
 export interface CodeBlockProps {
   languageName?: string;
@@ -12,7 +12,7 @@ export const CodeBlockRenderer: React.FC<CodeBlockProps> = ({
 }) => {
   const [copied, setCopied] = useState<boolean>(false);
 
-  const rawCode = String(children).replace(/\n$/, "");
+  const rawCode = String(children).replace(/\n$/, '');
 
   const handleCopy = async () => {
     try {
@@ -29,7 +29,7 @@ export const CodeBlockRenderer: React.FC<CodeBlockProps> = ({
       <div className="flex items-center justify-between px-4 py-2 bg-[#0a1f33] border-b border-[#1b3450] text-[11px] font-mono text-[#9cb2cd]">
         <span className="flex items-center gap-2 text-[#00a6e0] font-semibold uppercase tracking-wider">
           <span className="w-2 h-2 rounded-full bg-[#00a6e0]/80 inline-block" />
-          {languageName || "code"}
+          {languageName || 'code'}
         </span>
         <button
           type="button"

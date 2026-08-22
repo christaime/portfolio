@@ -114,7 +114,10 @@
     "backToList": "Back to Insights",
     "loading": "Loading Articles...",
     "publishedOn": "Published on",
-    "by": "by"
+    "by": "by",
+    "ctaTitle": "Need Expert Architecture Consultation?",
+    "ctaDescription": "Discuss system integration, PEPPOL compliance pipelines, or microservices scalability directly.",
+    "ctaButton": "Contact the Architect"
   },
   "contact": {
     "badge": "Connect & Collaborate",
@@ -200,7 +203,7 @@
     "pageNotice": "Standard A4 Format • Vector Output"
   },
   "footer": {
-    "tagline": "Senior Software Engineer • PEPPOL BIS 3.0 & Distributed Systems Specialist",
+    "tagline": "Senior Software Engineer",
     "rightsReserved": "All Rights Reserved"
   },
   "common": {

@@ -1,6 +1,6 @@
-import React from "react";
-import { BlogPost } from "../../types";
-import { Clock, Calendar, User, Shield } from "lucide-react";
+import React from 'react';
+import { BlogPost } from '../../types';
+import { Clock, Calendar, User, Shield } from 'lucide-react';
 
 export interface BlogPostHeaderProps {
   post: BlogPost;
