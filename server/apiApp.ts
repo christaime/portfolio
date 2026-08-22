@@ -10,6 +10,8 @@ export function createApiApp(): Express {
 
   // Parse JSON payloads
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  
 
   // Mount API routes
   app.use(rootRouter);
