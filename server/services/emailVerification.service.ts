@@ -1,4 +1,4 @@
-import { redisStore } from './redisStore';
+import { redisStore } from './redisStore.js';
 
 export interface VerifyOtpResult {
   success: boolean;

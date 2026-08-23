@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { RecaptchaService } from '../services/recaptcha.service';
-import { EmailVerificationService } from '../services/emailVerification.service';
-import { EmailSenderService } from '../services/emailSender.service';
+import { RecaptchaService } from '../services/recaptcha.service.js';
+import { EmailVerificationService } from '../services/emailVerification.service.js';
+import { EmailSenderService } from '../services/emailSender.service.js';
 
 export class EmailController {
   /**

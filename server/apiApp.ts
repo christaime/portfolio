@@ -1,5 +1,5 @@
 import express, { Express } from 'express';
-import rootRouter from './routes';
+import rootRouter from './routes/index.js';
 /**
  * Creates and configures the Express API application without Vite dependencies.
  * Used for Vercel Serverless Functions, standalone Node servers, and test suites.
