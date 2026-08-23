@@ -1,12 +1,12 @@
 {
-  "name": "react-example",
+  "name": "portfolio.dev",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.4.0",
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
     "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
-    "vercel:build": "npm run build:client && npm run build:vercel",
+    "vercel:build": "npm run build:vercel && npm run build:client",
     "build:client": "vite build --outDir dist",
     "build:vercel": "esbuild vercel-entrypoint.ts --bundle --platform=node --format=esm --packages=external --outfile=api/index.js --log-level=info",
     "start": "node dist/server.cjs",
