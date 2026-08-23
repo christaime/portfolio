@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
-import { createApiApp } from './apiApp';
+import { createApiApp } from './apiApp.js';
 
 export { createApiApp };
 

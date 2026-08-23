@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { EmailSenderService } from '../services/emailSender.service';
+import { EmailSenderService } from '../services/emailSender.service.js';
 
 export class HealthController {
   /**

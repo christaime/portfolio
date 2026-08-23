@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { EmailController } from '../controllers/email.controller';
-import { HealthController } from '../controllers/health.controller';
+import { EmailController } from '../controllers/email.controller.js';
+import { HealthController } from '../controllers/health.controller.js';
 
 const router = Router();
 
