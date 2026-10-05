@@ -1,7 +1,7 @@
-import React from 'react';
-import { ProjectItem } from '../../types';
-import { useLanguage } from '../../context/LanguageContext';
-import { Sparkles, Github, ExternalLink, CheckCircle2 } from 'lucide-react';
+import React from "react";
+import { ProjectItem } from "../../types";
+import { useLanguage } from "../../context/LanguageContext";
+import { Sparkles, Github, ExternalLink, CheckCircle2 } from "lucide-react";
 
 interface CVProjectItemProps {
   project: ProjectItem;
@@ -21,7 +21,7 @@ export const CVProjectItem: React.FC<CVProjectItemProps> = ({ project }) => {
           {project.featured && (
             <span className="flex items-center gap-1 text-[11px] font-semibold text-[#f59e0b] bg-[#f59e0b]/10 border border-[#f59e0b]/20 px-2 py-0.5 rounded">
               <Sparkles className="w-3 h-3" />
-              <span>{t('services.featured', 'Featured')}</span>
+              <span>{t("services.featured", "Featured")}</span>
             </span>
           )}
         </div>
@@ -40,7 +40,10 @@ export const CVProjectItem: React.FC<CVProjectItemProps> = ({ project }) => {
         {project.achievements && project.achievements.length > 0 && (
           <ul className="mb-4 space-y-1">
             {project.achievements.map((ach, i) => (
-              <li key={i} className="text-xs text-[#d4e4fa]/80 flex items-start gap-1.5">
+              <li
+                key={i}
+                className="text-xs text-[#d4e4fa]/80 flex items-start gap-1.5"
+              >
                 <CheckCircle2 className="w-3 h-3 text-[#34d399] shrink-0 mt-0.5" />
                 <span>{ach}</span>
               </li>
@@ -74,18 +77,18 @@ export const CVProjectItem: React.FC<CVProjectItemProps> = ({ project }) => {
               className="flex items-center gap-1.5 text-xs text-[#9cb2cd] hover:text-[#00a6e0] font-mono transition-colors"
             >
               <Github className="w-3.5 h-3.5" />
-              <span>{t('cv.projects.sourceCode', 'Source Code')}</span>
+              <span>{t("cv.projects.sourceCode", "Source Code")}</span>
             </a>
           )}
-          {project.liveUrl && (
+          {(project.liveUrl || project.demoUrl) && (
             <a
-              href={project.liveUrl}
+              href={project.liveUrl || project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs text-[#9cb2cd] hover:text-[#00a6e0] font-mono transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              <span>{t('cv.projects.viewLive', 'Live Demo')}</span>
+              <span>{t("cv.projects.viewLive", "Live Demo")}</span>
             </a>
           )}
         </div>
