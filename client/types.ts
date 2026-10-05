@@ -87,6 +87,7 @@ export interface ProjectItem {
   skills: string[];
   technologies?: string[];
   liveUrl?: string;
+  demoUrl?: string;
   githubUrl?: string;
   sourceUrl?: string;
   achievements?: string[];

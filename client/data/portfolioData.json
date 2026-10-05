@@ -6,8 +6,8 @@
     "phone": "+237 695 282 983",
     "location": "Bafoussam, Cameroon",
     "remoteAvailable": true,
-    "avatarUrl": "./images/my_picture.png",
-    "avatar": "./images/my_picture.png",
+    "avatarUrl": "./images/my_picture.jpeg",
+    "avatar": "./images/my_picture.jpeg",
     "introduction": "Senior Software Engineer with 10+ years of expertise spanning Backend Engineering (.NET Core/C# & Java/Spring Boot), Frontend SPAs (Angular & React), QA Testing, Fullstack architecture, and System/Infrastructure Management. Proven record engineering secure microservices with JWT/Keycloak, integrating enterprise middleware (RabbitMQ, ActiveMQ, OpenKM), architecting PEPPOL e-invoicing standards (UBL 2.1 & Schematron), and orchestrating automated DevOps pipelines with Docker, Ansible, Azure DevOps, and GitLab CI.",
     "github": "https://github.com/christaime",
     "linkedin": "https://www.linkedin.com/in/christelle-mamekem-ngueguim/",
@@ -367,6 +367,35 @@
       "sourceUrl": "https://github.com/christaime/banking-budget-manager",
       "featured": false,
       "linkedServices": ["backend-engineer", "qa-testing"]
+    },
+    {
+      "id": "proj-mealmarket-platform",
+      "title": "MealMarket — Multi-Vendor Marketplace with a Conversational AI Agent",
+      "category": "Full-Stack & Applied AI",
+      "description": "Multi-vendor marketplace built with Spring Boot 3.2 and Angular 19, featuring MealMate — a conversational agent that uses LLM tool calling to let users order meals in natural language, backed by deterministic Java guardrails.",
+      "longDescription": "MealMarket is a multi-vendor meal-ordering marketplace that replaces tedious filter-based search with natural conversation. Users describe what they want (\"something light without peanuts, near me\"), and the MealMate agent resolves entities, queries the real catalogue, and presents results as cards. Safety rules — moderation, availability, allergens, vendor state — stay in deterministic Java, never delegated to the LLM. The result: less abandonment, better discovery of long-tail inventory, and a single session that follows the user from first message to order.",
+      "skills": [
+        "Spring Boot 3.2",
+        "Java 17",
+        "Angular 19",
+        "PostgreSQL 18",
+        "Keycloak",
+        "LLM Tool Calling",
+        "JPA Specification",
+        "Flyway",
+        "MapStruct",
+        "S3 Compatible Storage",
+        "Docker",
+        "Resilience4j"
+      ],
+      "demoUrl": "https://meals-order-platform.pages.dev/meals",
+      "sourceUrl": "https://github.com/christaime/meals_order_platform",
+      "featured": true,
+      "linkedServices": [
+        "backend-engineer",
+        "fullstack-engineer",
+        "ai-engineer"
+      ]
     }
   ],
   "services": [
@@ -444,6 +473,24 @@
       ],
       "estimatedDuration": "4-8 weeks",
       "baseRate": "$2,500 – $6,500"
+    },
+    {
+      "id": "ai-engineer",
+      "title": "Applied AI Engineer (LLM Agents & Production Integration)",
+      "icon": "brain",
+      "shortDesc": "Design of LLM tool-calling agents, RAG architectures, deterministic guardrails, and integration of generative AI into existing business systems.",
+      "description": "Design and production integration of AI agents, with a strict separation between model reasoning and critical domain decisions. Expertise in tool calling (OpenAI-compatible, Anthropic, Groq, OpenRouter), bounded agent loops, multi-turn context management, structured payloads for UI rendering, and orchestration of deterministic tools invoked by the model. Business guardrails — visibility, permissions, filtering, validation — are always implemented in Java, Python, or .NET, never delegated to the LLM. Integration of interchangeable LLM providers behind a single interface, session persistence, anonymous-to-authenticated session merging, cursor-based history pagination, and deployment on constrained infrastructure (free tiers, cold starts, quotas).",
+      "features": [
+        "Conversational agents with LLM tool calling (Spring Boot, Java 17+, Python, .NET)",
+        "Deterministic guardrails: validation, visibility, permissions, and security in native code",
+        "Entity resolution through dedicated tools to eliminate hallucinated identifiers",
+        "Structured payloads (UI cards, typed JSON) rendered by Angular/React frontends",
+        "Interchangeable LLM providers behind a single abstraction (OpenAI-compatible, Groq, Anthropic, OpenRouter)",
+        "Persisted sessions, anonymous ↔ authenticated merging, cursor-paginated history",
+        "Deployment on free or constrained infrastructure (Render, Cloudflare, Neon, managed Keycloak)"
+      ],
+      "estimatedDuration": "3-10 weeks",
+      "baseRate": "$2,500 – $9,000"
     }
   ]
 }
